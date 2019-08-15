@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+{% load staticfiles %}
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>研发管理部-AI资源管理系统</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Toggle plugin CSS -->
+    <link href="{% static 'bootstrap-toggle/css/bootstrap-toggle.min.css' %}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="{% static 'aiResource/css/dashboard.css' %}" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="{% static 'html5shiv/html5shiv.min.js' %}"></script>
+      <script src="{% static 'respond.js/respond.min.js' %}"></script>
+    <![endif]-->
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="{% static 'ie/js/ie10-viewport-bug-workaround.js' %}"></script>
+
+    <!-- 页面个性化link文件 -->
+    {% block link_block %}{% endblock %}
+
+    {% block headejs %}{% endblock %}
+</head>
+
+<body>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false"
+                    aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/management/resource/">研发管理部-AI资源管理系统</a>
+        </div>
+    </div>
+</nav>
+
+{% block sidebar %}
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-3 col-md-2 sidebar">
+                <ul class="nav nav-sidebar">
+                    <li {% if page_type and page_type == 'resource_index' %} class="active" {% endif %}>
+                        <a href="/management/resource">视频列表</a>
+                    </li>
+                    <li {% if page_type and page_type == 'plist' %} class="active" {% endif %} >
+                        <a href="/management/list">样本列表</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block mainbody %}
+{% endblock %}
+
+
+<script src="{% static 'jquery/js/jquery-1.12.2.min.js' %}"></script>
+<script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+
+{% block bodyjs %}
+{% endblock %}
+
+</body>
+
+</html>

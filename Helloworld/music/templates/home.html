@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+</head>
+<body>
+{% include 'bottom.html' %}
+<!--This is nothong-->
+
+{% block content %}
+<div>This is spcace</div>
+list
+{%endblock%}
+({% url 'secret' 1 %})
+<a href="{% url 'secret' 1 %}">判断</a>
+{{string}}
+{{item}}
+</br>
+
+{% for i in list %}
+{{ i }}
+{% endfor %}</br>
+
+
+歌曲： {{ dict.music }}       歌手： {{ dict.singer }}
+<br>
+{% for i in num_list %}
+{{ i }} {% if not forloop.last %},{% endif %}
+{% empty %} 抱歉，列表为空
+{% endfor %}<br>
+
+{% if request.user.is_authenticated %}
+    {{ request.user.username }}，您好！
+{% else %}
+    请登陆，这里放登陆链接
+{% endif %}
+
+{{ request.user }}
+{{ request.path }}
+{{ request.GET.urlencode }}
+</body>
+</html>

@@ -1,0 +1,7 @@
+{
+  "host": "172.26.9.18",
+  "database": "competitor_test",
+  "user": "ctest_readonly",
+  "password": "123456",
+  "charset": "utf8"
+}

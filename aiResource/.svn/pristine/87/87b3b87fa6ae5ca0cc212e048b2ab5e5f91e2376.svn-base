@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+
+<head>
+    <meta charset="UTF-8">
+    <title>图片 review</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Toggle plugin CSS -->
+    <link href="{% static 'bootstrap-toggle/css/bootstrap-toggle.min.css' %}" rel="stylesheet">
+</head>
+<body style="background-color: #E3EDCD">
+
+<div class="container-fluid" id="app">
+
+    <div class="row" id="infos" style="height: 10vh;margin-top: 10px">
+        <div class="col-md-12" align="center">
+            <h3>图片 Review 真的爽，skr~!</h3>
+            <h3>ResourceId : {{ resource.id }} ReviewId : {{ review_id }} PornResultId : {{ porn_result.id }}</h3>
+        </div>
+    </div>
+
+    <div class="row" id="img-area">
+        <div>
+            <div class="col-md-12" align="center">
+                <img id="display" v-bind:src="[[curFramePath]]" alt="什么鬼，裤子都脱了都没得看" style="height: 80vh">
+            </div>
+        </div>
+    </div>
+
+    <div class="row" id="controller"
+         style="height: 5vh;border:1px solid black;border-radius:5px;margin-left: 5px;margin-top: 5px;margin-right: 5px">
+        <div class="col-md-12">
+            <form class="form-inline" style="margin: 5px"
+                  v-on:keyup.alt.83="submit"
+                  v-on:keyup.right="next"
+                  v-on:keyup.left="pre"
+                  v-on:keyup.alt.right="next10"
+                  v-on:keyup.alt.left="pre10"
+                  v-on:keyup.90="setValue(0)"
+                  v-on:keyup.88="setValue(1)"
+                  v-on:keyup.67="setValue(2)"
+            >
+                <button id="focusButton" class="btn btn-warning" type="button">点我聚焦</button>
+                <div class="form-group" style="margin-left: 20px">
+                    <label>金山云：</label>
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="ksyunValueRadios" value=1 v-model="ksyunValue" disabled="true">
+                            正常
+                        </label>
+                    </div>
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="ksyunValueRadios" value=3 v-model="ksyunValue" disabled="true">
+                            色情
+                        </label>
+                    </div>
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="ksyunValueRadios" value=2 v-model="ksyunValue" disabled="true">
+                            性感
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group" style="margin-left: 20px;margin-right: 20px">
+                    <label>Resource：</label>
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="resourceValueRadios" value=0 v-model="resourceNewValue">
+                            正常
+                        </label>
+                    </div>
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="resourceValueRadios" value=1 v-model="resourceNewValue">
+                            色情
+                        </label>
+                    </div>
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="resourceValueRadios" value=2 v-model="resourceNewValue">
+                            性感
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group" style="margin-left: 20px;margin-right: 20px">
+                    <label>ReviewStatus：</label>
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="reviewStatusRadios" value=1 v-model="reviewStatus" disabled="true">
+                            NoNeed
+                        </label>
+                    </div>
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="reviewStatusRadios" value=2 v-model="reviewStatus" disabled="true">
+                            Need
+                        </label>
+                    </div>
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="reviewStatusRadios" value=3 v-model="reviewStatus" disabled="true">
+                            Reviewed
+                        </label>
+                    </div>
+                </div>
+                <button class="btn btn-primary" type="button" v-on:click="pre10" :disabled="submitDisable" style="margin-left: 20px">Pre 10
+                </button>
+                <button class="btn btn-primary" type="button" v-on:click="pre" :disabled="submitDisable" style="margin-left: 20px">Pre 1
+                </button>
+                <button class="btn btn-primary" type="button" v-on:click="next" :disabled="submitDisable"
+                        style="margin-left: 20px">Next 1
+                </button>
+                <button class="btn btn-primary" type="button" v-on:click="next10" :disabled="submitDisable"
+                        style="margin-left: 20px">Next 10
+                </button>
+                <button class="btn btn-primary" type="button" v-on:click="submit" :disabled="submitDisable"
+                        style="margin-left: 20px">提交并下一个
+                </button>
+            </form>
+
+        </div>
+    </div>
+
+</div>
+
+<script src="{% static 'jquery/js/jquery-1.12.2.min.js' %}"></script>
+<script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+
+<script>
+
+    var app = new Vue({
+        delimiters: ['[[', ']]'],
+        el: '#app',
+        data: {
+            curFramePath: "{{ resource.path }}",
+            resourceOldValue: {{ resource.value }},
+            resourceNewValue: {{ resource.value }},
+            resourceId:{{ resource.id }},
+            ksyunValue: {{ porn_result.label }},
+            reviewId:{{ review_id }},
+            nextReviewId:{{ next_review_id }},
+            preReviewId:{{ pre_review_id }},
+            next10ReviewId:{{ next_10_review_id }},
+            pre10ReviewId:{{ pre_10_review_id }},
+            nextNeedReviewId:{{ next_need_review_id }},
+            reviewStatus: {{ temp_review.review_status }},
+            submitDisable: false,
+            steps: 1
+        },
+        methods: {
+            setValue: function (v) {
+                var vm = this;
+                vm.resourceNewValue = v;
+            },
+            next: function () {
+                var vm = this;
+                var url = window.location.href;
+                window.location.href = url.substr(0, url.lastIndexOf("/") + 1) + vm.nextReviewId;
+            },
+            pre: function () {
+                var vm = this;
+                var url = window.location.href;
+                window.location.href = url.substr(0, url.lastIndexOf("/") + 1) + vm.preReviewId;
+            },
+            next10: function () {
+                var vm = this;
+                var url = window.location.href;
+                window.location.href = url.substr(0, url.lastIndexOf("/") + 1) + vm.next10ReviewId;
+            },
+            pre10: function () {
+                var vm = this;
+                var url = window.location.href;
+                window.location.href = url.substr(0, url.lastIndexOf("/") + 1) + vm.pre10ReviewId;
+            },
+            submit: function () {
+                var vm = this;
+                vm.submitDisable = true;
+
+                var data = {
+                    "resourceId": vm.resourceId,
+                    "reviewId": vm.reviewId,
+                    "resourceOldValue": vm.resourceOldValue,
+                    "resourceNewValue": vm.resourceNewValue
+                };
+
+                $.ajax({
+                    contentType: 'application/json; charset=utf-8',
+                    dataType: 'json',
+                    type: 'POST',
+                    url: '/management/resource/review_update',
+                    data: JSON.stringify({"data": data}),
+                    success: function successCallBack(data) {
+                        if (data["code"] == 0) {
+                            alert("提交成功");
+                            var url = window.location.href;
+                            window.location.href = url.substr(0, url.lastIndexOf("/") + 1) + vm.nextNeedReviewId;
+                        } else {
+                            alert("提交失败，请重试！");
+                        }
+                        vm.submitDisable = false;
+                    }
+                });
+            }
+        }
+    });
+
+    $("#focusButton").focus();
+
+</script>
+
+
+</body>
+</html>

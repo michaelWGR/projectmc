@@ -1,0 +1,6 @@
+Django==1.9.5
+MySQL-python==1.2.5
+django-celery==3.2.2
+enum34 == 1.1.6
+aliyun-python-sdk-core==2.8.2
+aliyun-python-sdk-green==3.2.0

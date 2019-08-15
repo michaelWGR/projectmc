@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+
+<head>
+    <meta charset="UTF-8">
+    <title>线上 OCR 鉴赏平台</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Toggle plugin CSS -->
+    <link href="{% static 'bootstrap-toggle/css/bootstrap-toggle.min.css' %}" rel="stylesheet">
+</head>
+<body style="background-color: #E3EDCD">
+
+<div class="container-fluid" id="app">
+
+    <div class="row" id="infos" style="height: 5vh;margin-top: 10px">
+        <div class="col-md-12" align="center">
+            <h3>YY 首家绿色健康在线 OCR 平台，兄弟们爽完记得保存！ 视频路径：{{ resource_path }}</h3>
+        </div>
+    </div>
+
+    <div class="row" id="img-area">
+        <div>
+            <div class="col-md-12" align="center">
+                <img id="display" v-bind:src="[[curFramePath]]" alt="什么鬼，裤子都脱了都没得看" style="height: 80vh">
+            </div>
+        </div>
+    </div>
+
+    <div class="row" id="controller"
+         style="height: 10vh;border:1px solid black;border-radius:5px;margin-left: 5px;margin-top: 5px;margin-right: 5px">
+        <div class="col-md-12">
+            <form class="form-inline" style="margin: 5px"
+                  v-on:keyup.up="batchJump(-1)"
+                  v-on:keyup.down="batchJump(1)"
+                  v-on:keyup.left="batchJump(-1)"
+                  v-on:keyup.right="batchJump(1)"
+                  v-on:keyup.alt.up="batchJump(-steps)"
+                  v-on:keyup.alt.down="batchJump(steps)"
+                  v-on:keyup.alt.left="batchJump(-steps)"
+                  v-on:keyup.alt.right="batchJump(steps)"
+
+                  v-on:keyup.87="jump(-1)"
+                  v-on:keyup.83="jump(1)"
+                  v-on:keyup.65="jump(-1)"
+                  v-on:keyup.68="jump(1)"
+                  v-on:keyup.alt.87="jump(-steps)"
+                  v-on:keyup.alt.83="jump(steps)"
+                  v-on:keyup.alt.65="jump(-steps)"
+                  v-on:keyup.alt.68="jump(steps)"
+
+                  v-on:enter="submit"
+            >
+                <button id="focusButton" class="btn btn-warning" type="button">点我聚焦</button>
+                <div class="form-group" style="margin-left: 20px">
+                    <label>Steps</label>
+                    <input type="number" class="form-control" v-model="steps" style="width: 70px">
+                </div>
+                <div class="form-group" style="margin-left: 20px">
+                    <label>当前帧号</label>
+                    <input id="frameIndex" type="number" class="form-control" style="width: 100px"
+                           v-model="curFrameIndex" readonly>
+                </div>
+                <div class="form-group" style="margin-left: 20px">
+                    <label>跳帧</label>
+                    <button class="btn btn-primary" type="button" v-on:click="jump(-1)"> < 1</button>
+                    <button class="btn btn-primary" type="button" v-on:click="jump(-steps)"> < [[steps]]</button>
+                    <button class="btn btn-primary" type="button" v-on:click="jump(steps)"> > [[steps]]</button>
+                    <button class="btn btn-primary" type="button" v-on:click="jump(1)"> > 1</button>
+                </div>
+                <div class="form-group" style="margin-left: 20px">
+                    <label>批量选帧</label>
+                    <button class="btn btn-primary" type="button" v-on:click="batchJump(-1)"> < 1</button>
+                    <button class="btn btn-primary" type="button" v-on:click="batchJump(-steps)"> < [[steps]]</button>
+                    <button class="btn btn-primary" type="button" v-on:click="batchJump(steps)"> > [[steps]]</button>
+                    <button class="btn btn-primary" type="button" v-on:click="batchJump(1)"> > 1</button>
+                </div>
+                <div class="form-group" style="margin-left: 20px;margin-right: 20px">
+                    <label>剩余</label>
+                    <input type="int" class="form-control" v-model="remains" @input="input" style="width: 70px">
+                    <label>击杀</label>
+                    <input type="int" class="form-control" v-model="kills" @input="input" style="width: 70px">
+                    <label>加入</label>
+                    <input type="int" class="form-control" v-model="join" @input="input" style="width: 70px">
+                </div>
+                <button class="btn btn-primary" type="button" v-on:click="submit" :disabled="submitDisable">提交</button>
+            </form>
+            <div>
+                <p style="float: left"><label>1</label></p>
+                <p style="float: right"><label>[[resources.length]]</label></p>
+            </div>
+            <div class="progress">
+                <div class="progress-bar"
+                     v-bind:class="{
+                     'progress-bar-success':pd['value'] == 0 ? 1 : 0,
+                     'progress-bar-danger':pd['value'] == 1 ? 1 : 0
+                     }"
+                     v-bind:style="{width: pd['count']/resourceVOs.length * 100 + '%'}"
+                     v-for="pd in progressData"></div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<script src="{% static 'jquery/js/jquery-1.12.2.min.js' %}"></script>
+<script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+
+<script>
+
+    var app = new Vue({
+        delimiters: ['[[', ']]'],
+        el: '#app',
+        data: {
+            resources: {{ child_resources|safe }},
+            resourceVOs: [],
+            curFrameIndex: 1,
+            curFramePath: null,
+            steps: 20,
+            progressData: [],
+            resourceId: {{ resource_id }},
+            remains: null,
+            kills: null,
+            join: null,
+            submitDisable: false
+        },
+        methods: {
+            input: function () {
+                var tmp = {};
+                if (this.remains != null && this.remains != "") {
+                    tmp["remains"] = this.remains
+                }
+                if (this.kills != null && this.kills != "") {
+                    tmp["kills"] = this.kills
+                }
+                if (this.join != null && this.join != "") {
+                    tmp["join"] = this.join
+                }
+                this.resourceVOs[this.curFrameIndex - 1]['info'] = tmp;
+                this.progressData = getProgressData(this.resourceVOs);
+            },
+            jump: function (num) {
+                num = parseInt(num);
+                this.curFrameIndex += num;
+                this.curFrameIndex = this.curFrameIndex < 1 ? 1 : this.curFrameIndex;
+                this.curFrameIndex = this.curFrameIndex > this.resources.length ? this.resources.length : this.curFrameIndex;
+
+                this.curFramePath = this.resources[this.curFrameIndex - 1]['path']
+            },
+            batchJump: function (num) {
+                num = parseInt(num);
+
+                var bFrame = this.curFrameIndex;
+                this.jump(num);
+
+                var begin = -1;
+                var end = -1;
+                if (bFrame < this.curFrameIndex) {
+                    begin = bFrame - 1;
+                    end = this.curFrameIndex;
+                } else {
+                    begin = this.curFrameIndex - 1;
+                    end = bFrame;
+                }
+
+                for (var i = begin; i < end; i++) {
+                    var tmp = {};
+                    if (this.remains != null && this.remains != "") {
+                        tmp["remains"] = this.remains
+                    }
+                    if (this.kills != null && this.kills != "") {
+                        tmp["kills"] = this.kills
+                    }
+                    if (this.join != null && this.join != "") {
+                        tmp["join"] = this.join
+                    }
+                    this.resourceVOs[i]['info'] = tmp;
+                }
+
+                this.progressData = getProgressData(this.resourceVOs);
+                //var s = "";
+                //for (var i = 0; i < this.resourceVOs.length; i++) {
+                //    s += this.resourceVOs[i]['value'] + ","
+                //}
+                //console.log(s)
+            },
+            submit: function () {
+                var vm = this;
+                vm.submitDisable = true;
+                // 找出数据差集
+                var results = [];
+                for (var i = 0; i < this.resourceVOs.length; i++) {
+                    if (this.resourceVOs[i]['info'] != JSON.parse(this.resources[i]['col_json_01'])) {
+                        var flag = false;
+                        for (var j = 0; j < results.length; j++) {
+                            if (results[j]["info"] == this.resourceVOs[i]['info']) {
+                                flag = true;
+                                break;
+                            }
+                        }
+                        if (flag) {
+                            results[j]["ids"].push(this.resourceVOs[i]['id'])
+                        } else {
+                            results.push({"info": this.resourceVOs[i]['info'], "ids": [this.resourceVOs[i]['id']]})
+                        }
+
+                    }
+                }
+                if (results.length > 0) {
+                    $.ajax({
+                        contentType: 'application/json; charset=utf-8',
+                        dataType: 'json',
+                        type: 'POST',
+                        url: '/management/resource/batch_update_json',
+                        data: JSON.stringify({"data": results, "resourceId": this.resourceId}),
+                        success: function successCallBack(data) {
+                            if (data["code"] == 0) {
+                                alert("提交成功");
+                                $("#focusButton").focus();
+                            }
+                            vm.submitDisable = false;
+                        }
+                    });
+                }
+
+                /**
+                 var data = {
+                    null: [],
+                    0: [],
+                    1: []
+                };
+                 var v = undefined;
+                 for (var i = 0; i < this.resourceVOs.length; i++) {
+                    v = this.resourceVOs[i]['value'] == -1 ? null : this.resourceVOs[i]['value'];
+                    if (v == this.resources[i]['value']) {
+                        continue
+                    }
+                    data[v].push(this.resourceVOs[i]['id']);
+                }
+                 if (data[null].length != 0 || data[0].length != 0 || data[1].length != 0) {
+                    $.ajax({
+                        contentType: 'application/json; charset=utf-8',
+                        dataType: 'json',
+                        type: 'POST',
+                        url: '/management/resource/batch_update_value',
+                        data: JSON.stringify({"data": data, "resourceId": this.resourceId}),
+                        success: function successCallBack(data) {
+                            if (data["code"] == 0) {
+                                alert("提交成功");
+                                $("#focusButton").focus();
+                            }
+                        }
+                    });
+                }**/
+            }
+        }
+    });
+
+    function getProgressData(resourceVOs) {
+        var results = [];
+        var dataObject = {"value": resourceVOs[0]["info"] ? 0 : 1, "count": 0};
+        for (var i = 0; i < resourceVOs.length; i++) {
+            var tmp_v = resourceVOs[i]["info"] ? 0 : 1;
+            if (tmp_v == dataObject["value"]) {
+                dataObject["count"] += 1;
+            } else {
+                results.push({"value": dataObject["value"], "count": dataObject["count"]});
+                dataObject["value"] = tmp_v;
+                dataObject["count"] = 1
+            }
+        }
+        if (dataObject["count"] > 0) {
+            results.push(dataObject);
+        }
+        return results;
+    }
+
+    var resourceVOs = [];
+    for (var i = 0; i < app.resources.length; i++) {
+        resourceVOs.push({
+            "id": app.resources[i]["id"],
+            "info": JSON.parse(app.resources[i]['col_json_01'])
+        })
+    }
+    app.resourceVOs = resourceVOs;
+    app.curFramePath = app.resources[app.curFrameIndex - 1]['path'];
+
+    app.progressData = getProgressData(app.resourceVOs);
+
+    $("#focusButton").focus();
+
+</script>
+
+
+</body>
+</html>

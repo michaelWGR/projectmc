@@ -1,0 +1,261 @@
+# -*- coding:utf-8 -*-
+
+import os
+import argparse
+import cv2
+import MySQLdb
+import datetime
+import threading
+import Queue
+import numpy as np
+
+# from aiResource.settings import PROCESS_TYPE
+from utils.settings import *
+
+
+class Processor(object):
+    def __init__(self):
+        pass
+
+    @staticmethod
+    def can_process(process_type):
+        return False
+
+    def process(self, frame):
+        return frame
+
+
+class BlurProcessor(Processor):
+    def __init__(self, process_argument):
+        super(BlurProcessor, self).__init__()
+        self.argument = None
+        self.process_arguments = {
+            'blur10': (10, 10),
+            'blur20': (20, 20),
+            'blur30': (30, 30),
+            'blur40': (40, 40),
+            'blur50': (50, 50),
+        }
+        self.argument = self.process_arguments.get(process_argument, None)
+        if self.argument:
+            assert RuntimeError('argument is None')
+
+    @staticmethod
+    def can_process(process_type):
+        can_process_type = [
+            'blur10',
+            'blur20',
+            'blur30',
+            'blur40',
+            'blur50',
+        ]
+        if process_type in can_process_type:
+            return True
+        return False
+
+    def process(self, frame):
+        return cv2.blur(frame, self.argument)
+
+
+class ColorNoiseProcessor(Processor):
+    def __init__(self, process_argument):
+        super(ColorNoiseProcessor, self).__init__()
+        self.process_arguments = {
+            'colornoise50': 50,
+            'colornoise100': 100,
+            'colornoise150': 150
+        }
+        self.argument = self.process_arguments.get(process_argument, None)
+        if self.argument:
+            assert RuntimeError('argument is None')
+
+    @staticmethod
+    def can_process(process_type):
+        can_process_type = [
+            'colornoise50',
+            'colornoise100',
+            'colornoise150'
+        ]
+        if process_type in can_process_type:
+            return True
+        return False
+
+    def process(self, frame):
+        mean = 0.0
+        r = np.random.normal(mean, self.argument, frame.shape)
+        noisy_img = frame + r
+        noisy_img_clipped = np.clip(noisy_img, 0, 255)
+        return noisy_img_clipped
+
+
+class MosaicsProcessor(Processor):
+    def __init__(self, process_argument):
+        super(MosaicsProcessor, self).__init__()
+        self.process_arguments = {
+            'mosaic10': 10,
+            'mosaic20': 20,
+            'mosaic30': 30,
+            'mosaic40': 40,
+            'mosaic50': 50,
+        }
+        self.argument = self.process_arguments.get(process_argument, None)
+        if self.argument:
+            assert RuntimeError('argument is None')
+
+    @staticmethod
+    def can_process(process_type):
+        can_process_type = [
+            'mosaic10',
+            'mosaic20',
+            'mosaic30',
+            'mosaic40',
+            'mosaic50',
+        ]
+        if process_type in can_process_type:
+            return True
+        return False
+
+    def process(self, frame):
+        (height, width, depth) = frame.shape
+        for y in range(0, height, self.argument):
+            for x in range(0, width, self.argument):
+                frame[y:y + self.argument, x:x + self.argument] = frame[y, x]
+        return frame
+
+
+ready_processor = {
+    'blur10': BlurProcessor('blur10'),
+    'blur20': BlurProcessor('blur20'),
+    'blur30': BlurProcessor('blur30'),
+    'blur40': BlurProcessor('blur40'),
+    'blur50': BlurProcessor('blur50'),
+    'mosaic5': MosaicsProcessor('mosaic5'),
+    'mosaic10': MosaicsProcessor('mosaic10'),
+    'mosaic15': MosaicsProcessor('mosaic15'),
+    'mosaic20': MosaicsProcessor('mosaic20'),
+    'colornoise50': ColorNoiseProcessor('colornoise50'),
+    'colornoise100': ColorNoiseProcessor('colornoise100'),
+    'colornoise150': ColorNoiseProcessor('colornoise150'),
+}
+
+
+def get_process_image(page_no=0):
+    # todo：需要优化，数据过多会有问题
+    start_no = page_no * 1000
+    image = []
+    coon = MySQLdb.connect(database.get('host'), database.get('user'), database.get('password'),
+                           database.get('database'), charset='utf8')
+    get_all_frames_sql = 'select id,path,business_type,value from resources where process_type = 1 ORDER  by id limit %s,1000'  # get all extract image
+    cursor = coon.cursor()
+
+    cursor.execute(get_all_frames_sql, (start_no,))
+    rows = cursor.fetchall()
+    for row in rows:
+        id = row[0]
+        path = os.path.join(row[1].strip().replace('http://ai-resource.yypm.com/resource/', ''))
+        business_type = row[2]
+        value = row[3]
+        image.append((id, path, business_type, value))
+
+    coon.close()
+    return image
+
+
+def is_had_deal(frame_item, process_type):
+    coon = MySQLdb.connect(database.get('host'), database.get('user'), database.get('password'),
+                           database.get('database'), charset='utf8')
+    check_sql = 'select count(*) from resources where pid = %s and process_type = %s'
+    cursor = coon.cursor()
+    cursor.execute(check_sql, (frame_item[0], process_type,))
+    resutls = cursor.fetchall()
+    if resutls[0][0] >= 1:
+        return True
+    return False
+
+
+def save_to_database(frame_item, deal_save_path, process_type):
+    coon = MySQLdb.connect(database.get('host'), database.get('user'), database.get('password'),
+                           database.get('database'), charset='utf8')
+    update_sql = 'update resources set is_leaf = 0 where id = %s'
+    insert_sql = 'insert into resources(path,type,business_type,pid,next_id,pre_id,process_type,value, checked,is_leaf,ctime,mtime) values (' \
+                 '%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)'
+    cursor = coon.cursor()
+    try:
+        cursor.execute(update_sql, (frame_item[0],))
+        path = 'http://ai-resource.yypm.com/resource/' + deal_save_path
+        type = 1
+        business_type = int(frame_item[2])
+        pid = int(frame_item[0])
+        next_id = 0
+        pre_id = 0
+        process_type = int(PROCESS_TYPE.get(process_type))
+        checked = 0
+        is_leaf = 1
+        value = frame_item[3]
+        ctime = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        mtime = ctime
+        cursor.execute(insert_sql, (
+            path, type, business_type, pid, next_id, pre_id, process_type, value, checked, is_leaf, ctime, mtime,))
+        coon.commit()
+    except Exception, e:
+        print e
+        coon.rollback()
+    coon.close()
+
+
+def main():
+    argparser = argparse.ArgumentParser('process all image resource')
+    argparser.add_argument('sample_dir', help='source image dir')
+    argparser.add_argument('deal_sample_disk', help='save image dir')
+    argparser.add_argument('process_type', help='blur10,blur20,blur30,blur40,blur50',
+                           choices=['blur10', 'blur20', 'blur30', 'blur40', 'blur50', 'mosaic10', 'mosaic20',
+                                    'mosaic30', 'mosaic40', 'mosaic50'])
+    args = argparser.parse_args()
+
+    sample_dir = args.sample_dir
+    deal_sample_disk = args.deal_sample_disk
+    process_type = args.process_type
+
+    deal_image_dir_format = 'deal_sample/{process_type}/{datetime}/{video_name}'
+    deal_image_path_format = 'deal_sample/{process_type}/{datetime}/{video_name}/{image_name}'
+
+    page_count = 0
+    images = get_process_image(page_count)
+
+    while len(images) > 0:
+        processor = ready_processor.get(process_type, None)
+        if not processor:
+            assert RuntimeError('no target processor')
+            return
+        while len(images) > 0:
+            # for image in images:
+            image = images.pop()
+            image_paths = image[1].split('/')[-2:]
+            deal_image_dir = deal_image_dir_format.format(process_type=process_type,
+                                                          datetime=datetime.datetime.now().strftime('%Y%m%d'),
+                                                          video_name=image_paths[0])
+            deal_image_formatten = deal_image_path_format.format(process_type=process_type,
+                                                                 datetime=datetime.datetime.now().strftime('%Y%m%d'),
+                                                                 video_name=image_paths[0],
+                                                                 image_name=image_paths[1])
+            source_path = os.path.join(sample_dir, image[1])
+            deal_path = os.path.join(deal_sample_disk, deal_image_formatten)
+            if not os.path.exists(source_path):
+                assert RuntimeError()
+            # print source_path
+            # print deal_path
+            if not os.path.exists(deal_image_dir):
+                os.makedirs(deal_image_dir)
+            if is_had_deal(image, int(PROCESS_TYPE.get(process_type))):
+                continue
+            frame = cv2.imread(source_path)
+            after_deal = processor.process(frame)
+            cv2.imwrite(deal_path, after_deal)
+            save_to_database(image, deal_image_formatten, process_type)
+        print "page  had process" % (page_count)
+        page_count = page_count + 1
+        images = get_process_image(page_count)
+
+
+if __name__ == '__main__':
+    main()

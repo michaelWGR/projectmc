@@ -1,0 +1,565 @@
+[DEBUG] [2018-10-26 18:41:34,650] [utils.execute] (0.000) SELECT @@SQL_AUTO_IS_NULL; args=None
+[DEBUG] [2018-10-26 18:41:34,650] [utils.execute] (0.000) SELECT VERSION(); args=None
+[DEBUG] [2018-10-26 18:41:34,734] [utils.execute] (0.001) SHOW FULL TABLES; args=None
+[DEBUG] [2018-10-26 18:41:34,734] [schema.execute] CREATE TABLE `django_migrations` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `app` varchar(255) NOT NULL, `name` varchar(255) NOT NULL, `applied` datetime(6) NOT NULL); (params None)
+[DEBUG] [2018-10-26 18:41:34,823] [utils.execute] (0.089) CREATE TABLE `django_migrations` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `app` varchar(255) NOT NULL, `name` varchar(255) NOT NULL, `applied` datetime(6) NOT NULL); args=None
+[DEBUG] [2018-10-26 18:41:34,825] [utils.execute] (0.001) SELECT engine FROM information_schema.tables WHERE table_name = 'django_migrations'; args=[u'django_migrations']
+[DEBUG] [2018-10-26 18:41:34,826] [utils.execute] (0.001) SELECT engine FROM information_schema.tables WHERE table_name = 'django_migrations'; args=[u'django_migrations']
+[DEBUG] [2018-10-26 18:41:34,827] [utils.execute] (0.001) SELECT engine FROM information_schema.tables WHERE table_name = 'django_migrations'; args=[u'django_migrations']
+[DEBUG] [2018-10-26 18:41:34,828] [utils.execute] (0.001) SELECT engine FROM information_schema.tables WHERE table_name = 'django_migrations'; args=[u'django_migrations']
+[DEBUG] [2018-10-26 18:41:34,831] [utils.execute] (0.001) SELECT `django_migrations`.`app`, `django_migrations`.`name` FROM `django_migrations`; args=()
+[DEBUG] [2018-10-26 18:41:52,143] [utils.execute] (0.000) SELECT @@SQL_AUTO_IS_NULL; args=None
+[DEBUG] [2018-10-26 18:41:52,143] [utils.execute] (0.000) SELECT VERSION(); args=None
+[DEBUG] [2018-10-26 18:41:52,182] [utils.execute] (0.001) SHOW FULL TABLES; args=None
+[DEBUG] [2018-10-26 18:41:52,184] [utils.execute] (0.000) SELECT `django_migrations`.`app`, `django_migrations`.`name` FROM `django_migrations`; args=()
+[DEBUG] [2018-10-26 18:42:13,778] [utils.execute] (0.000) SELECT @@SQL_AUTO_IS_NULL; args=None
+[DEBUG] [2018-10-26 18:42:13,778] [utils.execute] (0.000) SELECT @@sql_mode; args=None
+[DEBUG] [2018-10-26 18:42:13,779] [utils.execute] (0.000) SELECT VERSION(); args=None
+[DEBUG] [2018-10-26 18:42:13,803] [utils.execute] (0.001) SHOW FULL TABLES; args=None
+[DEBUG] [2018-10-26 18:42:13,804] [utils.execute] (0.000) SELECT `django_migrations`.`app`, `django_migrations`.`name` FROM `django_migrations`; args=()
+[DEBUG] [2018-10-26 18:42:13,806] [utils.execute] (0.001) SHOW FULL TABLES; args=None
+[DEBUG] [2018-10-26 18:42:13,806] [utils.execute] (0.000) SELECT `django_migrations`.`app`, `django_migrations`.`name` FROM `django_migrations`; args=()
+[DEBUG] [2018-10-26 18:42:13,809] [schema.execute] CREATE TABLE `django_content_type` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `name` varchar(100) NOT NULL, `app_label` varchar(100) NOT NULL, `model` varchar(100) NOT NULL); (params None)
+[DEBUG] [2018-10-26 18:42:13,859] [utils.execute] (0.049) CREATE TABLE `django_content_type` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `name` varchar(100) NOT NULL, `app_label` varchar(100) NOT NULL, `model` varchar(100) NOT NULL); args=None
+[DEBUG] [2018-10-26 18:42:13,860] [utils.execute] (0.001) SELECT engine FROM information_schema.tables WHERE table_name = 'django_content_type'; args=[u'django_content_type']
+[DEBUG] [2018-10-26 18:42:13,862] [utils.execute] (0.001) SELECT engine FROM information_schema.tables WHERE table_name = 'django_content_type'; args=[u'django_content_type']
+[DEBUG] [2018-10-26 18:42:13,863] [utils.execute] (0.001) SELECT engine FROM information_schema.tables WHERE table_name = 'django_content_type'; args=[u'django_content_type']
+[DEBUG] [2018-10-26 18:42:13,864] [utils.execute] (0.001) SELECT engine FROM information_schema.tables WHERE table_name = 'django_content_type'; args=[u'django_content_type']
+[DEBUG] [2018-10-26 18:42:13,866] [schema.execute] ALTER TABLE `django_content_type` ADD CONSTRAINT `django_content_type_app_label_model_76bd3d3b_uniq` UNIQUE (`app_label`, `model`); (params ())
+[DEBUG] [2018-10-26 18:42:13,873] [utils.execute] (0.006) ALTER TABLE `django_content_type` ADD CONSTRAINT `django_content_type_app_label_model_76bd3d3b_uniq` UNIQUE (`app_label`, `model`); args=()
+[DEBUG] [2018-10-26 18:42:13,874] [utils.execute] (0.001) SHOW FULL TABLES; args=None
+[DEBUG] [2018-10-26 18:42:13,875] [utils.execute] (0.000) INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('contenttypes', '0001_initial', '2018-10-26 10:42:13.874755'); args=['contenttypes', u'0001_initial', u'2018-10-26 10:42:13.874755']
+[DEBUG] [2018-10-26 18:42:13,878] [schema.execute] CREATE TABLE `auth_permission` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `name` varchar(50) NOT NULL, `content_type_id` integer NOT NULL, `codename` varchar(100) NOT NULL); (params None)
+[DEBUG] [2018-10-26 18:42:13,884] [utils.execute] (0.005) CREATE TABLE `auth_permission` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `name` varchar(50) NOT NULL, `content_type_id` integer NOT NULL, `codename` varchar(100) NOT NULL); args=None
+[DEBUG] [2018-10-26 18:42:13,885] [utils.execute] (0.001) SELECT engine FROM information_schema.tables WHERE table_name = 'auth_permission'; args=[u'auth_permission']
+[DEBUG] [2018-10-26 18:42:13,885] [utils.execute] (0.001) SELECT engine FROM information_schema.tables WHERE table_name = 'auth_permission'; args=[u'auth_permission']
+[DEBUG] [2018-10-26 18:42:13,886] [utils.execute] (0.001) SELECT engine FROM information_schema.tables WHERE table_name = 'auth_permission'; args=[u'auth_permission']
+[DEBUG] [2018-10-26 18:42:13,887] [utils.execute] (0.001) SELECT engine FROM information_schema.tables WHERE table_name = 'auth_permission'; args=[u'auth_permission']
+[DEBUG] [2018-10-26 18:42:13,891] [schema.execute] CREATE TABLE `auth_group` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `name` varchar(80) NOT NULL UNIQUE); (params None)
+[DEBUG] [2018-10-26 18:42:13,896] [utils.execute] (0.005) CREATE TABLE `auth_group` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `name` varchar(80) NOT NULL UNIQUE); args=None
+[DEBUG] [2018-10-26 18:42:13,897] [utils.execute] (0.001) SELECT engine FROM information_schema.tables WHERE table_name = 'auth_group'; args=[u'auth_group']
+[DEBUG] [2018-10-26 18:42:13,898] [utils.execute] (0.001) SELECT engine FROM information_schema.tables WHERE table_name = 'auth_group'; args=[u'auth_group']
+[DEBUG] [2018-10-26 18:42:13,898] [schema.execute] CREATE TABLE `auth_group_permissions` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `group_id` integer NOT NULL, `permission_id` integer NOT NULL); (params None)
+[DEBUG] [2018-10-26 18:42:13,902] [utils.execute] (0.004) CREATE TABLE `auth_group_permissions` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `group_id` integer NOT NULL, `permission_id` integer NOT NULL); args=None
+[DEBUG] [2018-10-26 18:42:13,903] [utils.execute] (0.001) SELECT engine FROM information_schema.tables WHERE table_name = 'auth_group_permissions'; args=[u'auth_group_permissions']
+[DEBUG] [2018-10-26 18:42:13,903] [utils.execute] (0.001) SELECT engine FROM information_schema.tables WHERE table_name = 'auth_group_permissions'; args=[u'auth_group_permissions']
+[DEBUG] [2018-10-26 18:42:13,904] [utils.execute] (0.001) SELECT engine FROM information_schema.tables WHERE table_name = 'auth_group_permissions'; args=[u'auth_group_permissions']
+[DEBUG] [2018-10-26 18:42:13,910] [schema.execute] CREATE TABLE `auth_user` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `password` varchar(128) NOT NULL, `last_login` datetime(6) NOT NULL, `is_superuser` bool NOT NULL, `username` varchar(30) NOT NULL UNIQUE, `first_name` varchar(30) NOT NULL, `last_name` varchar(30) NOT NULL, `email` varchar(75) NOT NULL, `is_staff` bool NOT NULL, `is_active` bool NOT NULL, `date_joined` datetime(6) NOT NULL); (params None)
+[DEBUG] [2018-10-26 18:42:13,917] [utils.execute] (0.006) CREATE TABLE `auth_user` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `password` varchar(128) NOT NULL, `last_login` datetime(6) NOT NULL, `is_superuser` bool NOT NULL, `username` varchar(30) NOT NULL UNIQUE, `first_name` varchar(30) NOT NULL, `last_name` varchar(30) NOT NULL, `email` varchar(75) NOT NULL, `is_staff` bool NOT NULL, `is_active` bool NOT NULL, `date_joined` datetime(6) NOT NULL); args=None
+[DEBUG] [2018-10-26 18:42:13,917] [utils.execute] (0.001) SELECT engine FROM information_schema.tables WHERE table_name = 'auth_user'; args=[u'auth_user']
+[DEBUG] [2018-10-26 18:42:13,918] [utils.execute] (0.001) SELECT engine FROM information_schema.tables WHERE table_name = 'auth_user'; args=[u'auth_user']
+[DEBUG] [2018-10-26 18:42:13,919] [utils.execute] (0.001) SELECT engine FROM information_schema.tables WHERE table_name = 'auth_user'; args=[u'auth_user']
+[DEBUG] [2018-10-26 18:42:13,920] [utils.execute] (0.001) SELECT engine FROM information_schema.tables WHERE table_name = 'auth_user'; args=[u'auth_user']
+[DEBUG] [2018-10-26 18:42:13,920] [utils.execute] (0.001) SELECT engine FROM information_schema.tables WHERE table_name = 'auth_user'; args=[u'auth_user']
+[DEBUG] [2018-10-26 18:42:13,921] [utils.execute] (0.001) SELECT engine FROM information_schema.tables WHERE table_name = 'auth_user'; args=[u'auth_user']
+[DEBUG] [2018-10-26 18:42:13,922] [utils.execute] (0.001) SELECT engine FROM information_schema.tables WHERE table_name = 'auth_user'; args=[u'auth_user']
+[DEBUG] [2018-10-26 18:42:13,922] [utils.execute] (0.001) SELECT engine FROM information_schema.tables WHERE table_name = 'auth_user'; args=[u'auth_user']
+[DEBUG] [2018-10-26 18:42:13,923] [utils.execute] (0.001) SELECT engine FROM information_schema.tables WHERE table_name = 'auth_user'; args=[u'auth_user']
+[DEBUG] [2018-10-26 18:42:13,924] [utils.execute] (0.001) SELECT engine FROM information_schema.tables WHERE table_name = 'auth_user'; args=[u'auth_user']
+[DEBUG] [2018-10-26 18:42:13,925] [utils.execute] (0.001) SELECT engine FROM information_schema.tables WHERE table_name = 'auth_user'; args=[u'auth_user']
+[DEBUG] [2018-10-26 18:42:13,925] [schema.execute] CREATE TABLE `auth_user_groups` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `user_id` integer NOT NULL, `group_id` integer NOT NULL); (params None)
+[DEBUG] [2018-10-26 18:42:13,929] [utils.execute] (0.004) CREATE TABLE `auth_user_groups` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `user_id` integer NOT NULL, `group_id` integer NOT NULL); args=None
+[DEBUG] [2018-10-26 18:42:13,930] [utils.execute] (0.001) SELECT engine FROM information_schema.tables WHERE table_name = 'auth_user_groups'; args=[u'auth_user_groups']
+[DEBUG] [2018-10-26 18:42:13,931] [utils.execute] (0.001) SELECT engine FROM information_schema.tables WHERE table_name = 'auth_user_groups'; args=[u'auth_user_groups']
+[DEBUG] [2018-10-26 18:42:13,932] [utils.execute] (0.001) SELECT engine FROM information_schema.tables WHERE table_name = 'auth_user_groups'; args=[u'auth_user_groups']
+[DEBUG] [2018-10-26 18:42:13,932] [schema.execute] CREATE TABLE `auth_user_user_permissions` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `user_id` integer NOT NULL, `permission_id` integer NOT NULL); (params None)
+[DEBUG] [2018-10-26 18:42:13,936] [utils.execute] (0.004) CREATE TABLE `auth_user_user_permissions` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `user_id` integer NOT NULL, `permission_id` integer NOT NULL); args=None
+[DEBUG] [2018-10-26 18:42:13,937] [utils.execute] (0.001) SELECT engine FROM information_schema.tables WHERE table_name = 'auth_user_user_permissions'; args=[u'auth_user_user_permissions']
+[DEBUG] [2018-10-26 18:42:13,937] [utils.execute] (0.001) SELECT engine FROM information_schema.tables WHERE table_name = 'auth_user_user_permissions'; args=[u'auth_user_user_permissions']
+[DEBUG] [2018-10-26 18:42:13,938] [utils.execute] (0.001) SELECT engine FROM information_schema.tables WHERE table_name = 'auth_user_user_permissions'; args=[u'auth_user_user_permissions']
+[DEBUG] [2018-10-26 18:42:13,938] [schema.execute] ALTER TABLE `auth_permission` ADD CONSTRAINT `auth_permission_content_type_id_2f476e4b_fk_django_co` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`); (params ())
+[DEBUG] [2018-10-26 18:42:13,949] [utils.execute] (0.011) ALTER TABLE `auth_permission` ADD CONSTRAINT `auth_permission_content_type_id_2f476e4b_fk_django_co` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`); args=()
+[DEBUG] [2018-10-26 18:42:13,950] [schema.execute] ALTER TABLE `auth_permission` ADD CONSTRAINT `auth_permission_content_type_id_codename_01ab375a_uniq` UNIQUE (`content_type_id`, `codename`); (params ())
+[DEBUG] [2018-10-26 18:42:13,954] [utils.execute] (0.004) ALTER TABLE `auth_permission` ADD CONSTRAINT `auth_permission_content_type_id_codename_01ab375a_uniq` UNIQUE (`content_type_id`, `codename`); args=()
+[DEBUG] [2018-10-26 18:42:13,954] [schema.execute] ALTER TABLE `auth_group_permissions` ADD CONSTRAINT `auth_group_permissions_group_id_b120cbf9_fk_auth_group_id` FOREIGN KEY (`group_id`) REFERENCES `auth_group` (`id`); (params ())
+[DEBUG] [2018-10-26 18:42:13,965] [utils.execute] (0.010) ALTER TABLE `auth_group_permissions` ADD CONSTRAINT `auth_group_permissions_group_id_b120cbf9_fk_auth_group_id` FOREIGN KEY (`group_id`) REFERENCES `auth_group` (`id`); args=()
+[DEBUG] [2018-10-26 18:42:13,965] [schema.execute] ALTER TABLE `auth_group_permissions` ADD CONSTRAINT `auth_group_permissio_permission_id_84c5c92e_fk_auth_perm` FOREIGN KEY (`permission_id`) REFERENCES `auth_permission` (`id`); (params ())
+[DEBUG] [2018-10-26 18:42:13,978] [utils.execute] (0.013) ALTER TABLE `auth_group_permissions` ADD CONSTRAINT `auth_group_permissio_permission_id_84c5c92e_fk_auth_perm` FOREIGN KEY (`permission_id`) REFERENCES `auth_permission` (`id`); args=()
+[DEBUG] [2018-10-26 18:42:13,978] [schema.execute] ALTER TABLE `auth_group_permissions` ADD CONSTRAINT `auth_group_permissions_group_id_permission_id_0cd325b0_uniq` UNIQUE (`group_id`, `permission_id`); (params ())
+[DEBUG] [2018-10-26 18:42:13,983] [utils.execute] (0.005) ALTER TABLE `auth_group_permissions` ADD CONSTRAINT `auth_group_permissions_group_id_permission_id_0cd325b0_uniq` UNIQUE (`group_id`, `permission_id`); args=()
+[DEBUG] [2018-10-26 18:42:13,983] [schema.execute] ALTER TABLE `auth_user_groups` ADD CONSTRAINT `auth_user_groups_user_id_6a12ed8b_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`); (params ())
+[DEBUG] [2018-10-26 18:42:13,993] [utils.execute] (0.010) ALTER TABLE `auth_user_groups` ADD CONSTRAINT `auth_user_groups_user_id_6a12ed8b_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`); args=()
+[DEBUG] [2018-10-26 18:42:13,994] [schema.execute] ALTER TABLE `auth_user_groups` ADD CONSTRAINT `auth_user_groups_group_id_97559544_fk_auth_group_id` FOREIGN KEY (`group_id`) REFERENCES `auth_group` (`id`); (params ())
+[DEBUG] [2018-10-26 18:42:14,005] [utils.execute] (0.012) ALTER TABLE `auth_user_groups` ADD CONSTRAINT `auth_user_groups_group_id_97559544_fk_auth_group_id` FOREIGN KEY (`group_id`) REFERENCES `auth_group` (`id`); args=()
+[DEBUG] [2018-10-26 18:42:14,005] [schema.execute] ALTER TABLE `auth_user_groups` ADD CONSTRAINT `auth_user_groups_user_id_group_id_94350c0c_uniq` UNIQUE (`user_id`, `group_id`); (params ())
+[DEBUG] [2018-10-26 18:42:14,010] [utils.execute] (0.005) ALTER TABLE `auth_user_groups` ADD CONSTRAINT `auth_user_groups_user_id_group_id_94350c0c_uniq` UNIQUE (`user_id`, `group_id`); args=()
+[DEBUG] [2018-10-26 18:42:14,010] [schema.execute] ALTER TABLE `auth_user_user_permissions` ADD CONSTRAINT `auth_user_user_permissions_user_id_a95ead1b_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`); (params ())
+[DEBUG] [2018-10-26 18:42:14,022] [utils.execute] (0.011) ALTER TABLE `auth_user_user_permissions` ADD CONSTRAINT `auth_user_user_permissions_user_id_a95ead1b_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`); args=()
+[DEBUG] [2018-10-26 18:42:14,022] [schema.execute] ALTER TABLE `auth_user_user_permissions` ADD CONSTRAINT `auth_user_user_permi_permission_id_1fbb5f2c_fk_auth_perm` FOREIGN KEY (`permission_id`) REFERENCES `auth_permission` (`id`); (params ())
+[DEBUG] [2018-10-26 18:42:14,034] [utils.execute] (0.012) ALTER TABLE `auth_user_user_permissions` ADD CONSTRAINT `auth_user_user_permi_permission_id_1fbb5f2c_fk_auth_perm` FOREIGN KEY (`permission_id`) REFERENCES `auth_permission` (`id`); args=()
+[DEBUG] [2018-10-26 18:42:14,034] [schema.execute] ALTER TABLE `auth_user_user_permissions` ADD CONSTRAINT `auth_user_user_permissions_user_id_permission_id_14a6b632_uniq` UNIQUE (`user_id`, `permission_id`); (params ())
+[DEBUG] [2018-10-26 18:42:14,039] [utils.execute] (0.005) ALTER TABLE `auth_user_user_permissions` ADD CONSTRAINT `auth_user_user_permissions_user_id_permission_id_14a6b632_uniq` UNIQUE (`user_id`, `permission_id`); args=()
+[DEBUG] [2018-10-26 18:42:14,040] [utils.execute] (0.001) SHOW FULL TABLES; args=None
+[DEBUG] [2018-10-26 18:42:14,041] [utils.execute] (0.000) INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('auth', '0001_initial', '2018-10-26 10:42:14.040480'); args=['auth', u'0001_initial', u'2018-10-26 10:42:14.040480']
+[DEBUG] [2018-10-26 18:42:14,050] [schema.execute] CREATE TABLE `django_admin_log` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `action_time` datetime(6) NOT NULL, `object_id` longtext NULL, `object_repr` varchar(200) NOT NULL, `action_flag` smallint UNSIGNED NOT NULL, `change_message` longtext NOT NULL, `content_type_id` integer NULL, `user_id` integer NOT NULL); (params None)
+[DEBUG] [2018-10-26 18:42:14,071] [utils.execute] (0.009) CREATE TABLE `django_admin_log` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `action_time` datetime(6) NOT NULL, `object_id` longtext NULL, `object_repr` varchar(200) NOT NULL, `action_flag` smallint UNSIGNED NOT NULL, `change_message` longtext NOT NULL, `content_type_id` integer NULL, `user_id` integer NOT NULL); args=None
+[DEBUG] [2018-10-26 18:42:14,072] [utils.execute] (0.001) SELECT engine FROM information_schema.tables WHERE table_name = 'django_admin_log'; args=[u'django_admin_log']
+[DEBUG] [2018-10-26 18:42:14,073] [utils.execute] (0.001) SELECT engine FROM information_schema.tables WHERE table_name = 'django_admin_log'; args=[u'django_admin_log']
+[DEBUG] [2018-10-26 18:42:14,073] [utils.execute] (0.001) SELECT engine FROM information_schema.tables WHERE table_name = 'django_admin_log'; args=[u'django_admin_log']
+[DEBUG] [2018-10-26 18:42:14,074] [utils.execute] (0.001) SELECT engine FROM information_schema.tables WHERE table_name = 'django_admin_log'; args=[u'django_admin_log']
+[DEBUG] [2018-10-26 18:42:14,075] [utils.execute] (0.001) SELECT engine FROM information_schema.tables WHERE table_name = 'django_admin_log'; args=[u'django_admin_log']
+[DEBUG] [2018-10-26 18:42:14,077] [utils.execute] (0.001) SELECT engine FROM information_schema.tables WHERE table_name = 'django_admin_log'; args=[u'django_admin_log']
+[DEBUG] [2018-10-26 18:42:14,078] [utils.execute] (0.001) SELECT engine FROM information_schema.tables WHERE table_name = 'django_admin_log'; args=[u'django_admin_log']
+[DEBUG] [2018-10-26 18:42:14,079] [utils.execute] (0.001) SELECT engine FROM information_schema.tables WHERE table_name = 'django_admin_log'; args=[u'django_admin_log']
+[DEBUG] [2018-10-26 18:42:14,079] [schema.execute] ALTER TABLE `django_admin_log` ADD CONSTRAINT `django_admin_log_content_type_id_c4bce8eb_fk_django_co` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`); (params ())
+[DEBUG] [2018-10-26 18:42:14,095] [utils.execute] (0.015) ALTER TABLE `django_admin_log` ADD CONSTRAINT `django_admin_log_content_type_id_c4bce8eb_fk_django_co` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`); args=()
+[DEBUG] [2018-10-26 18:42:14,095] [schema.execute] ALTER TABLE `django_admin_log` ADD CONSTRAINT `django_admin_log_user_id_c564eba6_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`); (params ())
+[DEBUG] [2018-10-26 18:42:14,112] [utils.execute] (0.017) ALTER TABLE `django_admin_log` ADD CONSTRAINT `django_admin_log_user_id_c564eba6_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`); args=()
+[DEBUG] [2018-10-26 18:42:14,114] [utils.execute] (0.001) SHOW FULL TABLES; args=None
+[DEBUG] [2018-10-26 18:42:14,114] [utils.execute] (0.000) INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('admin', '0001_initial', '2018-10-26 10:42:14.114327'); args=['admin', u'0001_initial', u'2018-10-26 10:42:14.114327']
+[DEBUG] [2018-10-26 18:42:14,124] [schema.execute] ALTER TABLE `django_admin_log` ALTER COLUMN `action_time` SET DEFAULT %s; (params [u'2018-10-26 10:42:14.124856'])
+[DEBUG] [2018-10-26 18:42:14,129] [utils.execute] (0.004) ALTER TABLE `django_admin_log` ALTER COLUMN `action_time` SET DEFAULT '2018-10-26 10:42:14.124856'; args=[u'2018-10-26 10:42:14.124856']
+[DEBUG] [2018-10-26 18:42:14,129] [schema.execute] ALTER TABLE `django_admin_log` ALTER COLUMN `action_time` DROP DEFAULT; (params ())
+[DEBUG] [2018-10-26 18:42:14,133] [utils.execute] (0.004) ALTER TABLE `django_admin_log` ALTER COLUMN `action_time` DROP DEFAULT; args=()
+[DEBUG] [2018-10-26 18:42:14,134] [utils.execute] (0.001) SHOW FULL TABLES; args=None
+[DEBUG] [2018-10-26 18:42:14,135] [utils.execute] (0.000) INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('admin', '0002_logentry_remove_auto_add', '2018-10-26 10:42:14.135210'); args=['admin', u'0002_logentry_remove_auto_add', u'2018-10-26 10:42:14.135210']
+[DEBUG] [2018-10-26 18:42:14,145] [schema.execute] ALTER TABLE `django_content_type` MODIFY `name` varchar(100) NULL; (params [])
+[DEBUG] [2018-10-26 18:42:14,177] [utils.execute] (0.031) ALTER TABLE `django_content_type` MODIFY `name` varchar(100) NULL; args=[]
+[DEBUG] [2018-10-26 18:42:14,187] [schema.execute] ALTER TABLE `django_content_type` DROP COLUMN `name`; (params ())
+[DEBUG] [2018-10-26 18:42:14,199] [utils.execute] (0.012) ALTER TABLE `django_content_type` DROP COLUMN `name`; args=()
+[DEBUG] [2018-10-26 18:42:14,200] [utils.execute] (0.001) SHOW FULL TABLES; args=None
+[DEBUG] [2018-10-26 18:42:14,201] [utils.execute] (0.000) INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('contenttypes', '0002_remove_content_type_name', '2018-10-26 10:42:14.200765'); args=['contenttypes', u'0002_remove_content_type_name', u'2018-10-26 10:42:14.200765']
+[DEBUG] [2018-10-26 18:42:14,205] [schema.execute] ALTER TABLE `auth_permission` MODIFY `name` varchar(255) NOT NULL; (params [])
+[DEBUG] [2018-10-26 18:42:14,220] [utils.execute] (0.015) ALTER TABLE `auth_permission` MODIFY `name` varchar(255) NOT NULL; args=[]
+[DEBUG] [2018-10-26 18:42:14,221] [utils.execute] (0.001) SHOW FULL TABLES; args=None
+[DEBUG] [2018-10-26 18:42:14,222] [utils.execute] (0.000) INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('auth', '0002_alter_permission_name_max_length', '2018-10-26 10:42:14.221594'); args=['auth', u'0002_alter_permission_name_max_length', u'2018-10-26 10:42:14.221594']
+[DEBUG] [2018-10-26 18:42:14,229] [schema.execute] ALTER TABLE `auth_user` MODIFY `email` varchar(254) NOT NULL; (params [])
+[DEBUG] [2018-10-26 18:42:14,247] [utils.execute] (0.018) ALTER TABLE `auth_user` MODIFY `email` varchar(254) NOT NULL; args=[]
+[DEBUG] [2018-10-26 18:42:14,248] [utils.execute] (0.001) SHOW FULL TABLES; args=None
+[DEBUG] [2018-10-26 18:42:14,249] [utils.execute] (0.000) INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('auth', '0003_alter_user_email_max_length', '2018-10-26 10:42:14.249016'); args=['auth', u'0003_alter_user_email_max_length', u'2018-10-26 10:42:14.249016']
+[DEBUG] [2018-10-26 18:42:14,257] [utils.execute] (0.001) SHOW FULL TABLES; args=None
+[DEBUG] [2018-10-26 18:42:14,258] [utils.execute] (0.000) INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('auth', '0004_alter_user_username_opts', '2018-10-26 10:42:14.257849'); args=['auth', u'0004_alter_user_username_opts', u'2018-10-26 10:42:14.257849']
+[DEBUG] [2018-10-26 18:42:14,267] [schema.execute] ALTER TABLE `auth_user` MODIFY `last_login` datetime(6) NULL; (params [])
+[DEBUG] [2018-10-26 18:42:14,281] [utils.execute] (0.014) ALTER TABLE `auth_user` MODIFY `last_login` datetime(6) NULL; args=[]
+[DEBUG] [2018-10-26 18:42:14,282] [utils.execute] (0.001) SHOW FULL TABLES; args=None
+[DEBUG] [2018-10-26 18:42:14,283] [utils.execute] (0.000) INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('auth', '0005_alter_user_last_login_null', '2018-10-26 10:42:14.282779'); args=['auth', u'0005_alter_user_last_login_null', u'2018-10-26 10:42:14.282779']
+[DEBUG] [2018-10-26 18:42:14,284] [utils.execute] (0.001) SHOW FULL TABLES; args=None
+[DEBUG] [2018-10-26 18:42:14,285] [utils.execute] (0.000) INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('auth', '0006_require_contenttypes_0002', '2018-10-26 10:42:14.285166'); args=['auth', u'0006_require_contenttypes_0002', u'2018-10-26 10:42:14.285166']
+[DEBUG] [2018-10-26 18:42:14,294] [utils.execute] (0.001) SHOW FULL TABLES; args=None
+[DEBUG] [2018-10-26 18:42:14,294] [utils.execute] (0.000) INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('auth', '0007_alter_validators_add_error_messages', '2018-10-26 10:42:14.294434'); args=['auth', u'0007_alter_validators_add_error_messages', u'2018-10-26 10:42:14.294434']
+[DEBUG] [2018-10-26 18:42:14,305] [schema.execute] ALTER TABLE `auth_user` MODIFY `username` varchar(150) NOT NULL; (params [])
+[DEBUG] [2018-10-26 18:42:14,322] [utils.execute] (0.018) ALTER TABLE `auth_user` MODIFY `username` varchar(150) NOT NULL; args=[]
+[DEBUG] [2018-10-26 18:42:14,323] [utils.execute] (0.001) SHOW FULL TABLES; args=None
+[DEBUG] [2018-10-26 18:42:14,324] [utils.execute] (0.000) INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('auth', '0008_alter_user_username_max_length', '2018-10-26 10:42:14.324138'); args=['auth', u'0008_alter_user_username_max_length', u'2018-10-26 10:42:14.324138']
+[DEBUG] [2018-10-26 18:42:14,327] [schema.execute] CREATE TABLE `resources` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `path` longtext NOT NULL, `type` integer NOT NULL, `process_type` integer NOT NULL, `value` longtext NOT NULL, `pid` integer NOT NULL, `next_id` integer NOT NULL, `pre_id` integer NOT NULL, `is_leaf` integer NOT NULL, `ctime` datetime(6) NOT NULL, `mtime` datetime(6) NOT NULL, `remark` longtext NULL); (params None)
+[DEBUG] [2018-10-26 18:42:14,332] [utils.execute] (0.005) CREATE TABLE `resources` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `path` longtext NOT NULL, `type` integer NOT NULL, `process_type` integer NOT NULL, `value` longtext NOT NULL, `pid` integer NOT NULL, `next_id` integer NOT NULL, `pre_id` integer NOT NULL, `is_leaf` integer NOT NULL, `ctime` datetime(6) NOT NULL, `mtime` datetime(6) NOT NULL, `remark` longtext NULL); args=None
+[DEBUG] [2018-10-26 18:42:14,333] [utils.execute] (0.001) SELECT engine FROM information_schema.tables WHERE table_name = 'resources'; args=[u'resources']
+[DEBUG] [2018-10-26 18:42:14,334] [utils.execute] (0.001) SELECT engine FROM information_schema.tables WHERE table_name = 'resources'; args=[u'resources']
+[DEBUG] [2018-10-26 18:42:14,334] [utils.execute] (0.001) SELECT engine FROM information_schema.tables WHERE table_name = 'resources'; args=[u'resources']
+[DEBUG] [2018-10-26 18:42:14,335] [utils.execute] (0.001) SELECT engine FROM information_schema.tables WHERE table_name = 'resources'; args=[u'resources']
+[DEBUG] [2018-10-26 18:42:14,336] [utils.execute] (0.001) SELECT engine FROM information_schema.tables WHERE table_name = 'resources'; args=[u'resources']
+[DEBUG] [2018-10-26 18:42:14,337] [utils.execute] (0.001) SELECT engine FROM information_schema.tables WHERE table_name = 'resources'; args=[u'resources']
+[DEBUG] [2018-10-26 18:42:14,337] [utils.execute] (0.001) SELECT engine FROM information_schema.tables WHERE table_name = 'resources'; args=[u'resources']
+[DEBUG] [2018-10-26 18:42:14,338] [utils.execute] (0.001) SELECT engine FROM information_schema.tables WHERE table_name = 'resources'; args=[u'resources']
+[DEBUG] [2018-10-26 18:42:14,339] [utils.execute] (0.001) SELECT engine FROM information_schema.tables WHERE table_name = 'resources'; args=[u'resources']
+[DEBUG] [2018-10-26 18:42:14,339] [utils.execute] (0.001) SELECT engine FROM information_schema.tables WHERE table_name = 'resources'; args=[u'resources']
+[DEBUG] [2018-10-26 18:42:14,340] [utils.execute] (0.001) SELECT engine FROM information_schema.tables WHERE table_name = 'resources'; args=[u'resources']
+[DEBUG] [2018-10-26 18:42:14,341] [utils.execute] (0.001) SELECT engine FROM information_schema.tables WHERE table_name = 'resources'; args=[u'resources']
+[DEBUG] [2018-10-26 18:42:14,342] [utils.execute] (0.001) SHOW FULL TABLES; args=None
+[DEBUG] [2018-10-26 18:42:14,343] [utils.execute] (0.000) INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('management', '0001_initial', '2018-10-26 10:42:14.342617'); args=['management', u'0001_initial', u'2018-10-26 10:42:14.342617']
+[DEBUG] [2018-10-26 18:42:14,346] [schema.execute] ALTER TABLE `resources` MODIFY `path` varchar(512) NOT NULL; (params [])
+[DEBUG] [2018-10-26 18:42:14,358] [utils.execute] (0.012) ALTER TABLE `resources` MODIFY `path` varchar(512) NOT NULL; args=[]
+[DEBUG] [2018-10-26 18:42:14,359] [utils.execute] (0.001) SHOW FULL TABLES; args=None
+[DEBUG] [2018-10-26 18:42:14,359] [utils.execute] (0.000) INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('management', '0002_auto_20180724_0947', '2018-10-26 10:42:14.359540'); args=['management', u'0002_auto_20180724_0947', u'2018-10-26 10:42:14.359540']
+[DEBUG] [2018-10-26 18:42:14,362] [schema.execute] ALTER TABLE `resources` MODIFY `value` longtext NULL; (params [])
+[DEBUG] [2018-10-26 18:42:14,370] [utils.execute] (0.008) ALTER TABLE `resources` MODIFY `value` longtext NULL; args=[]
+[DEBUG] [2018-10-26 18:42:14,371] [utils.execute] (0.001) SHOW FULL TABLES; args=None
+[DEBUG] [2018-10-26 18:42:14,372] [utils.execute] (0.000) INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('management', '0003_auto_20180724_2030', '2018-10-26 10:42:14.372136'); args=['management', u'0003_auto_20180724_2030', u'2018-10-26 10:42:14.372136']
+[DEBUG] [2018-10-26 18:42:14,375] [schema.execute] ALTER TABLE `resources` ADD COLUMN `checked` integer DEFAULT %s NOT NULL; (params [0])
+[DEBUG] [2018-10-26 18:42:14,379] [utils.execute] (0.004) ALTER TABLE `resources` ADD COLUMN `checked` integer DEFAULT 0 NOT NULL; args=[0]
+[DEBUG] [2018-10-26 18:42:14,380] [schema.execute] ALTER TABLE `resources` ALTER COLUMN `checked` DROP DEFAULT; (params ())
+[DEBUG] [2018-10-26 18:42:14,383] [utils.execute] (0.003) ALTER TABLE `resources` ALTER COLUMN `checked` DROP DEFAULT; args=()
+[DEBUG] [2018-10-26 18:42:14,384] [utils.execute] (0.001) SELECT engine FROM information_schema.tables WHERE table_name = 'resources'; args=[u'resources']
+[DEBUG] [2018-10-26 18:42:14,385] [utils.execute] (0.001) SHOW FULL TABLES; args=None
+[DEBUG] [2018-10-26 18:42:14,386] [utils.execute] (0.000) INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('management', '0004_resource_checked', '2018-10-26 10:42:14.385652'); args=['management', u'0004_resource_checked', u'2018-10-26 10:42:14.385652']
+[DEBUG] [2018-10-26 18:42:14,388] [schema.execute] ALTER TABLE `resources` ADD COLUMN `business_type` integer DEFAULT %s NOT NULL; (params [0])
+[DEBUG] [2018-10-26 18:42:14,393] [utils.execute] (0.005) ALTER TABLE `resources` ADD COLUMN `business_type` integer DEFAULT 0 NOT NULL; args=[0]
+[DEBUG] [2018-10-26 18:42:14,394] [schema.execute] ALTER TABLE `resources` ALTER COLUMN `business_type` DROP DEFAULT; (params ())
+[DEBUG] [2018-10-26 18:42:14,397] [utils.execute] (0.003) ALTER TABLE `resources` ALTER COLUMN `business_type` DROP DEFAULT; args=()
+[DEBUG] [2018-10-26 18:42:14,397] [utils.execute] (0.001) SELECT engine FROM information_schema.tables WHERE table_name = 'resources'; args=[u'resources']
+[DEBUG] [2018-10-26 18:42:14,406] [utils.execute] (0.000) SELECT `resources`.`id`, `resources`.`path`, `resources`.`type`, `resources`.`process_type`, `resources`.`value`, `resources`.`pid`, `resources`.`next_id`, `resources`.`pre_id`, `resources`.`is_leaf`, `resources`.`ctime`, `resources`.`mtime`, `resources`.`remark`, `resources`.`checked`, `resources`.`business_type` FROM `resources`; args=()
+[DEBUG] [2018-10-26 18:42:14,407] [utils.execute] (0.001) SHOW FULL TABLES; args=None
+[DEBUG] [2018-10-26 18:42:14,408] [utils.execute] (0.000) INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('management', '0005_resource_business_type', '2018-10-26 10:42:14.407443'); args=['management', u'0005_resource_business_type', u'2018-10-26 10:42:14.407443']
+[DEBUG] [2018-10-26 18:42:14,412] [schema.execute] ALTER TABLE `resources` ADD COLUMN `col_int_01` integer DEFAULT %s NOT NULL; (params [0])
+[DEBUG] [2018-10-26 18:42:14,419] [utils.execute] (0.007) ALTER TABLE `resources` ADD COLUMN `col_int_01` integer DEFAULT 0 NOT NULL; args=[0]
+[DEBUG] [2018-10-26 18:42:14,419] [schema.execute] ALTER TABLE `resources` ALTER COLUMN `col_int_01` DROP DEFAULT; (params ())
+[DEBUG] [2018-10-26 18:42:14,422] [utils.execute] (0.003) ALTER TABLE `resources` ALTER COLUMN `col_int_01` DROP DEFAULT; args=()
+[DEBUG] [2018-10-26 18:42:14,423] [utils.execute] (0.001) SELECT engine FROM information_schema.tables WHERE table_name = 'resources'; args=[u'resources']
+[DEBUG] [2018-10-26 18:42:14,425] [schema.execute] ALTER TABLE `resources` ADD COLUMN `col_json_01` longtext NULL; (params [])
+[DEBUG] [2018-10-26 18:42:14,431] [utils.execute] (0.005) ALTER TABLE `resources` ADD COLUMN `col_json_01` longtext NULL; args=[]
+[DEBUG] [2018-10-26 18:42:14,432] [utils.execute] (0.001) SELECT engine FROM information_schema.tables WHERE table_name = 'resources'; args=[u'resources']
+[DEBUG] [2018-10-26 18:42:14,434] [schema.execute] ALTER TABLE `resources` ADD COLUMN `is_debug` integer DEFAULT %s NOT NULL; (params [0])
+[DEBUG] [2018-10-26 18:42:14,440] [utils.execute] (0.005) ALTER TABLE `resources` ADD COLUMN `is_debug` integer DEFAULT 0 NOT NULL; args=[0]
+[DEBUG] [2018-10-26 18:42:14,440] [schema.execute] ALTER TABLE `resources` ALTER COLUMN `is_debug` DROP DEFAULT; (params ())
+[DEBUG] [2018-10-26 18:42:14,443] [utils.execute] (0.003) ALTER TABLE `resources` ALTER COLUMN `is_debug` DROP DEFAULT; args=()
+[DEBUG] [2018-10-26 18:42:14,444] [utils.execute] (0.001) SELECT engine FROM information_schema.tables WHERE table_name = 'resources'; args=[u'resources']
+[DEBUG] [2018-10-26 18:42:14,445] [utils.execute] (0.001) SHOW FULL TABLES; args=None
+[DEBUG] [2018-10-26 18:42:14,446] [utils.execute] (0.000) INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('management', '0006_auto_20180731_1315', '2018-10-26 10:42:14.445986'); args=['management', u'0006_auto_20180731_1315', u'2018-10-26 10:42:14.445986']
+[DEBUG] [2018-10-26 18:42:14,450] [schema.execute] CREATE TABLE `ocr_results` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `product` varchar(16) NOT NULL, `items` longtext NULL, `is_error` integer NOT NULL, `errors` longtext NULL, `ctime` datetime(6) NOT NULL, `mtime` datetime(6) NOT NULL, `remark` longtext NULL, `resource_id` integer NOT NULL); (params None)
+[DEBUG] [2018-10-26 18:42:14,454] [utils.execute] (0.004) CREATE TABLE `ocr_results` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `product` varchar(16) NOT NULL, `items` longtext NULL, `is_error` integer NOT NULL, `errors` longtext NULL, `ctime` datetime(6) NOT NULL, `mtime` datetime(6) NOT NULL, `remark` longtext NULL, `resource_id` integer NOT NULL); args=None
+[DEBUG] [2018-10-26 18:42:14,455] [utils.execute] (0.001) SELECT engine FROM information_schema.tables WHERE table_name = 'ocr_results'; args=[u'ocr_results']
+[DEBUG] [2018-10-26 18:42:14,456] [utils.execute] (0.001) SELECT engine FROM information_schema.tables WHERE table_name = 'ocr_results'; args=[u'ocr_results']
+[DEBUG] [2018-10-26 18:42:14,457] [utils.execute] (0.001) SELECT engine FROM information_schema.tables WHERE table_name = 'ocr_results'; args=[u'ocr_results']
+[DEBUG] [2018-10-26 18:42:14,458] [utils.execute] (0.001) SELECT engine FROM information_schema.tables WHERE table_name = 'ocr_results'; args=[u'ocr_results']
+[DEBUG] [2018-10-26 18:42:14,458] [utils.execute] (0.001) SELECT engine FROM information_schema.tables WHERE table_name = 'ocr_results'; args=[u'ocr_results']
+[DEBUG] [2018-10-26 18:42:14,459] [utils.execute] (0.001) SELECT engine FROM information_schema.tables WHERE table_name = 'ocr_results'; args=[u'ocr_results']
+[DEBUG] [2018-10-26 18:42:14,460] [utils.execute] (0.001) SELECT engine FROM information_schema.tables WHERE table_name = 'ocr_results'; args=[u'ocr_results']
+[DEBUG] [2018-10-26 18:42:14,461] [utils.execute] (0.001) SELECT engine FROM information_schema.tables WHERE table_name = 'ocr_results'; args=[u'ocr_results']
+[DEBUG] [2018-10-26 18:42:14,461] [utils.execute] (0.001) SELECT engine FROM information_schema.tables WHERE table_name = 'ocr_results'; args=[u'ocr_results']
+[DEBUG] [2018-10-26 18:42:14,466] [schema.execute] CREATE TABLE `porn_results` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `product` varchar(16) NOT NULL, `label` integer NOT NULL, `rate` double precision NOT NULL, `is_review` integer NOT NULL, `is_error` integer NOT NULL, `errors` longtext NULL, `ctime` datetime(6) NOT NULL, `mtime` datetime(6) NOT NULL, `remark` longtext NULL, `resource_id` integer NOT NULL); (params None)
+[DEBUG] [2018-10-26 18:42:14,471] [utils.execute] (0.005) CREATE TABLE `porn_results` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `product` varchar(16) NOT NULL, `label` integer NOT NULL, `rate` double precision NOT NULL, `is_review` integer NOT NULL, `is_error` integer NOT NULL, `errors` longtext NULL, `ctime` datetime(6) NOT NULL, `mtime` datetime(6) NOT NULL, `remark` longtext NULL, `resource_id` integer NOT NULL); args=None
+[DEBUG] [2018-10-26 18:42:14,472] [utils.execute] (0.001) SELECT engine FROM information_schema.tables WHERE table_name = 'porn_results'; args=[u'porn_results']
+[DEBUG] [2018-10-26 18:42:14,473] [utils.execute] (0.001) SELECT engine FROM information_schema.tables WHERE table_name = 'porn_results'; args=[u'porn_results']
+[DEBUG] [2018-10-26 18:42:14,474] [utils.execute] (0.001) SELECT engine FROM information_schema.tables WHERE table_name = 'porn_results'; args=[u'porn_results']
+[DEBUG] [2018-10-26 18:42:14,475] [utils.execute] (0.001) SELECT engine FROM information_schema.tables WHERE table_name = 'porn_results'; args=[u'porn_results']
+[DEBUG] [2018-10-26 18:42:14,475] [utils.execute] (0.001) SELECT engine FROM information_schema.tables WHERE table_name = 'porn_results'; args=[u'porn_results']
+[DEBUG] [2018-10-26 18:42:14,476] [utils.execute] (0.001) SELECT engine FROM information_schema.tables WHERE table_name = 'porn_results'; args=[u'porn_results']
+[DEBUG] [2018-10-26 18:42:14,477] [utils.execute] (0.001) SELECT engine FROM information_schema.tables WHERE table_name = 'porn_results'; args=[u'porn_results']
+[DEBUG] [2018-10-26 18:42:14,477] [utils.execute] (0.001) SELECT engine FROM information_schema.tables WHERE table_name = 'porn_results'; args=[u'porn_results']
+[DEBUG] [2018-10-26 18:42:14,478] [utils.execute] (0.001) SELECT engine FROM information_schema.tables WHERE table_name = 'porn_results'; args=[u'porn_results']
+[DEBUG] [2018-10-26 18:42:14,479] [utils.execute] (0.001) SELECT engine FROM information_schema.tables WHERE table_name = 'porn_results'; args=[u'porn_results']
+[DEBUG] [2018-10-26 18:42:14,480] [utils.execute] (0.001) SELECT engine FROM information_schema.tables WHERE table_name = 'porn_results'; args=[u'porn_results']
+[DEBUG] [2018-10-26 18:42:14,480] [schema.execute] CREATE INDEX `ocr_results_product_c0be7e50` ON `ocr_results` (`product`); (params ())
+[DEBUG] [2018-10-26 18:42:14,487] [utils.execute] (0.007) CREATE INDEX `ocr_results_product_c0be7e50` ON `ocr_results` (`product`); args=()
+[DEBUG] [2018-10-26 18:42:14,487] [schema.execute] CREATE INDEX `ocr_results_resource_id_e2764644` ON `ocr_results` (`resource_id`); (params ())
+[DEBUG] [2018-10-26 18:42:14,492] [utils.execute] (0.004) CREATE INDEX `ocr_results_resource_id_e2764644` ON `ocr_results` (`resource_id`); args=()
+[DEBUG] [2018-10-26 18:42:14,492] [schema.execute] CREATE INDEX `porn_results_product_4e16175b` ON `porn_results` (`product`); (params ())
+[DEBUG] [2018-10-26 18:42:14,496] [utils.execute] (0.005) CREATE INDEX `porn_results_product_4e16175b` ON `porn_results` (`product`); args=()
+[DEBUG] [2018-10-26 18:42:14,497] [schema.execute] CREATE INDEX `porn_results_resource_id_83a9a9ef` ON `porn_results` (`resource_id`); (params ())
+[DEBUG] [2018-10-26 18:42:14,500] [utils.execute] (0.004) CREATE INDEX `porn_results_resource_id_83a9a9ef` ON `porn_results` (`resource_id`); args=()
+[DEBUG] [2018-10-26 18:42:14,501] [utils.execute] (0.001) SHOW FULL TABLES; args=None
+[DEBUG] [2018-10-26 18:42:14,502] [utils.execute] (0.000) INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('management', '0007_ocrresult_pornresult', '2018-10-26 10:42:14.502162'); args=['management', u'0007_ocrresult_pornresult', u'2018-10-26 10:42:14.502162']
+[DEBUG] [2018-10-26 18:42:14,508] [schema.execute] CREATE TABLE `temp_reviews` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `review_status` integer NOT NULL, `old_value` integer NULL, `new_value` integer NULL, `ctime` datetime(6) NOT NULL, `mtime` datetime(6) NOT NULL, `resource_id` integer NOT NULL); (params None)
+[DEBUG] [2018-10-26 18:42:14,512] [utils.execute] (0.004) CREATE TABLE `temp_reviews` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `review_status` integer NOT NULL, `old_value` integer NULL, `new_value` integer NULL, `ctime` datetime(6) NOT NULL, `mtime` datetime(6) NOT NULL, `resource_id` integer NOT NULL); args=None
+[DEBUG] [2018-10-26 18:42:14,513] [utils.execute] (0.001) SELECT engine FROM information_schema.tables WHERE table_name = 'temp_reviews'; args=[u'temp_reviews']
+[DEBUG] [2018-10-26 18:42:14,514] [utils.execute] (0.001) SELECT engine FROM information_schema.tables WHERE table_name = 'temp_reviews'; args=[u'temp_reviews']
+[DEBUG] [2018-10-26 18:42:14,514] [utils.execute] (0.001) SELECT engine FROM information_schema.tables WHERE table_name = 'temp_reviews'; args=[u'temp_reviews']
+[DEBUG] [2018-10-26 18:42:14,515] [utils.execute] (0.001) SELECT engine FROM information_schema.tables WHERE table_name = 'temp_reviews'; args=[u'temp_reviews']
+[DEBUG] [2018-10-26 18:42:14,516] [utils.execute] (0.001) SELECT engine FROM information_schema.tables WHERE table_name = 'temp_reviews'; args=[u'temp_reviews']
+[DEBUG] [2018-10-26 18:42:14,517] [utils.execute] (0.001) SELECT engine FROM information_schema.tables WHERE table_name = 'temp_reviews'; args=[u'temp_reviews']
+[DEBUG] [2018-10-26 18:42:14,517] [utils.execute] (0.001) SELECT engine FROM information_schema.tables WHERE table_name = 'temp_reviews'; args=[u'temp_reviews']
+[DEBUG] [2018-10-26 18:42:14,517] [schema.execute] CREATE INDEX `temp_reviews_resource_id_845cad91` ON `temp_reviews` (`resource_id`); (params ())
+[DEBUG] [2018-10-26 18:42:14,522] [utils.execute] (0.004) CREATE INDEX `temp_reviews_resource_id_845cad91` ON `temp_reviews` (`resource_id`); args=()
+[DEBUG] [2018-10-26 18:42:14,522] [utils.execute] (0.001) SHOW FULL TABLES; args=None
+[DEBUG] [2018-10-26 18:42:14,523] [utils.execute] (0.000) INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('management', '0008_tempreview', '2018-10-26 10:42:14.523170'); args=['management', u'0008_tempreview', u'2018-10-26 10:42:14.523170']
+[DEBUG] [2018-10-26 18:42:14,526] [schema.execute] CREATE TABLE `django_session` (`session_key` varchar(40) NOT NULL PRIMARY KEY, `session_data` longtext NOT NULL, `expire_date` datetime(6) NOT NULL); (params None)
+[DEBUG] [2018-10-26 18:42:14,529] [utils.execute] (0.003) CREATE TABLE `django_session` (`session_key` varchar(40) NOT NULL PRIMARY KEY, `session_data` longtext NOT NULL, `expire_date` datetime(6) NOT NULL); args=None
+[DEBUG] [2018-10-26 18:42:14,530] [utils.execute] (0.001) SELECT engine FROM information_schema.tables WHERE table_name = 'django_session'; args=[u'django_session']
+[DEBUG] [2018-10-26 18:42:14,531] [utils.execute] (0.001) SELECT engine FROM information_schema.tables WHERE table_name = 'django_session'; args=[u'django_session']
+[DEBUG] [2018-10-26 18:42:14,532] [utils.execute] (0.001) SELECT engine FROM information_schema.tables WHERE table_name = 'django_session'; args=[u'django_session']
+[DEBUG] [2018-10-26 18:42:14,532] [schema.execute] CREATE INDEX `django_session_expire_date_a5c62663` ON `django_session` (`expire_date`); (params ())
+[DEBUG] [2018-10-26 18:42:14,535] [utils.execute] (0.004) CREATE INDEX `django_session_expire_date_a5c62663` ON `django_session` (`expire_date`); args=()
+[DEBUG] [2018-10-26 18:42:14,536] [utils.execute] (0.001) SHOW FULL TABLES; args=None
+[DEBUG] [2018-10-26 18:42:14,537] [utils.execute] (0.000) INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('sessions', '0001_initial', '2018-10-26 10:42:14.537045'); args=['sessions', u'0001_initial', u'2018-10-26 10:42:14.537045']
+[DEBUG] [2018-10-26 18:42:14,539] [utils.execute] (0.001) SHOW FULL TABLES; args=None
+[DEBUG] [2018-10-26 18:42:14,539] [utils.execute] (0.000) SELECT `django_migrations`.`app`, `django_migrations`.`name` FROM `django_migrations`; args=()
+[DEBUG] [2018-10-26 18:42:14,552] [utils.execute] (0.000) SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE (`django_content_type`.`model` = 'logentry' AND `django_content_type`.`app_label` = 'admin'); args=('logentry', 'admin')
+[DEBUG] [2018-10-26 18:42:14,553] [utils.execute] (0.000) SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE (`django_content_type`.`model` = 'logentry' AND `django_content_type`.`app_label` = 'admin'); args=('logentry', 'admin')
+[DEBUG] [2018-10-26 18:42:14,553] [utils.execute] (0.000) INSERT INTO `django_content_type` (`app_label`, `model`) VALUES ('admin', 'logentry'); args=['admin', 'logentry']
+[DEBUG] [2018-10-26 18:42:14,558] [utils.execute] (0.000) SELECT `auth_permission`.`content_type_id`, `auth_permission`.`codename` FROM `auth_permission` INNER JOIN `django_content_type` ON (`auth_permission`.`content_type_id` = `django_content_type`.`id`) WHERE `auth_permission`.`content_type_id` IN (1) ORDER BY `django_content_type`.`app_label` ASC, `django_content_type`.`model` ASC, `auth_permission`.`codename` ASC; args=(1,)
+[DEBUG] [2018-10-26 18:42:14,559] [utils.execute] (0.000) INSERT INTO `auth_permission` (`name`, `content_type_id`, `codename`) VALUES ('Can add log entry', 1, 'add_logentry'), ('Can change log entry', 1, 'change_logentry'), ('Can delete log entry', 1, 'delete_logentry'); args=(u'Can add log entry', 1, u'add_logentry', u'Can change log entry', 1, u'change_logentry', u'Can delete log entry', 1, u'delete_logentry')
+[DEBUG] [2018-10-26 18:42:14,560] [utils.execute] (0.000) SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE `django_content_type`.`app_label` = 'admin'; args=('admin',)
+[DEBUG] [2018-10-26 18:42:14,561] [utils.execute] (0.000) SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE (`django_content_type`.`model` = 'group' AND `django_content_type`.`app_label` = 'auth'); args=('group', 'auth')
+[DEBUG] [2018-10-26 18:42:14,562] [utils.execute] (0.000) SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE (`django_content_type`.`model` = 'group' AND `django_content_type`.`app_label` = 'auth'); args=('group', 'auth')
+[DEBUG] [2018-10-26 18:42:14,563] [utils.execute] (0.000) INSERT INTO `django_content_type` (`app_label`, `model`) VALUES ('auth', 'group'); args=['auth', 'group']
+[DEBUG] [2018-10-26 18:42:14,564] [utils.execute] (0.000) SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE (`django_content_type`.`model` = 'permission' AND `django_content_type`.`app_label` = 'auth'); args=('permission', 'auth')
+[DEBUG] [2018-10-26 18:42:14,565] [utils.execute] (0.000) SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE (`django_content_type`.`model` = 'permission' AND `django_content_type`.`app_label` = 'auth'); args=('permission', 'auth')
+[DEBUG] [2018-10-26 18:42:14,566] [utils.execute] (0.000) INSERT INTO `django_content_type` (`app_label`, `model`) VALUES ('auth', 'permission'); args=['auth', 'permission']
+[DEBUG] [2018-10-26 18:42:14,567] [utils.execute] (0.000) SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE (`django_content_type`.`model` = 'user' AND `django_content_type`.`app_label` = 'auth'); args=('user', 'auth')
+[DEBUG] [2018-10-26 18:42:14,568] [utils.execute] (0.000) SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE (`django_content_type`.`model` = 'user' AND `django_content_type`.`app_label` = 'auth'); args=('user', 'auth')
+[DEBUG] [2018-10-26 18:42:14,568] [utils.execute] (0.000) INSERT INTO `django_content_type` (`app_label`, `model`) VALUES ('auth', 'user'); args=['auth', 'user']
+[DEBUG] [2018-10-26 18:42:14,570] [utils.execute] (0.000) SELECT `auth_permission`.`content_type_id`, `auth_permission`.`codename` FROM `auth_permission` INNER JOIN `django_content_type` ON (`auth_permission`.`content_type_id` = `django_content_type`.`id`) WHERE `auth_permission`.`content_type_id` IN (2, 3, 4) ORDER BY `django_content_type`.`app_label` ASC, `django_content_type`.`model` ASC, `auth_permission`.`codename` ASC; args=(2, 3, 4)
+[DEBUG] [2018-10-26 18:42:14,571] [utils.execute] (0.000) INSERT INTO `auth_permission` (`name`, `content_type_id`, `codename`) VALUES ('Can add group', 2, 'add_group'), ('Can change group', 2, 'change_group'), ('Can delete group', 2, 'delete_group'), ('Can add permission', 3, 'add_permission'), ('Can change permission', 3, 'change_permission'), ('Can delete permission', 3, 'delete_permission'), ('Can add user', 4, 'add_user'), ('Can change user', 4, 'change_user'), ('Can delete user', 4, 'delete_user'); args=(u'Can add group', 2, u'add_group', u'Can change group', 2, u'change_group', u'Can delete group', 2, u'delete_group', u'Can add permission', 3, u'add_permission', u'Can change permission', 3, u'change_permission', u'Can delete permission', 3, u'delete_permission', u'Can add user', 4, u'add_user', u'Can change user', 4, u'change_user', u'Can delete user', 4, u'delete_user')
+[DEBUG] [2018-10-26 18:42:14,572] [utils.execute] (0.000) SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE `django_content_type`.`app_label` = 'auth'; args=('auth',)
+[DEBUG] [2018-10-26 18:42:14,572] [utils.execute] (0.000) SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE (`django_content_type`.`model` = 'contenttype' AND `django_content_type`.`app_label` = 'contenttypes'); args=('contenttype', 'contenttypes')
+[DEBUG] [2018-10-26 18:42:14,573] [utils.execute] (0.000) SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE (`django_content_type`.`model` = 'contenttype' AND `django_content_type`.`app_label` = 'contenttypes'); args=('contenttype', 'contenttypes')
+[DEBUG] [2018-10-26 18:42:14,574] [utils.execute] (0.000) INSERT INTO `django_content_type` (`app_label`, `model`) VALUES ('contenttypes', 'contenttype'); args=['contenttypes', 'contenttype']
+[DEBUG] [2018-10-26 18:42:14,575] [utils.execute] (0.000) SELECT `auth_permission`.`content_type_id`, `auth_permission`.`codename` FROM `auth_permission` INNER JOIN `django_content_type` ON (`auth_permission`.`content_type_id` = `django_content_type`.`id`) WHERE `auth_permission`.`content_type_id` IN (5) ORDER BY `django_content_type`.`app_label` ASC, `django_content_type`.`model` ASC, `auth_permission`.`codename` ASC; args=(5,)
+[DEBUG] [2018-10-26 18:42:14,576] [utils.execute] (0.000) INSERT INTO `auth_permission` (`name`, `content_type_id`, `codename`) VALUES ('Can add content type', 5, 'add_contenttype'), ('Can change content type', 5, 'change_contenttype'), ('Can delete content type', 5, 'delete_contenttype'); args=(u'Can add content type', 5, u'add_contenttype', u'Can change content type', 5, u'change_contenttype', u'Can delete content type', 5, u'delete_contenttype')
+[DEBUG] [2018-10-26 18:42:14,577] [utils.execute] (0.000) SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE `django_content_type`.`app_label` = 'contenttypes'; args=('contenttypes',)
+[DEBUG] [2018-10-26 18:42:14,577] [utils.execute] (0.000) SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE (`django_content_type`.`model` = 'session' AND `django_content_type`.`app_label` = 'sessions'); args=('session', 'sessions')
+[DEBUG] [2018-10-26 18:42:14,578] [utils.execute] (0.000) SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE (`django_content_type`.`model` = 'session' AND `django_content_type`.`app_label` = 'sessions'); args=('session', 'sessions')
+[DEBUG] [2018-10-26 18:42:14,579] [utils.execute] (0.000) INSERT INTO `django_content_type` (`app_label`, `model`) VALUES ('sessions', 'session'); args=['sessions', 'session']
+[DEBUG] [2018-10-26 18:42:14,581] [utils.execute] (0.000) SELECT `auth_permission`.`content_type_id`, `auth_permission`.`codename` FROM `auth_permission` INNER JOIN `django_content_type` ON (`auth_permission`.`content_type_id` = `django_content_type`.`id`) WHERE `auth_permission`.`content_type_id` IN (6) ORDER BY `django_content_type`.`app_label` ASC, `django_content_type`.`model` ASC, `auth_permission`.`codename` ASC; args=(6,)
+[DEBUG] [2018-10-26 18:42:14,581] [utils.execute] (0.000) INSERT INTO `auth_permission` (`name`, `content_type_id`, `codename`) VALUES ('Can add session', 6, 'add_session'), ('Can change session', 6, 'change_session'), ('Can delete session', 6, 'delete_session'); args=(u'Can add session', 6, u'add_session', u'Can change session', 6, u'change_session', u'Can delete session', 6, u'delete_session')
+[DEBUG] [2018-10-26 18:42:14,582] [utils.execute] (0.000) SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE `django_content_type`.`app_label` = 'sessions'; args=('sessions',)
+[DEBUG] [2018-10-26 18:42:14,583] [utils.execute] (0.000) SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE (`django_content_type`.`model` = 'pornresult' AND `django_content_type`.`app_label` = 'management'); args=('pornresult', 'management')
+[DEBUG] [2018-10-26 18:42:14,584] [utils.execute] (0.000) SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE (`django_content_type`.`model` = 'pornresult' AND `django_content_type`.`app_label` = 'management'); args=('pornresult', 'management')
+[DEBUG] [2018-10-26 18:42:14,584] [utils.execute] (0.000) INSERT INTO `django_content_type` (`app_label`, `model`) VALUES ('management', 'pornresult'); args=['management', 'pornresult']
+[DEBUG] [2018-10-26 18:42:14,585] [utils.execute] (0.000) SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE (`django_content_type`.`model` = 'tempreview' AND `django_content_type`.`app_label` = 'management'); args=('tempreview', 'management')
+[DEBUG] [2018-10-26 18:42:14,586] [utils.execute] (0.000) SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE (`django_content_type`.`model` = 'tempreview' AND `django_content_type`.`app_label` = 'management'); args=('tempreview', 'management')
+[DEBUG] [2018-10-26 18:42:14,586] [utils.execute] (0.000) INSERT INTO `django_content_type` (`app_label`, `model`) VALUES ('management', 'tempreview'); args=['management', 'tempreview']
+[DEBUG] [2018-10-26 18:42:14,587] [utils.execute] (0.000) SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE (`django_content_type`.`model` = 'ocrresult' AND `django_content_type`.`app_label` = 'management'); args=('ocrresult', 'management')
+[DEBUG] [2018-10-26 18:42:14,588] [utils.execute] (0.000) SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE (`django_content_type`.`model` = 'ocrresult' AND `django_content_type`.`app_label` = 'management'); args=('ocrresult', 'management')
+[DEBUG] [2018-10-26 18:42:14,588] [utils.execute] (0.000) INSERT INTO `django_content_type` (`app_label`, `model`) VALUES ('management', 'ocrresult'); args=['management', 'ocrresult']
+[DEBUG] [2018-10-26 18:42:14,589] [utils.execute] (0.000) SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE (`django_content_type`.`model` = 'resource' AND `django_content_type`.`app_label` = 'management'); args=('resource', 'management')
+[DEBUG] [2018-10-26 18:42:14,590] [utils.execute] (0.000) SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE (`django_content_type`.`model` = 'resource' AND `django_content_type`.`app_label` = 'management'); args=('resource', 'management')
+[DEBUG] [2018-10-26 18:42:14,591] [utils.execute] (0.000) INSERT INTO `django_content_type` (`app_label`, `model`) VALUES ('management', 'resource'); args=['management', 'resource']
+[DEBUG] [2018-10-26 18:42:14,603] [utils.execute] (0.000) SELECT `auth_permission`.`content_type_id`, `auth_permission`.`codename` FROM `auth_permission` INNER JOIN `django_content_type` ON (`auth_permission`.`content_type_id` = `django_content_type`.`id`) WHERE `auth_permission`.`content_type_id` IN (8, 9, 10, 7) ORDER BY `django_content_type`.`app_label` ASC, `django_content_type`.`model` ASC, `auth_permission`.`codename` ASC; args=(8, 9, 10, 7)
+[DEBUG] [2018-10-26 18:42:14,605] [utils.execute] (0.001) INSERT INTO `auth_permission` (`name`, `content_type_id`, `codename`) VALUES ('Can add porn result', 7, 'add_pornresult'), ('Can change porn result', 7, 'change_pornresult'), ('Can delete porn result', 7, 'delete_pornresult'), ('Can add temp review', 8, 'add_tempreview'), ('Can change temp review', 8, 'change_tempreview'), ('Can delete temp review', 8, 'delete_tempreview'), ('Can add ocr result', 9, 'add_ocrresult'), ('Can change ocr result', 9, 'change_ocrresult'), ('Can delete ocr result', 9, 'delete_ocrresult'), ('Can add resource', 10, 'add_resource'), ('Can change resource', 10, 'change_resource'), ('Can delete resource', 10, 'delete_resource'); args=(u'Can add porn result', 7, u'add_pornresult', u'Can change porn result', 7, u'change_pornresult', u'Can delete porn result', 7, u'delete_pornresult', u'Can add temp review', 8, u'add_tempreview', u'Can change temp review', 8, u'change_tempreview', u'Can delete temp review', 8, u'delete_tempreview', u'Can add ocr result', 9, u'add_ocrresult', u'Can change ocr result', 9, u'change_ocrresult', u'Can delete ocr result', 9, u'delete_ocrresult', u'Can add resource', 10, u'add_resource', u'Can change resource', 10, u'change_resource', u'Can delete resource', 10, u'delete_resource')
+[DEBUG] [2018-10-26 18:42:14,608] [utils.execute] (0.000) SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE `django_content_type`.`app_label` = 'management'; args=('management',)
+[DEBUG] [2018-10-26 18:43:37,168] [utils.execute] (0.000) SELECT @@SQL_AUTO_IS_NULL; args=None
+[DEBUG] [2018-10-26 18:43:37,168] [utils.execute] (0.000) SELECT VERSION(); args=None
+[DEBUG] [2018-10-26 18:43:37,218] [utils.execute] (0.001) SHOW FULL TABLES; args=None
+[DEBUG] [2018-10-26 18:43:37,220] [utils.execute] (0.000) SELECT `django_migrations`.`app`, `django_migrations`.`name` FROM `django_migrations`; args=()
+[INFO] [2018-10-26 18:43:48,327] [basehttp.log_message] "GET / HTTP/1.1" 302 0
+[DEBUG] [2018-10-26 18:43:48,353] [utils.execute] (0.000) SELECT @@SQL_AUTO_IS_NULL; args=None
+[DEBUG] [2018-10-26 18:43:48,353] [utils.execute] (0.000) SELECT VERSION(); args=None
+[DEBUG] [2018-10-26 18:43:48,379] [utils.execute] (0.000) SELECT COUNT(*) AS `__count` FROM `resources` WHERE `resources`.`type` = 0; args=(0,)
+[INFO] [2018-10-26 18:43:48,389] [basehttp.log_message] "GET /management/resource HTTP/1.1" 200 3655
+[INFO] [2018-10-26 18:43:48,477] [basehttp.log_message] "GET /assets/bootstrap/js/bootstrap.min.js HTTP/1.1" 200 36816
+[INFO] [2018-10-26 18:43:48,478] [basehttp.log_message] "GET /assets/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 122540
+[INFO] [2018-10-26 18:43:48,478] [basehttp.log_message] "GET /assets/aiResource/css/dashboard.css HTTP/1.1" 200 1816
+[INFO] [2018-10-26 18:43:48,481] [basehttp.log_message] "GET /assets/jq-paginator/js/jqPaginator.min.js HTTP/1.1" 200 5016
+[INFO] [2018-10-26 18:43:48,482] [basehttp.log_message] "GET /assets/jquery-query-object/js/jquery.query-object.js HTTP/1.1" 200 8194
+[INFO] [2018-10-26 18:43:48,483] [basehttp.log_message] "GET /assets/ie/js/ie10-viewport-bug-workaround.js HTTP/1.1" 200 662
+[INFO] [2018-10-26 18:43:48,484] [basehttp.log_message] "GET /assets/bootstrap-toggle/css/bootstrap-toggle.min.css HTTP/1.1" 200 1590
+[INFO] [2018-10-26 18:43:48,485] [basehttp.log_message] "GET /assets/jquery/js/jquery-1.12.2.min.js HTTP/1.1" 200 97244
+[INFO] [2018-10-26 18:43:48,487] [basehttp.log_message] "GET /assets/aiResource/js/resource/resource.js HTTP/1.1" 200 984
+[DEBUG] [2018-10-26 18:43:50,381] [utils.execute] (0.000) SELECT @@SQL_AUTO_IS_NULL; args=None
+[DEBUG] [2018-10-26 18:43:50,382] [utils.execute] (0.001) select * from resources join (SELECT `resources`.`id` FROM `resources` WHERE NOT(`resources`.`pid` = 0) ORDER BY `resources`.`id` DESC LIMIT 20 OFFSET 0) as b using(id); args=()
+[INFO] [2018-10-26 18:43:50,384] [basehttp.log_message] "GET /management/list HTTP/1.1" 200 5891
+[INFO] [2018-10-26 18:43:50,398] [basehttp.log_message] "GET /assets/jquery/js/jqpaginator.min.js HTTP/1.1" 200 4932
+[INFO] [2018-10-26 18:43:50,398] [basehttp.log_message] "GET /assets/datatables/datatables.min.css HTTP/1.1" 200 14305
+[INFO] [2018-10-26 18:43:50,400] [basehttp.log_message] "GET /assets/datatables/datatables.min.js HTTP/1.1" 200 82729
+[INFO] [2018-10-26 18:43:50,402] [basehttp.log_message] "GET /assets/jquery/js/jquery-1.12.2.js HTTP/1.1" 200 293840
+[DEBUG] [2018-10-26 18:43:52,445] [utils.execute] (0.000) SELECT @@SQL_AUTO_IS_NULL; args=None
+[DEBUG] [2018-10-26 18:43:52,445] [utils.execute] (0.000) SELECT VERSION(); args=None
+[DEBUG] [2018-10-26 18:43:52,468] [utils.execute] (0.000) SELECT COUNT(*) AS `__count` FROM `resources` WHERE `resources`.`type` = 0; args=(0,)
+[INFO] [2018-10-26 18:43:52,473] [basehttp.log_message] "GET /management/resource HTTP/1.1" 200 3655
+[DEBUG] [2018-10-26 18:43:53,278] [utils.execute] (0.000) SELECT @@SQL_AUTO_IS_NULL; args=None
+[DEBUG] [2018-10-26 18:43:53,279] [utils.execute] (0.000) select * from resources join (SELECT `resources`.`id` FROM `resources` WHERE NOT(`resources`.`pid` = 0) ORDER BY `resources`.`id` DESC LIMIT 20 OFFSET 0) as b using(id); args=()
+[INFO] [2018-10-26 18:43:53,280] [basehttp.log_message] "GET /management/list HTTP/1.1" 200 5891
+[DEBUG] [2018-10-26 18:43:54,701] [utils.execute] (0.000) SELECT @@SQL_AUTO_IS_NULL; args=None
+[DEBUG] [2018-10-26 18:43:54,702] [utils.execute] (0.000) SELECT VERSION(); args=None
+[DEBUG] [2018-10-26 18:43:54,723] [utils.execute] (0.000) SELECT COUNT(*) AS `__count` FROM `resources` WHERE `resources`.`type` = 0; args=(0,)
+[INFO] [2018-10-26 18:43:54,727] [basehttp.log_message] "GET /management/resource HTTP/1.1" 200 3655
+[DEBUG] [2018-10-26 18:43:55,973] [utils.execute] (0.000) SELECT @@SQL_AUTO_IS_NULL; args=None
+[DEBUG] [2018-10-26 18:43:55,974] [utils.execute] (0.000) select * from resources join (SELECT `resources`.`id` FROM `resources` WHERE NOT(`resources`.`pid` = 0) ORDER BY `resources`.`id` DESC LIMIT 20 OFFSET 0) as b using(id); args=()
+[INFO] [2018-10-26 18:43:55,975] [basehttp.log_message] "GET /management/list HTTP/1.1" 200 5891
+[DEBUG] [2018-10-26 18:43:56,663] [utils.execute] (0.000) SELECT @@SQL_AUTO_IS_NULL; args=None
+[DEBUG] [2018-10-26 18:43:56,664] [utils.execute] (0.000) SELECT VERSION(); args=None
+[DEBUG] [2018-10-26 18:43:56,686] [utils.execute] (0.000) SELECT COUNT(*) AS `__count` FROM `resources` WHERE `resources`.`type` = 0; args=(0,)
+[INFO] [2018-10-26 18:43:56,690] [basehttp.log_message] "GET /management/resource HTTP/1.1" 200 3655
+[DEBUG] [2018-10-26 18:43:57,447] [utils.execute] (0.000) SELECT @@SQL_AUTO_IS_NULL; args=None
+[DEBUG] [2018-10-26 18:43:57,448] [utils.execute] (0.000) select * from resources join (SELECT `resources`.`id` FROM `resources` WHERE NOT(`resources`.`pid` = 0) ORDER BY `resources`.`id` DESC LIMIT 20 OFFSET 0) as b using(id); args=()
+[INFO] [2018-10-26 18:43:57,449] [basehttp.log_message] "GET /management/list HTTP/1.1" 200 5891
+[DEBUG] [2018-10-26 18:43:58,065] [utils.execute] (0.000) SELECT @@SQL_AUTO_IS_NULL; args=None
+[DEBUG] [2018-10-26 18:43:58,065] [utils.execute] (0.000) SELECT VERSION(); args=None
+[DEBUG] [2018-10-26 18:43:58,086] [utils.execute] (0.000) SELECT COUNT(*) AS `__count` FROM `resources` WHERE `resources`.`type` = 0; args=(0,)
+[INFO] [2018-10-26 18:43:58,090] [basehttp.log_message] "GET /management/resource HTTP/1.1" 200 3655
+[DEBUG] [2018-10-26 18:43:59,265] [utils.execute] (0.000) SELECT @@SQL_AUTO_IS_NULL; args=None
+[DEBUG] [2018-10-26 18:43:59,266] [utils.execute] (0.001) select * from resources join (SELECT `resources`.`id` FROM `resources` WHERE NOT(`resources`.`pid` = 0) ORDER BY `resources`.`id` DESC LIMIT 20 OFFSET 0) as b using(id); args=()
+[INFO] [2018-10-26 18:43:59,267] [basehttp.log_message] "GET /management/list HTTP/1.1" 200 5891
+[DEBUG] [2018-10-26 18:44:01,045] [utils.execute] (0.000) SELECT @@SQL_AUTO_IS_NULL; args=None
+[DEBUG] [2018-10-26 18:44:01,046] [utils.execute] (0.000) SELECT VERSION(); args=None
+[DEBUG] [2018-10-26 18:44:01,068] [utils.execute] (0.000) SELECT COUNT(*) AS `__count` FROM `resources` WHERE `resources`.`type` = 0; args=(0,)
+[INFO] [2018-10-26 18:44:01,072] [basehttp.log_message] "GET /management/resource HTTP/1.1" 200 3655
+[DEBUG] [2018-10-26 18:44:03,197] [utils.execute] (0.000) SELECT @@SQL_AUTO_IS_NULL; args=None
+[DEBUG] [2018-10-26 18:44:03,198] [utils.execute] (0.000) select * from resources join (SELECT `resources`.`id` FROM `resources` WHERE NOT(`resources`.`pid` = 0) ORDER BY `resources`.`id` DESC LIMIT 20 OFFSET 0) as b using(id); args=()
+[INFO] [2018-10-26 18:44:03,199] [basehttp.log_message] "GET /management/list HTTP/1.1" 200 5891
+[DEBUG] [2018-10-26 18:44:04,074] [utils.execute] (0.000) SELECT @@SQL_AUTO_IS_NULL; args=None
+[DEBUG] [2018-10-26 18:44:04,074] [utils.execute] (0.000) SELECT VERSION(); args=None
+[DEBUG] [2018-10-26 18:44:04,095] [utils.execute] (0.000) SELECT COUNT(*) AS `__count` FROM `resources` WHERE `resources`.`type` = 0; args=(0,)
+[INFO] [2018-10-26 18:44:04,100] [basehttp.log_message] "GET /management/resource HTTP/1.1" 200 3655
+[DEBUG] [2018-10-26 18:44:04,801] [utils.execute] (0.000) SELECT @@SQL_AUTO_IS_NULL; args=None
+[DEBUG] [2018-10-26 18:44:04,802] [utils.execute] (0.000) select * from resources join (SELECT `resources`.`id` FROM `resources` WHERE NOT(`resources`.`pid` = 0) ORDER BY `resources`.`id` DESC LIMIT 20 OFFSET 0) as b using(id); args=()
+[INFO] [2018-10-26 18:44:04,803] [basehttp.log_message] "GET /management/list HTTP/1.1" 200 5891
+[DEBUG] [2018-10-26 18:44:05,508] [utils.execute] (0.000) SELECT @@SQL_AUTO_IS_NULL; args=None
+[DEBUG] [2018-10-26 18:44:05,508] [utils.execute] (0.000) SELECT VERSION(); args=None
+[DEBUG] [2018-10-26 18:44:05,530] [utils.execute] (0.000) SELECT COUNT(*) AS `__count` FROM `resources` WHERE `resources`.`type` = 0; args=(0,)
+[INFO] [2018-10-26 18:44:05,534] [basehttp.log_message] "GET /management/resource HTTP/1.1" 200 3655
+[DEBUG] [2018-10-26 18:44:06,227] [utils.execute] (0.000) SELECT @@SQL_AUTO_IS_NULL; args=None
+[DEBUG] [2018-10-26 18:44:06,228] [utils.execute] (0.000) select * from resources join (SELECT `resources`.`id` FROM `resources` WHERE NOT(`resources`.`pid` = 0) ORDER BY `resources`.`id` DESC LIMIT 20 OFFSET 0) as b using(id); args=()
+[INFO] [2018-10-26 18:44:06,229] [basehttp.log_message] "GET /management/list HTTP/1.1" 200 5891
+[DEBUG] [2018-10-26 18:44:06,883] [utils.execute] (0.000) SELECT @@SQL_AUTO_IS_NULL; args=None
+[DEBUG] [2018-10-26 18:44:06,883] [utils.execute] (0.000) SELECT VERSION(); args=None
+[DEBUG] [2018-10-26 18:44:06,902] [utils.execute] (0.000) SELECT COUNT(*) AS `__count` FROM `resources` WHERE `resources`.`type` = 0; args=(0,)
+[INFO] [2018-10-26 18:44:06,906] [basehttp.log_message] "GET /management/resource HTTP/1.1" 200 3655
+[DEBUG] [2018-10-26 18:44:07,603] [utils.execute] (0.000) SELECT @@SQL_AUTO_IS_NULL; args=None
+[DEBUG] [2018-10-26 18:44:07,604] [utils.execute] (0.000) select * from resources join (SELECT `resources`.`id` FROM `resources` WHERE NOT(`resources`.`pid` = 0) ORDER BY `resources`.`id` DESC LIMIT 20 OFFSET 0) as b using(id); args=()
+[INFO] [2018-10-26 18:44:07,605] [basehttp.log_message] "GET /management/list HTTP/1.1" 200 5891
+[DEBUG] [2018-10-26 18:44:08,284] [utils.execute] (0.000) SELECT @@SQL_AUTO_IS_NULL; args=None
+[DEBUG] [2018-10-26 18:44:08,284] [utils.execute] (0.000) SELECT VERSION(); args=None
+[DEBUG] [2018-10-26 18:44:08,306] [utils.execute] (0.000) SELECT COUNT(*) AS `__count` FROM `resources` WHERE `resources`.`type` = 0; args=(0,)
+[INFO] [2018-10-26 18:44:08,310] [basehttp.log_message] "GET /management/resource HTTP/1.1" 200 3655
+[DEBUG] [2018-10-26 18:44:08,956] [utils.execute] (0.000) SELECT @@SQL_AUTO_IS_NULL; args=None
+[DEBUG] [2018-10-26 18:44:08,957] [utils.execute] (0.000) select * from resources join (SELECT `resources`.`id` FROM `resources` WHERE NOT(`resources`.`pid` = 0) ORDER BY `resources`.`id` DESC LIMIT 20 OFFSET 0) as b using(id); args=()
+[INFO] [2018-10-26 18:44:08,958] [basehttp.log_message] "GET /management/list HTTP/1.1" 200 5891
+[DEBUG] [2018-10-26 18:44:09,498] [utils.execute] (0.000) SELECT @@SQL_AUTO_IS_NULL; args=None
+[DEBUG] [2018-10-26 18:44:09,498] [utils.execute] (0.000) SELECT VERSION(); args=None
+[DEBUG] [2018-10-26 18:44:09,521] [utils.execute] (0.000) SELECT COUNT(*) AS `__count` FROM `resources` WHERE `resources`.`type` = 0; args=(0,)
+[INFO] [2018-10-26 18:44:09,525] [basehttp.log_message] "GET /management/resource HTTP/1.1" 200 3655
+[DEBUG] [2018-10-26 18:44:10,153] [utils.execute] (0.000) SELECT @@SQL_AUTO_IS_NULL; args=None
+[DEBUG] [2018-10-26 18:44:10,154] [utils.execute] (0.000) select * from resources join (SELECT `resources`.`id` FROM `resources` WHERE NOT(`resources`.`pid` = 0) ORDER BY `resources`.`id` DESC LIMIT 20 OFFSET 0) as b using(id); args=()
+[INFO] [2018-10-26 18:44:10,155] [basehttp.log_message] "GET /management/list HTTP/1.1" 200 5891
+[DEBUG] [2018-10-26 18:44:10,851] [utils.execute] (0.000) SELECT @@SQL_AUTO_IS_NULL; args=None
+[DEBUG] [2018-10-26 18:44:10,851] [utils.execute] (0.000) SELECT VERSION(); args=None
+[DEBUG] [2018-10-26 18:44:10,873] [utils.execute] (0.000) SELECT COUNT(*) AS `__count` FROM `resources` WHERE `resources`.`type` = 0; args=(0,)
+[INFO] [2018-10-26 18:44:10,887] [basehttp.log_message] "GET /management/resource HTTP/1.1" 200 3655
+[DEBUG] [2018-10-26 18:44:11,766] [utils.execute] (0.000) SELECT @@SQL_AUTO_IS_NULL; args=None
+[DEBUG] [2018-10-26 18:44:11,767] [utils.execute] (0.000) select * from resources join (SELECT `resources`.`id` FROM `resources` WHERE NOT(`resources`.`pid` = 0) ORDER BY `resources`.`id` DESC LIMIT 20 OFFSET 0) as b using(id); args=()
+[INFO] [2018-10-26 18:44:11,768] [basehttp.log_message] "GET /management/list HTTP/1.1" 200 5891
+[DEBUG] [2018-10-26 18:44:13,586] [utils.execute] (0.000) SELECT @@SQL_AUTO_IS_NULL; args=None
+[DEBUG] [2018-10-26 18:44:13,587] [utils.execute] (0.000) SELECT VERSION(); args=None
+[DEBUG] [2018-10-26 18:44:13,608] [utils.execute] (0.000) SELECT COUNT(*) AS `__count` FROM `resources` WHERE `resources`.`type` = 0; args=(0,)
+[INFO] [2018-10-26 18:44:13,612] [basehttp.log_message] "GET /management/resource HTTP/1.1" 200 3655
+[DEBUG] [2018-10-26 18:44:14,494] [utils.execute] (0.000) SELECT @@SQL_AUTO_IS_NULL; args=None
+[DEBUG] [2018-10-26 18:44:14,494] [utils.execute] (0.000) select * from resources join (SELECT `resources`.`id` FROM `resources` WHERE NOT(`resources`.`pid` = 0) ORDER BY `resources`.`id` DESC LIMIT 20 OFFSET 0) as b using(id); args=()
+[INFO] [2018-10-26 18:44:14,495] [basehttp.log_message] "GET /management/list HTTP/1.1" 200 5891
+[DEBUG] [2018-10-26 18:44:15,168] [utils.execute] (0.000) SELECT @@SQL_AUTO_IS_NULL; args=None
+[DEBUG] [2018-10-26 18:44:15,168] [utils.execute] (0.000) SELECT VERSION(); args=None
+[DEBUG] [2018-10-26 18:44:15,190] [utils.execute] (0.000) SELECT COUNT(*) AS `__count` FROM `resources` WHERE `resources`.`type` = 0; args=(0,)
+[INFO] [2018-10-26 18:44:15,194] [basehttp.log_message] "GET /management/resource HTTP/1.1" 200 3655
+[DEBUG] [2018-10-26 18:44:16,024] [utils.execute] (0.000) SELECT @@SQL_AUTO_IS_NULL; args=None
+[DEBUG] [2018-10-26 18:44:16,024] [utils.execute] (0.000) select * from resources join (SELECT `resources`.`id` FROM `resources` WHERE NOT(`resources`.`pid` = 0) ORDER BY `resources`.`id` DESC LIMIT 20 OFFSET 0) as b using(id); args=()
+[INFO] [2018-10-26 18:44:16,026] [basehttp.log_message] "GET /management/list HTTP/1.1" 200 5891
+[DEBUG] [2018-10-26 18:44:16,722] [utils.execute] (0.000) SELECT @@SQL_AUTO_IS_NULL; args=None
+[DEBUG] [2018-10-26 18:44:16,722] [utils.execute] (0.000) SELECT VERSION(); args=None
+[DEBUG] [2018-10-26 18:44:16,743] [utils.execute] (0.000) SELECT COUNT(*) AS `__count` FROM `resources` WHERE `resources`.`type` = 0; args=(0,)
+[INFO] [2018-10-26 18:44:16,747] [basehttp.log_message] "GET /management/resource HTTP/1.1" 200 3655
+[DEBUG] [2018-10-26 18:44:17,458] [utils.execute] (0.000) SELECT @@SQL_AUTO_IS_NULL; args=None
+[DEBUG] [2018-10-26 18:44:17,458] [utils.execute] (0.000) select * from resources join (SELECT `resources`.`id` FROM `resources` WHERE NOT(`resources`.`pid` = 0) ORDER BY `resources`.`id` DESC LIMIT 20 OFFSET 0) as b using(id); args=()
+[INFO] [2018-10-26 18:44:17,459] [basehttp.log_message] "GET /management/list HTTP/1.1" 200 5891
+[DEBUG] [2018-10-26 18:44:18,121] [utils.execute] (0.000) SELECT @@SQL_AUTO_IS_NULL; args=None
+[DEBUG] [2018-10-26 18:44:18,122] [utils.execute] (0.000) SELECT VERSION(); args=None
+[DEBUG] [2018-10-26 18:44:18,142] [utils.execute] (0.000) SELECT COUNT(*) AS `__count` FROM `resources` WHERE `resources`.`type` = 0; args=(0,)
+[INFO] [2018-10-26 18:44:18,146] [basehttp.log_message] "GET /management/resource HTTP/1.1" 200 3655
+[DEBUG] [2018-10-26 18:44:18,965] [utils.execute] (0.000) SELECT @@SQL_AUTO_IS_NULL; args=None
+[DEBUG] [2018-10-26 18:44:18,966] [utils.execute] (0.000) select * from resources join (SELECT `resources`.`id` FROM `resources` WHERE NOT(`resources`.`pid` = 0) ORDER BY `resources`.`id` DESC LIMIT 20 OFFSET 0) as b using(id); args=()
+[INFO] [2018-10-26 18:44:18,967] [basehttp.log_message] "GET /management/list HTTP/1.1" 200 5891
+[DEBUG] [2018-10-26 18:44:19,776] [utils.execute] (0.000) SELECT @@SQL_AUTO_IS_NULL; args=None
+[DEBUG] [2018-10-26 18:44:19,776] [utils.execute] (0.000) SELECT VERSION(); args=None
+[DEBUG] [2018-10-26 18:44:19,798] [utils.execute] (0.000) SELECT COUNT(*) AS `__count` FROM `resources` WHERE `resources`.`type` = 0; args=(0,)
+[INFO] [2018-10-26 18:44:19,802] [basehttp.log_message] "GET /management/resource HTTP/1.1" 200 3655
+[DEBUG] [2018-10-26 18:44:20,756] [utils.execute] (0.000) SELECT @@SQL_AUTO_IS_NULL; args=None
+[DEBUG] [2018-10-26 18:44:20,757] [utils.execute] (0.000) select * from resources join (SELECT `resources`.`id` FROM `resources` WHERE NOT(`resources`.`pid` = 0) ORDER BY `resources`.`id` DESC LIMIT 20 OFFSET 0) as b using(id); args=()
+[INFO] [2018-10-26 18:44:20,758] [basehttp.log_message] "GET /management/list HTTP/1.1" 200 5891
+[DEBUG] [2018-10-26 18:44:21,438] [utils.execute] (0.000) SELECT @@SQL_AUTO_IS_NULL; args=None
+[DEBUG] [2018-10-26 18:44:21,439] [utils.execute] (0.000) SELECT VERSION(); args=None
+[DEBUG] [2018-10-26 18:44:21,460] [utils.execute] (0.000) SELECT COUNT(*) AS `__count` FROM `resources` WHERE `resources`.`type` = 0; args=(0,)
+[INFO] [2018-10-26 18:44:21,465] [basehttp.log_message] "GET /management/resource HTTP/1.1" 200 3655
+[DEBUG] [2018-10-26 18:44:22,279] [utils.execute] (0.000) SELECT @@SQL_AUTO_IS_NULL; args=None
+[DEBUG] [2018-10-26 18:44:22,280] [utils.execute] (0.000) select * from resources join (SELECT `resources`.`id` FROM `resources` WHERE NOT(`resources`.`pid` = 0) ORDER BY `resources`.`id` DESC LIMIT 20 OFFSET 0) as b using(id); args=()
+[INFO] [2018-10-26 18:44:22,281] [basehttp.log_message] "GET /management/list HTTP/1.1" 200 5891
+[DEBUG] [2018-10-26 18:44:22,856] [utils.execute] (0.000) SELECT @@SQL_AUTO_IS_NULL; args=None
+[DEBUG] [2018-10-26 18:44:22,856] [utils.execute] (0.000) SELECT VERSION(); args=None
+[DEBUG] [2018-10-26 18:44:22,878] [utils.execute] (0.000) SELECT COUNT(*) AS `__count` FROM `resources` WHERE `resources`.`type` = 0; args=(0,)
+[INFO] [2018-10-26 18:44:22,882] [basehttp.log_message] "GET /management/resource HTTP/1.1" 200 3655
+[DEBUG] [2018-10-26 18:44:23,591] [utils.execute] (0.000) SELECT @@SQL_AUTO_IS_NULL; args=None
+[DEBUG] [2018-10-26 18:44:23,592] [utils.execute] (0.000) select * from resources join (SELECT `resources`.`id` FROM `resources` WHERE NOT(`resources`.`pid` = 0) ORDER BY `resources`.`id` DESC LIMIT 20 OFFSET 0) as b using(id); args=()
+[INFO] [2018-10-26 18:44:23,593] [basehttp.log_message] "GET /management/list HTTP/1.1" 200 5891
+[DEBUG] [2018-10-26 18:44:24,313] [utils.execute] (0.000) SELECT @@SQL_AUTO_IS_NULL; args=None
+[DEBUG] [2018-10-26 18:44:24,313] [utils.execute] (0.000) SELECT VERSION(); args=None
+[DEBUG] [2018-10-26 18:44:24,334] [utils.execute] (0.000) SELECT COUNT(*) AS `__count` FROM `resources` WHERE `resources`.`type` = 0; args=(0,)
+[INFO] [2018-10-26 18:44:24,338] [basehttp.log_message] "GET /management/resource HTTP/1.1" 200 3655
+[DEBUG] [2018-10-26 18:44:25,107] [utils.execute] (0.000) SELECT @@SQL_AUTO_IS_NULL; args=None
+[DEBUG] [2018-10-26 18:44:25,107] [utils.execute] (0.000) select * from resources join (SELECT `resources`.`id` FROM `resources` WHERE NOT(`resources`.`pid` = 0) ORDER BY `resources`.`id` DESC LIMIT 20 OFFSET 0) as b using(id); args=()
+[INFO] [2018-10-26 18:44:25,109] [basehttp.log_message] "GET /management/list HTTP/1.1" 200 5891
+[DEBUG] [2018-10-26 18:44:27,655] [utils.execute] (0.000) SELECT @@SQL_AUTO_IS_NULL; args=None
+[DEBUG] [2018-10-26 18:44:27,656] [utils.execute] (0.000) select * from resources join (SELECT `resources`.`id` FROM `resources` WHERE NOT(`resources`.`pid` = 0) and value="0" ORDER BY `resources`.`id` DESC LIMIT 20 OFFSET 0) as b using(id); args=()
+[INFO] [2018-10-26 18:44:27,657] [basehttp.log_message] "GET /management/list HTTP/1.1" 200 5891
+[DEBUG] [2018-10-26 18:44:30,278] [utils.execute] (0.000) SELECT @@SQL_AUTO_IS_NULL; args=None
+[DEBUG] [2018-10-26 18:44:30,279] [utils.execute] (0.000) select * from resources join (SELECT `resources`.`id` FROM `resources` WHERE NOT(`resources`.`pid` = 0) and value="1" ORDER BY `resources`.`id` DESC LIMIT 20 OFFSET 0) as b using(id); args=()
+[INFO] [2018-10-26 18:44:30,280] [basehttp.log_message] "GET /management/list HTTP/1.1" 200 5891
+[DEBUG] [2018-10-26 18:44:33,466] [utils.execute] (0.000) SELECT @@SQL_AUTO_IS_NULL; args=None
+[DEBUG] [2018-10-26 18:44:33,467] [utils.execute] (0.000) select * from resources join (SELECT `resources`.`id` FROM `resources` WHERE NOT(`resources`.`pid` = 0) and value="1" ORDER BY `resources`.`id` DESC LIMIT 20 OFFSET 20) as b using(id); args=()
+[INFO] [2018-10-26 18:44:33,468] [basehttp.log_message] "GET /management/list?page=2 HTTP/1.1" 200 5891
+[DEBUG] [2018-10-26 18:44:34,051] [utils.execute] (0.000) SELECT @@SQL_AUTO_IS_NULL; args=None
+[DEBUG] [2018-10-26 18:44:34,052] [utils.execute] (0.000) select * from resources join (SELECT `resources`.`id` FROM `resources` WHERE NOT(`resources`.`pid` = 0) and value="1" ORDER BY `resources`.`id` DESC LIMIT 20 OFFSET 40) as b using(id); args=()
+[INFO] [2018-10-26 18:44:34,053] [basehttp.log_message] "GET /management/list?page=3 HTTP/1.1" 200 5891
+[DEBUG] [2018-10-26 18:44:34,342] [utils.execute] (0.000) SELECT @@SQL_AUTO_IS_NULL; args=None
+[DEBUG] [2018-10-26 18:44:34,343] [utils.execute] (0.000) select * from resources join (SELECT `resources`.`id` FROM `resources` WHERE NOT(`resources`.`pid` = 0) and value="1" ORDER BY `resources`.`id` DESC LIMIT 20 OFFSET 60) as b using(id); args=()
+[INFO] [2018-10-26 18:44:34,344] [basehttp.log_message] "GET /management/list?page=4 HTTP/1.1" 200 5891
+[DEBUG] [2018-10-26 18:44:34,506] [utils.execute] (0.000) SELECT @@SQL_AUTO_IS_NULL; args=None
+[DEBUG] [2018-10-26 18:44:34,506] [utils.execute] (0.000) select * from resources join (SELECT `resources`.`id` FROM `resources` WHERE NOT(`resources`.`pid` = 0) and value="1" ORDER BY `resources`.`id` DESC LIMIT 20 OFFSET 80) as b using(id); args=()
+[INFO] [2018-10-26 18:44:34,507] [basehttp.log_message] "GET /management/list?page=5 HTTP/1.1" 200 5891
+[DEBUG] [2018-10-26 18:44:34,642] [utils.execute] (0.000) SELECT @@SQL_AUTO_IS_NULL; args=None
+[DEBUG] [2018-10-26 18:44:34,643] [utils.execute] (0.000) select * from resources join (SELECT `resources`.`id` FROM `resources` WHERE NOT(`resources`.`pid` = 0) and value="1" ORDER BY `resources`.`id` DESC LIMIT 20 OFFSET 100) as b using(id); args=()
+[INFO] [2018-10-26 18:44:34,644] [basehttp.log_message] "GET /management/list?page=6 HTTP/1.1" 200 5891
+[DEBUG] [2018-10-26 18:44:35,167] [utils.execute] (0.000) SELECT @@SQL_AUTO_IS_NULL; args=None
+[DEBUG] [2018-10-26 18:44:35,167] [utils.execute] (0.000) select * from resources join (SELECT `resources`.`id` FROM `resources` WHERE NOT(`resources`.`pid` = 0) and value="1" ORDER BY `resources`.`id` DESC LIMIT 20 OFFSET 120) as b using(id); args=()
+[INFO] [2018-10-26 18:44:35,168] [basehttp.log_message] "GET /management/list?page=7 HTTP/1.1" 200 5891
+[DEBUG] [2018-10-26 18:44:35,556] [utils.execute] (0.000) SELECT @@SQL_AUTO_IS_NULL; args=None
+[DEBUG] [2018-10-26 18:44:35,557] [utils.execute] (0.000) select * from resources join (SELECT `resources`.`id` FROM `resources` WHERE NOT(`resources`.`pid` = 0) and value="1" ORDER BY `resources`.`id` DESC LIMIT 20 OFFSET 140) as b using(id); args=()
+[INFO] [2018-10-26 18:44:35,558] [basehttp.log_message] "GET /management/list?page=8 HTTP/1.1" 200 5891
+[DEBUG] [2018-10-26 18:44:35,728] [utils.execute] (0.000) SELECT @@SQL_AUTO_IS_NULL; args=None
+[DEBUG] [2018-10-26 18:44:35,728] [utils.execute] (0.000) select * from resources join (SELECT `resources`.`id` FROM `resources` WHERE NOT(`resources`.`pid` = 0) and value="1" ORDER BY `resources`.`id` DESC LIMIT 20 OFFSET 160) as b using(id); args=()
+[INFO] [2018-10-26 18:44:35,729] [basehttp.log_message] "GET /management/list?page=9 HTTP/1.1" 200 5892
+[DEBUG] [2018-10-26 18:44:35,914] [utils.execute] (0.000) SELECT @@SQL_AUTO_IS_NULL; args=None
+[DEBUG] [2018-10-26 18:44:35,915] [utils.execute] (0.000) select * from resources join (SELECT `resources`.`id` FROM `resources` WHERE NOT(`resources`.`pid` = 0) and value="1" ORDER BY `resources`.`id` DESC LIMIT 20 OFFSET 180) as b using(id); args=()
+[INFO] [2018-10-26 18:44:35,916] [basehttp.log_message] "GET /management/list?page=10 HTTP/1.1" 200 5893
+[DEBUG] [2018-10-26 18:44:36,326] [utils.execute] (0.000) SELECT @@SQL_AUTO_IS_NULL; args=None
+[DEBUG] [2018-10-26 18:44:36,326] [utils.execute] (0.000) select * from resources join (SELECT `resources`.`id` FROM `resources` WHERE NOT(`resources`.`pid` = 0) and value="1" ORDER BY `resources`.`id` DESC LIMIT 20 OFFSET 200) as b using(id); args=()
+[INFO] [2018-10-26 18:44:36,327] [basehttp.log_message] "GET /management/list?page=11 HTTP/1.1" 200 5893
+[DEBUG] [2018-10-26 18:44:37,373] [utils.execute] (0.000) SELECT @@SQL_AUTO_IS_NULL; args=None
+[DEBUG] [2018-10-26 18:44:37,374] [utils.execute] (0.000) select * from resources join (SELECT `resources`.`id` FROM `resources` WHERE NOT(`resources`.`pid` = 0) and value="1" ORDER BY `resources`.`id` DESC LIMIT 20 OFFSET 0) as b using(id); args=()
+[INFO] [2018-10-26 18:44:37,375] [basehttp.log_message] "GET /management/list?page=1 HTTP/1.1" 200 5891
+[ERROR] [2018-10-26 18:47:12,828] [exception.handle_uncaught_exception] Internal Server Error: /management/list
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/site-packages/django/core/handlers/exception.py", line 41, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python2.7/site-packages/django/core/handlers/base.py", line 249, in _legacy_get_response
+    response = self._get_response(request)
+  File "/usr/local/lib/python2.7/site-packages/django/core/handlers/base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/lib/python2.7/site-packages/django/core/handlers/base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/michael/Documents/guirong/projectmc/aiResource/management/views.py", line 112, in plist
+    "index": page, "page_type": "plist", "filter": filter_value, "pid": pid
+  File "/usr/local/lib/python2.7/site-packages/django/shortcuts.py", line 21, in render_to_response
+    content = loader.render_to_string(template_name, context, using=using)
+  File "/usr/local/lib/python2.7/site-packages/django/template/loader.py", line 68, in render_to_string
+    return template.render(context, request)
+  File "/usr/local/lib/python2.7/site-packages/django/template/backends/django.py", line 66, in render
+    return self.template.render(context)
+  File "/usr/local/lib/python2.7/site-packages/django/template/base.py", line 207, in render
+    return self._render(context)
+  File "/usr/local/lib/python2.7/site-packages/django/template/base.py", line 199, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python2.7/site-packages/django/template/base.py", line 990, in render
+    bit = node.render_annotated(context)
+  File "/usr/local/lib/python2.7/site-packages/django/template/base.py", line 957, in render_annotated
+    return self.render(context)
+  File "/usr/local/lib/python2.7/site-packages/django/template/loader_tags.py", line 177, in render
+    return compiled_parent._render(context)
+  File "/usr/local/lib/python2.7/site-packages/django/template/base.py", line 199, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python2.7/site-packages/django/template/base.py", line 990, in render
+    bit = node.render_annotated(context)
+  File "/usr/local/lib/python2.7/site-packages/django/template/base.py", line 957, in render_annotated
+    return self.render(context)
+  File "/usr/local/lib/python2.7/site-packages/django/template/loader_tags.py", line 72, in render
+    result = block.nodelist.render(context)
+  File "/usr/local/lib/python2.7/site-packages/django/template/base.py", line 990, in render
+    bit = node.render_annotated(context)
+  File "/usr/local/lib/python2.7/site-packages/django/template/base.py", line 957, in render_annotated
+    return self.render(context)
+  File "/usr/local/lib/python2.7/site-packages/django/template/defaulttags.py", line 172, in render
+    values = list(values)
+  File "/usr/local/lib/python2.7/site-packages/django/db/models/query.py", line 1233, in __iter__
+    query = iter(self.query)
+  File "/usr/local/lib/python2.7/site-packages/django/db/models/sql/query.py", line 80, in __iter__
+    self._execute_query()
+  File "/usr/local/lib/python2.7/site-packages/django/db/models/sql/query.py", line 113, in _execute_query
+    self.cursor = connection.cursor()
+  File "/usr/local/lib/python2.7/site-packages/django/db/backends/base/base.py", line 254, in cursor
+    return self._cursor()
+  File "/usr/local/lib/python2.7/site-packages/django/db/backends/base/base.py", line 229, in _cursor
+    self.ensure_connection()
+  File "/usr/local/lib/python2.7/site-packages/django/db/backends/base/base.py", line 213, in ensure_connection
+    self.connect()
+  File "/usr/local/lib/python2.7/site-packages/django/db/utils.py", line 94, in __exit__
+    six.reraise(dj_exc_type, dj_exc_value, traceback)
+  File "/usr/local/lib/python2.7/site-packages/django/db/backends/base/base.py", line 213, in ensure_connection
+    self.connect()
+  File "/usr/local/lib/python2.7/site-packages/django/db/backends/base/base.py", line 189, in connect
+    self.connection = self.get_new_connection(conn_params)
+  File "/usr/local/lib/python2.7/site-packages/django/db/backends/mysql/base.py", line 274, in get_new_connection
+    conn = Database.connect(**conn_params)
+  File "/usr/local/lib/python2.7/site-packages/MySQLdb/__init__.py", line 85, in Connect
+    return Connection(*args, **kwargs)
+  File "/usr/local/lib/python2.7/site-packages/MySQLdb/connections.py", line 204, in __init__
+    super(Connection, self).__init__(*args, **kwargs2)
+OperationalError: (2003, "Can't connect to MySQL server on '127.0.0.1' (61)")
+[ERROR] [2018-10-26 18:47:12,947] [basehttp.log_message] "GET /management/list?page=1 HTTP/1.1" 500 220665

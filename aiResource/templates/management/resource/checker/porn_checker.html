@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+
+<head>
+    <meta charset="UTF-8">
+    <title>线上绿色鉴赏平台--绿色太阳等着你</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Toggle plugin CSS -->
+    <link href="{% static 'bootstrap-toggle/css/bootstrap-toggle.min.css' %}" rel="stylesheet">
+</head>
+<body style="background-color: #E3EDCD">
+
+<div class="container-fluid" id="app">
+
+    <div class="row" id="infos" style="height: 5vh;margin-top: 10px">
+        <div class="col-md-12" align="center">
+            <h3>YY 首家绿色健康在线鉴黄平台，兄弟们爽完记得保存！ 视频路径：{{ resource_path }}</h3>
+        </div>
+    </div>
+
+    <div class="row" id="img-area">
+        <div>
+            <div class="col-md-12" align="center">
+                <img id="display" v-bind:src="[[curFramePath]]" alt="什么鬼，裤子都脱了都没得看" style="height: 80vh">
+            </div>
+        </div>
+    </div>
+
+    <div class="row" id="controller"
+         style="height: 10vh;border:1px solid black;border-radius:5px;margin-left: 5px;margin-top: 5px;margin-right: 5px">
+        <div class="col-md-12">
+            <form class="form-inline" style="margin: 5px"
+                  v-on:keyup.up="batchJump(-1)"
+                  v-on:keyup.down="batchJump(1)"
+                  v-on:keyup.left="batchJump(-1)"
+                  v-on:keyup.right="batchJump(1)"
+                  v-on:keyup.alt.up="batchJump(-steps)"
+                  v-on:keyup.alt.down="batchJump(steps)"
+                  v-on:keyup.alt.left="batchJump(-steps)"
+                  v-on:keyup.alt.right="batchJump(steps)"
+
+                  v-on:keyup.87="jump(-1)"
+                  v-on:keyup.83="jump(1)"
+                  v-on:keyup.65="jump(-1)"
+                  v-on:keyup.68="jump(1)"
+                  v-on:keyup.alt.87="jump(-steps)"
+                  v-on:keyup.alt.83="jump(steps)"
+                  v-on:keyup.alt.65="jump(-steps)"
+                  v-on:keyup.alt.68="jump(steps)"
+
+                  v-on:keyup.90="select(-1)"
+                  v-on:keyup.88="select(0)"
+                  v-on:keyup.67="select(1)"
+
+                  v-on:enter="submit"
+            >
+                <button id="focusButton" class="btn btn-warning" type="button">点我聚焦</button>
+                <div class="form-group" style="margin-left: 20px">
+                    <label>Steps</label>
+                    <input type="number" class="form-control" v-model="steps" style="width: 70px">
+                </div>
+                <div class="form-group" style="margin-left: 20px">
+                    <label>当前帧号</label>
+                    <input id="frameIndex" type="number" class="form-control" style="width: 100px"
+                           v-model="curFrameIndex" readonly>
+                </div>
+                <div class="form-group" style="margin-left: 20px">
+                    <label>跳帧</label>
+                    <button class="btn btn-primary" type="button" v-on:click="jump(-1)"> < 1</button>
+                    <button class="btn btn-primary" type="button" v-on:click="jump(-steps)"> < [[steps]]</button>
+                    <button class="btn btn-primary" type="button" v-on:click="jump(steps)"> > [[steps]]</button>
+                    <button class="btn btn-primary" type="button" v-on:click="jump(1)"> > 1</button>
+                </div>
+                <div class="form-group" style="margin-left: 20px">
+                    <label>批量选帧</label>
+                    <button class="btn btn-primary" type="button" v-on:click="batchJump(-1)"> < 1</button>
+                    <button class="btn btn-primary" type="button" v-on:click="batchJump(-steps)"> < [[steps]]</button>
+                    <button class="btn btn-primary" type="button" v-on:click="batchJump(steps)"> > [[steps]]</button>
+                    <button class="btn btn-primary" type="button" v-on:click="batchJump(1)"> > 1</button>
+                </div>
+                <div class="form-group" style="margin-left: 20px;margin-right: 20px">
+                    <label>标签</label>
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="optionsRadios" id="null" value=-1 v-on:click="select(-1)"
+                                   v-model="value">
+                            null
+                        </label>
+                    </div>
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="optionsRadios" id="non-yellow" value=0 v-on:click="select(0)"
+                                   v-model="value">
+                            Not - Porn
+                        </label>
+                    </div>
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="optionsRadios" id="yellow" value=1 v-on:click="select(1)"
+                                   v-model="value">
+                            Porn
+                        </label>
+                    </div>
+                </div>
+                <button class="btn btn-primary" type="button" v-on:click="submit" :disabled="submitDisable">提交</button>
+            </form>
+            <div>
+                <p style="float: left"><label>1</label></p>
+                <p style="float: right"><label>[[resources.length]]</label></p>
+            </div>
+            <div class="progress">
+                <div class="progress-bar"
+                     v-bind:class="{
+                     'progress-bar-danger':pd['value'] == -1 ? 1 : 0,
+                     'progress-bar-success':pd['value'] == 0 ? 1 : 0,
+                     'progress-bar-warning':pd['value'] == 1 ? 1 : 0
+                     }"
+                     v-bind:style="{width: pd['count']/resourceVOs.length * 100 + '%'}"
+                     v-for="pd in progressData"></div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<script src="{% static 'jquery/js/jquery-1.12.2.min.js' %}"></script>
+<script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+
+<script>
+
+    var app = new Vue({
+        delimiters: ['[[', ']]'],
+        el: '#app',
+        data: {
+            resources: {{ child_resources|safe }},
+            resourceVOs: [],
+            curFrameIndex: 1,
+            value: null,
+            curFramePath: null,
+            steps: 20,
+            progressData: [],
+            resourceId: {{ resource_id }},
+            submitDisable: false
+        },
+        methods: {
+            select: function (v) {
+                this.value = v;
+                this.resourceVOs[this.curFrameIndex - 1]['value'] = v;
+            },
+            jump: function (num) {
+                num = parseInt(num);
+                console.log(num);
+                this.curFrameIndex += num;
+                this.curFrameIndex = this.curFrameIndex < 1 ? 1 : this.curFrameIndex;
+                this.curFrameIndex = this.curFrameIndex > this.resources.length ? this.resources.length : this.curFrameIndex;
+
+                this.curFramePath = this.resources[this.curFrameIndex - 1]['path']
+            },
+            batchJump: function (num) {
+                num = parseInt(num);
+                if (this.value == null) {
+                    alert("请选择你喜欢的标签！");
+                    return;
+                }
+
+                var bFrame = this.curFrameIndex;
+                this.jump(num);
+
+                var begin = -1;
+                var end = -1;
+                if (bFrame < this.curFrameIndex) {
+                    begin = bFrame - 1;
+                    end = this.curFrameIndex;
+                } else {
+                    begin = this.curFrameIndex - 1;
+                    end = bFrame;
+                }
+
+                for (var i = begin; i < end; i++) {
+                    this.resourceVOs[i]['value'] = this.value;
+                }
+
+                this.progressData = getProgressData(this.resourceVOs);
+                console.log(this.progressData);
+                //var s = "";
+                //for (var i = 0; i < this.resourceVOs.length; i++) {
+                //    s += this.resourceVOs[i]['value'] + ","
+                //}
+                //console.log(s)
+            },
+            submit: function () {
+                var vm = this;
+                vm.submitDisable = true;
+                // 找出数据差集
+
+                var data = {
+                    null: [],
+                    0: [],
+                    1: []
+                };
+                var v = undefined;
+                for (var i = 0; i < this.resourceVOs.length; i++) {
+                    v = this.resourceVOs[i]['value'] == -1 ? null : this.resourceVOs[i]['value'];
+                    if (v == this.resources[i]['value']) {
+                        continue
+                    }
+                    data[v].push(this.resourceVOs[i]['id']);
+                }
+                if (data[null].length != 0 || data[0].length != 0 || data[1].length != 0) {
+                    $.ajax({
+                        contentType: 'application/json; charset=utf-8',
+                        dataType: 'json',
+                        type: 'POST',
+                        url: '/management/resource/batch_update_value',
+                        data: JSON.stringify({"data": data, "resourceId": this.resourceId}),
+                        success: function successCallBack(data) {
+                            if (data["code"] == 0) {
+                                alert("提交成功");
+                                $("#focusButton").focus();
+                            }
+                            vm.submitDisable = false;
+                        }
+                    });
+                }
+            }
+        }
+    });
+
+    function getProgressData(resourceVOs) {
+        var results = [];
+        var dataObject = {"value": resourceVOs[0]["value"], "count": 0};
+        for (var i = 0; i < resourceVOs.length; i++) {
+            if (resourceVOs[i]["value"] == dataObject["value"]) {
+                dataObject["count"] += 1;
+            } else {
+                results.push({"value": dataObject["value"], "count": dataObject["count"]});
+                dataObject["value"] = resourceVOs[i]["value"];
+                dataObject["count"] = 1
+            }
+        }
+        if (dataObject["count"] > 0) {
+            results.push(dataObject);
+        }
+        return results;
+    }
+
+    var resourceVOs = [];
+    for (var i = 0; i < app.resources.length; i++) {
+        resourceVOs.push({
+            "id": app.resources[i]["id"],
+            "value": app.resources[i]['value'] == null ? -1 : app.resources[i]['value']
+        })
+    }
+    app.resourceVOs = resourceVOs;
+    app.curFramePath = app.resources[app.curFrameIndex - 1]['path'];
+    app.value = app.resources[0]['value'] == null ? -1 : app.resources[0]['value'];
+
+    app.progressData = getProgressData(app.resourceVOs);
+
+    $("#focusButton").focus();
+
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,139 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block headejs %}
+    <script type="text/javascript" src="{% static 'jquery/js/jquery-1.12.2.js' %}"></script>
+    <script type="text/javascript" src="{% static 'jquery/js/jqpaginator.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'datatables/datatables.min.js' %}"></script>
+{% endblock %}
+
+{% block link_block %}
+    <link href="{% static 'datatables/datatables.min.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block mainbody %}
+    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+        <h2 class="sub-header">样本列表</h2>
+        <div class="pull-left">
+            <label class="control-label" for="inputEmail">筛 选</label>
+            <select onchange="filterDate(this)" style="width: 100px;height: 30px">
+                {% if filter == "1" %}
+                    <option value="">全部</option>
+                    <option value="0">正常</option>
+                    <option selected value="1">黄图</option>
+                {% elif filter == "0" %}
+                    <option value="">全部</option>
+                    <option selected value="0">正常</option>
+                    <option value="1">黄图</option>
+                {% else %}
+                    <option selected value="">全部</option>
+                    <option value="0">正常</option>
+                    <option value="1">黄图</option>
+                {% endif %}
+
+            </select>
+        </div>
+        <div class="pull-right">
+            <ul class="pagination" id="plist"></ul>
+        </div>
+
+        <table class="table table-striped ng-scope" id="list_info">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>资源名称</th>
+                {#                <th>资源类型</th>#}
+                <th>Pid</th>
+                <th>创建时间</th>
+                <th>打分</th>
+                <th>备注</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for item in data %}
+                <tr>
+                    <td> {{ item.id }} </td>
+                    <td>
+                        <a href="{{ item.path }}" onmouseover="showtip(event,this)"
+                           onmouseleave="hidetip()">{{ item.name }}</a>
+                    </td>
+                    {#                    <td> {{ item.type }} </td>#}
+                    <td> {{ item.pid }} </td>
+                    <td> {{ item.ctime }} </td>
+                    {% if item.value == "0" %}
+                        <td><span class="label label-success">正常</span></td>
+                    {% elif item.value == "1" %}
+                        <td><span class="label label-warning"> 黄图</span></td>
+                    {% else %}
+                        <td><span class="label label-info">未鉴定</span></td>
+                    {% endif %}
+
+                    {% if item.remark == None %}
+                        <td></td>
+                    {% else %}
+                        <td> {{ item.remark }} </td>
+                    {% endif %}
+
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+    <div id="show" style="display: none;position:absolute;"><img id="show_pic" style="height: 300px"/>
+    </div>
+    <script type="text/javascript">
+        function showtip(ev, obj) {
+            var m_clientX;
+            var m_clientY;
+            if (!$("#show").is(':visible')) {
+                m_clientX = ev.clientX + obj.offsetLeft;
+                m_clientY = ev.clientY + obj.offsetTop;
+                if (m_clientY + 300 > document.documentElement.clientHeight) {
+                    m_clientY = document.documentElement.clientHeight - 400;
+                }
+                $("#show").css("left", m_clientX);
+                $("#show").css("top", m_clientY);
+                $("#show_pic").attr("src", obj.href);
+                $("#show").show()
+            }
+
+        }
+
+        function hidetip() {
+            $("#show").hide();
+        }
+
+        function filterDate(obj) {
+            console.log($(obj).val())
+            document.cookie = "filterValue=" + $(obj).val();
+            {#$.cookie('filterValue', $(obj).val());#}
+            location.reload()
+        }
+
+        $.jqPaginator('#plist', {
+                first: '<li class="first"><a href="javascript:void(0);">First</a></li>',
+                prev: '<li class="prev"><a href="javascript:void(0);">Previous</a></li>',
+                next: '<li class="next"><a href="javascript:void(0);">Next</a></li>',
+                last: null,
+                page: '<li class="page"><a href="javascript:void(0);">\{\{page\}\}</a></li>',
+                totalPages: {{ index |add:1}},
+                visiblePages: 1,
+                currentPage: {{ index }},
+                onPageChange: function (num, type) {
+                    if (type === "change") {
+                        {% if pid  %}
+                            window.location.href = "?page=" + num + "&pid=" + {{ pid }}
+                        {% else %}
+                            window.location.href = "?page=" + num
+                        {% endif %}
+
+                    }
+                    {#console.log(num, type)#}
+                }
+            }
+        );
+    </script>
+{% endblock %}
+
+

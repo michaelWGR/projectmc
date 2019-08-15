@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load id_to_name %}
+
+{% block mainbody %}
+    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+        <div class="row" style="margin-top: 0px">
+            <h2 class="sub-header">视频列表</h2>
+        </div>
+
+        <!-- 分页 -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="pull-right">
+                    {% if paginator and paginator.count > 0 %}
+                        <form class="form-inline form-page-size">
+                            <div class="form-group">
+                                <ul class="pagination">
+                                    <li {% if not current_page.has_previous %}class="disabled"{% endif %}>
+                                        <a href="javascript:void(0)"
+                                           {% if current_page.has_previous %}data-page="{{ current_page.previous_page_number }}"{% endif %}>&laquo;</a>
+                                    </li>
+                                    {% for page in page_list %}
+                                        <li {% if current_page.number == page %}class="active"{% endif %}>
+                                            <a href="javascript:void(0)" data-page="{{ page }}">{{ page }}</a>
+                                        </li>
+                                    {% endfor %}
+                                    <li {% if not current_page.has_next %}class="disabled"{% endif %}>
+                                        <a href="javascript:void(0)"
+                                           {% if current_page.has_next %}data-page="{{ current_page.next_page_number }}"{% endif %}>&raquo;</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="form-group">
+                                每页
+                                <input class="form-control input-page-size" type="text"
+                                       value="{{ paginator.per_page }}">
+                                条
+                                <button class="btn btn-default" type="submit">确定</button>
+                            </div>
+                        </form>
+                        <div style="position: absolute; top:0; left:20px; width:200px;">
+                            <span style="position: absolute; font-size: 16px; font-weight: bold;margin-top:5px">进度:</span>
+                            <select class="form-control" id="checked-filter" name="checked" style="margin-left: 50px">
+                                <option value="all" {% if checked == 'all' %}selected="selected"{% endif %}>全部</option>
+                                <option value="finished" {% if checked == 'finished' %}selected="selected"{% endif %}>
+                                    已完成
+                                </option>
+                                <option value="unfinished"
+                                        {% if checked == 'unfinished' %}selected="selected"{% endif %}>未完成
+                                </option>
+                            </select>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <table class="table table-striped ng-hide">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>资源路径</th>
+                <th>操作类型</th>
+                <th>进度</th>
+                <th>创建时间</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for resource in resources %}
+                <tr>
+                    <td>{{ resource.id }}</td>
+                    <td><a target="_blank" style="display:block; width: 450px; overflow:hidden; text-overflow:ellipsis"
+                           href="http://ai-test.yypm.com/management/resource/checker/{{ resource.id }}">{{ resource.path }}</a>
+                    </td>
+                    <td>{{ resource.business_type | parse_business_type }}</td>
+                    <td> {{ resource.checked }}%</td>
+                    <td>{{ resource.ctime }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
+
+{% block bodyjs %}
+    <script type="text/javascript" src="{% static 'jq-paginator/js/jqPaginator.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'jquery-query-object/js/jquery.query-object.js' %}"></script>
+    <script type="text/javascript" src="{% static 'aiResource/js/resource/resource.js' %}"></script>
+{% endblock %}

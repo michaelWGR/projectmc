@@ -1,0 +1,15 @@
+
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'competitor_test',
+
+        'USER': 'root',
+        # 'USER': 'competitor_test1',
+        'PASSWORD': '123456',
+        # 'HOST': '172.26.9.18',
+        'HOST': 'localhost',
+        'PORT': '',
+    }
+}

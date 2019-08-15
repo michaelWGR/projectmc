@@ -1,0 +1,106 @@
+import MySQLdb
+import shutil
+import os
+import random
+import string
+import datetime
+import argparse
+
+__script_file_path__ = os.path.dirname(__file__)
+base_url = 'http://ai-resource.yypm.com/resource/'
+
+
+def getDBConnection(host, db, user, passwd):
+    try:
+        db_conn = MySQLdb.connect(host=host,
+                                  user=user,
+                                  passwd=passwd,
+                                  db=db,
+                                  charset='utf8')
+        return db_conn
+    except Exception as e:
+        print e
+
+
+def insert(dbConn, table, fields, object_list):
+    placeholders = ["%s" for x in fields]
+    assignments = ["{x} = VALUES({x})".format(x=x) for x in fields]
+
+    query_string = """INSERT INTO
+    {table}
+    ({fields})
+    VALUES
+    ({placeholders})
+    ON DUPLICATE KEY UPDATE {assignments}"""
+
+    try:
+        cursor = dbConn.cursor();
+        cursor.execute(query_string.format(
+            table=table,
+            fields=", ".join(fields),
+            placeholders=", ".join(placeholders),
+            assignments=", ".join(assignments)
+        ), object_list)
+        dbConn.commit()
+    except Exception as e:
+        log_file = os.path.join(__script_file_path__, "copyfile.log")
+        content = "data {0} insert into resources table failed:{1}".format(object_list, e.message)
+        wirteLog2TXT(log_file, content)
+        dbConn.rollback()
+        cursor.close()
+        dbConn.close()
+
+
+def copyOrgFile(srcFileRootPath, desFileRootPath):
+    for root, dirs, files in os.walk(srcFileRootPath):
+        for _file in files:
+            if _file.endswith('.jpg') or _file.endswith('.png'):
+                src_file_path = os.path.join(root, _file)
+                dest_file_name = ''.join(random.sample(string.ascii_letters + string.digits, 16)) + ".jpg"
+                dest_file_path = os.path.join(desFileRootPath, dest_file_name)
+                if not os.path.exists(dest_file_path):
+                    shutil.copyfile(src_file_path, dest_file_path)
+                else:
+                    log_file = os.path.join(__script_file_path__, "copyfile.log")
+                    content = src_file_path + "duplicated file name in " + desFileRootPath
+                    wirteLog2TXT(log_file, content)
+
+
+def getObjectList(desFileRootPath):
+    for root, dirs, files in os.walk(desFileRootPath):
+        for _file in files:
+            if _file.endswith('.jpg') or _file.endswith('.png'):
+                file_path = os.path.join(root, _file)
+                object_list_path = '%s%s' % (base_url, file_path[file_path.index("sample"):])
+                yield object_list_path
+
+
+def saveData2DB(host, db, user, passwd, desFileRootPath):
+    dbConn = getDBConnection(host, db, user, passwd)
+    fields = ['path', 'type', 'business_type', 'pid', 'pre_id', 'next_id', 'checked', 'process_type', 'is_leaf',
+              'ctime', 'mtime']
+    table = 'resources'
+    for object_path in getObjectList(desFileRootPath):
+        now_time = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        object_list = (object_path, 1, 1, 0, 0, 0, 0, 0, 1, now_time, now_time)
+        insert(dbConn, table, fields, object_list)
+
+
+def wirteLog2TXT(file, content):
+    with open(file, 'a') as f:
+        f.write(content)
+
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser()
+    parser.add_argument('srcFileRootPath', help='images\'s dir')
+    parser.add_argument('desFileRootPath', help='output images\'s dir')
+    args = parser.parse_args()
+    srcFileRootPath = args.srcFileRootPath
+    desFileRootPath = args.desFileRootPath
+    db_host = '172.26.9.18'
+    db_name = 'ai_test'
+    db_user = 'competitor_test'
+    db_pass = '123456'
+    copyOrgFile(srcFileRootPath, desFileRootPath)
+    saveData2DB(db_host, db_name, db_user, db_pass, desFileRootPath)

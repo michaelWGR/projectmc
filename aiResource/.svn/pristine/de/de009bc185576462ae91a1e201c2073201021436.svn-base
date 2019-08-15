@@ -1,0 +1,181 @@
+# -*- coding:utf-8 -*-
+
+import json
+
+from django.core.paginator import Paginator
+from django.forms.models import model_to_dict
+from django.shortcuts import render_to_response
+from django.views.decorators.csrf import csrf_exempt
+
+from forms import PaginatorForm
+from models import Resource
+from utils import JsonApi, JsonApiResponse
+
+
+# Create your views here.
+
+
+def resource_index(request):
+    page_form = PaginatorForm(request.GET)
+    page_form.is_valid()
+    checked = request.GET.get('checked')
+    print checked
+
+    page_num = page_form.cleaned_data['page_num']
+    page_size = page_form.cleaned_data['page_size']
+
+    if page_size < 20:
+        page_size = 2
+    if page_size > 50:
+        page_size = 2
+
+    try:
+        resources = Resource.objects.values('id', 'path', 'type', 'business_type', 'value', 'checked', 'ctime').filter(
+            type=0).order_by('-id')
+        if checked == 'finished':
+            resources = resources.filter(checked=100).order_by('-id')
+        elif checked == 'unfinished':
+            resources = resources.filter(checked__lt=100).order_by('-id')
+        else:
+            checked = 'all'
+        paginator = Paginator(resources, page_size)
+        current_page = paginator.page(page_num)
+    except Exception as e:
+        return
+
+    max_page_num = paginator.num_pages if paginator.num_pages < 5 else 5
+    show_page_num = paginator.num_pages if paginator.num_pages < 5 else 5
+
+    if current_page.number > max_page_num:
+        max_page_num += current_page.number
+        if max_page_num > paginator.num_pages:
+            max_page_num = paginator.num_pages
+    elif current_page.number < max_page_num and current_page.number > show_page_num:
+        max_page_num -= show_page_num;
+
+    page_list = list()
+
+    if current_page.number <= show_page_num:
+        for i in range(1, max_page_num + 1):
+            page_list.append(i)
+    else:
+        page_list.append(1)
+        for i in range(current_page.number - 3, current_page.number + 1):
+            page_list.append(i)
+
+    if paginator.num_pages > 10 and current_page.number != paginator.num_pages:
+        page_list.append(paginator.num_pages)
+
+    data = {
+        'resources': current_page.object_list,
+        'paginator': paginator,
+        'checked': checked,
+        'current_page': current_page,
+        'page_list': page_list,
+        'page_type': 'resource_index'
+    }
+
+    return render_to_response('management/resource/index.html', data)
+
+
+def plist(request):
+    page_number = 20
+    filter_value = ""
+    pid = None
+    if "pid" in request.GET:
+        pid = int(request.GET["pid"])
+    if "page" not in request.GET:
+        page = 1
+    else:
+        try:
+            page = int(request.GET["page"])
+        except ValueError:
+            page = 1
+        if page <= 0:
+            page = 1
+    if 'filterValue' in request.COOKIES:
+        filter_value = request.COOKIES["filterValue"]
+    frame_data = []
+    if filter_value == "":
+        if pid:
+            sql = 'select * from resources join (SELECT `resources`.`id` FROM `resources` WHERE `resources`.`pid` = {}' \
+                  ' ORDER BY `resources`.`id`  LIMIT {} OFFSET {}) as b using(id)'.format(pid, page_number,
+                                                                                          page_number * (page - 1))
+        else:
+            sql = 'select * from resources join (SELECT `resources`.`id` FROM `resources` WHERE NOT(`resources`.`pid` = 0)' \
+                  ' ORDER BY `resources`.`id` DESC LIMIT {} OFFSET {}) as b using(id)'.format(page_number,
+                                                                                              page_number * (page - 1))
+        print sql
+        db_data = Resource.objects.raw(sql)
+    else:
+        if pid:
+            sql = ' select * from resources join (SELECT `resources`.`id` FROM `resources` WHERE `resources`.`pid` = {}' \
+                  ' and value="{}" ORDER BY `resources`.`id`  LIMIT {} OFFSET {}) as b using(id)'.format(pid,
+                                                                                                         filter_value,
+                                                                                                         page_number,
+                                                                                                         page_number * (
+                                                                                                                 page - 1))
+        else:
+            sql = ' select * from resources join (SELECT `resources`.`id` FROM `resources` WHERE NOT(`resources`.`pid` = 0)' \
+                  ' and value="{}" ORDER BY `resources`.`id` DESC LIMIT {} OFFSET {}) as b using(id)'.format(
+                filter_value,
+                page_number,
+                page_number * (
+                        page - 1))
+        db_data = Resource.objects.raw(sql)
+    for item in db_data:
+        frame_data.append(
+            {
+                "id": item.id, "path": item.path, "name": item.path.split("/")[-1],
+                "ctime": item.ctime, "remark": item.remark, "pid": item.pid, "value": item.value
+            })
+    return render_to_response('management/resource/list.html',
+                              {
+                                  "data": frame_data,
+                                  "index": page, "page_type": "plist", "filter": filter_value, "pid": pid
+                              })
+
+
+def resource_checker(request, resource_id):
+    data = {'resource_id': resource_id}
+    v_resource = Resource.objects.get(pk=resource_id)
+    data['resource_path'] = v_resource.path
+
+    # 1. 获取对应的 resource_id 下的所有 resource
+    resources = Resource.objects.filter(pid=resource_id)
+    _resources = []
+    for resource in resources:
+        _resources.append(model_to_dict(resource))
+    data["child_resources"] = json.dumps(_resources)
+
+    return render_to_response('management/resource/checker.html', data)
+
+
+@csrf_exempt
+@JsonApi(permitted_methods=('POST',))
+def batch_update_value(request):
+    data = json.loads(request.body)["data"]
+    r_id = json.loads(request.body)["resourceId"]
+
+    if not data:
+        return JsonApiResponse(1, 'fail', result="data is null")
+
+    for k, v in data.items():
+        value = None if k == 'null' else k
+        ids = v
+
+        Resource.objects.filter(id__in=ids).update(value=value)
+        Resource.objects.filter(pid__in=ids).update(value=value)
+
+    # 计算当前提交的结果打了标签的百分比
+    resources = Resource.objects.filter(pid=r_id)
+    count = 0
+    for r in resources:
+        if r.value is not None:
+            count += 1
+
+    r = Resource.objects.get(id=r_id)
+    r.checked = int(count / float(len(resources)) * 100)
+    r.save()
+
+    return JsonApiResponse(0, 'succeed', result=123)

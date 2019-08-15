@@ -1,0 +1,25 @@
+# -*- coding:utf-8 -*-
+from __future__ import unicode_literals
+
+from django.db import models
+
+
+# Create your models here.
+class Resource(models.Model):
+    id = models.AutoField(primary_key=True)
+    path = models.CharField(max_length=512)
+    type = models.IntegerField()  # 资源类类型：0：video,1:frame,2:audio
+    business_type = models.IntegerField(default=0)  # 业务类型：0：鉴黄，1：OCR
+    value = models.TextField(null=True)
+    pid = models.IntegerField()  # 如果没有 pid 则置为0
+    next_id = models.IntegerField()  # 如果没有 next_id 则置为0
+    pre_id = models.IntegerField()  # 如果没有 pre_id 则置为0
+    is_leaf = models.IntegerField()  # 标识是否有后处理 针对帧 视频默认为0
+    checked = models.IntegerField(default=0)
+    process_type = models.IntegerField()  # 参考aiResource.setting.PROCESS_TYPE
+    ctime = models.DateTimeField(auto_now_add=True)
+    mtime = models.DateTimeField(auto_now=True)
+    remark = models.TextField(null=True)
+
+    class Meta:
+        db_table = 'resources'

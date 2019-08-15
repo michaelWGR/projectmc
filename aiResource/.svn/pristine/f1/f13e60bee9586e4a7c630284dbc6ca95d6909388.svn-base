@@ -1,0 +1,31 @@
+# -*- coding:utf-8 -*-
+import os
+
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+PROJ_DIR = os.path.split(BASE_DIR)[0]
+
+# online
+database = {
+    "host": '172.26.9.18',
+    "user": 'competitor_test',
+    "password": '123456',
+    "database": 'ai_test',
+}
+
+# debug
+# database = {
+#     "host": 'localhost',
+#     "user": 'root',
+#     "password": '123456',
+#     "database": 'ai_test',
+# }
+
+PROCESS_TYPE = {
+    'none': 0,
+    'extract': 1,
+    'blur10': 2,
+    'blur20': 3,
+    'blur30': 4,
+    'blur40': 5,
+    'blur50': 6,
+}
