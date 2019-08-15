@@ -1,0 +1,84 @@
+# /usr/bin/env python
+# -*- coding:utf-8 -*-
+
+import csv
+import argparse
+import os
+import cv2
+import numpy
+from ssim import ssim_with_map
+
+
+# 短视频 Android 切图参数 x = 0, y = 183
+# 短视频 iOS 切图参数 x = 0, y = 176
+
+
+def calc(src_path, target_path, x, y, width, height):
+    # print(src_path, target_path, x, y, width, height)
+
+    src_path = os.path.abspath(src_path)
+    target_path = os.path.abspath(target_path)
+
+    src_image = cv2.imread(src_path, cv2.IMREAD_GRAYSCALE)
+    target_image = cv2.imread(target_path, cv2.IMREAD_GRAYSCALE)
+
+    assert(src_image.shape[0] == target_image.shape[0]
+           and src_image.shape[1] == target_image.shape[1])
+
+    x = x if x is not None else 0
+    y = y if y is not None else 0
+    width = width if width is not None else (src_image.shape[1] - x)
+    height = height if height is not None else (
+        src_image.shape[0] - y)
+
+    src_image = src_image[y:y + height, x:x + width]
+    target_image = target_image[y:y + height, x:x + width]
+    return ssim_with_map(src_image, target_image, downsample=False)
+
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-v', '--verbose', action='store_true',
+                        default=False, help='verbose')
+    parser.add_argument('--x', type=int)
+    parser.add_argument('--y', type=int)
+    parser.add_argument('--width', type=int)
+    parser.add_argument('--height', type=int)
+    parser.add_argument('-mo', '--ssim-map-output', action='store_true', default=False, help='output ssim map')
+    parser.add_argument('--ssim-map-output-base', help='ssim map output base')
+    parser.add_argument('source_csv')  # 对帧结果 csv
+    args = parser.parse_args()
+
+    source_csv = args.source_csv
+    sources = []
+    with open(source_csv, 'rb') as source_csv_file:
+        reader = csv.reader(source_csv_file)
+        for (target, source, _) in reader:
+            sources.append((target, source))
+
+    with open(source_csv.split('.')[0] + '_result.csv', 'wb') as csvfile:
+        writer = csv.writer(csvfile)
+        for (target, source) in sources:
+            ssim_val, ssim_map = calc(source, target, args.x, args.y, args.width, args.height)
+
+            if args.ssim_map_output:
+                ssim_map_output_base = args.ssim_map_output_base
+                if not ssim_map_output_base:
+                    ssim_map_output_base = os.path.dirname(target)
+
+                if not os.path.exists(ssim_map_output_base):
+                    os.makedirs(ssim_map_output_base)
+
+                ssim_map_filename = os.path.basename(target)
+                ssim_map_filename = '_ssimmap'.join(os.path.splitext(ssim_map_filename))
+                ssim_map_filepath = os.path.join(ssim_map_output_base, ssim_map_filename)
+
+                ssim_map_4 = numpy.floor(numpy.power(ssim_map, 4) * 255)
+                cv2.imwrite(ssim_map_filepath, ssim_map_4)
+
+            row = (target, source, ssim_val)
+            writer.writerow(row)
+
+
+if __name__ == '__main__':
+    main()

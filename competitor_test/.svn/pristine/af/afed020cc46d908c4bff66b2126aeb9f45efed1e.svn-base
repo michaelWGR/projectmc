@@ -1,0 +1,1 @@
+http://dsynflo.blogspot.com/2014/10/opencv-qr-code-detection-and-extraction.html
