@@ -2,8 +2,20 @@ import requests
 import json
 import os
 
+def get_apidoc_cookie():
+    URL = 'http://apidoc.61info.com/Guest/login'
+    data = {
+        'loginName': 'wangguirong',
+        'loginPassword': 'de5409ae1597a6f47bd4826cf92c4225'
+    }
+    response = requests.post(url=URL, data=data)
+    rp_dict = json.loads(response.content)
+    cookie = 'JSESSIONID={}'.format(rp_dict['JSESSIONID'])
+    return cookie
 
-def get_api_list(project_id, group_id, file_path, cookie):
+def get_api_list(project_id, group_id, file_path):
+    cookie = get_apidoc_cookie()
+
     url = 'http://apidoc.61info.com/Api/getAllApiList'
     data = {
         'projectID': project_id,
@@ -18,9 +30,7 @@ def get_api_list(project_id, group_id, file_path, cookie):
 
     response = requests.post(url=url, data=data, headers=headers)
     dict_rp = json.loads(response.content)
-    # print(dict_rp)
 
-    # apiFile_path = os.path.join(r'E:\michael\schedule', 'api2.md')
     if os.path.exists(file_path):
         os.remove(file_path)
 
@@ -59,14 +69,14 @@ def read_madown(path=r'E:\michael\schedule\liveApi_test.md'):
 
 
 def main():
-    # project_id = 1
-    # group_id = -1
-    # file_path = os.path.join(r'E:\michael\schedule', 'api2.md')
-    # cookie = 'JSESSIONID=76930315EC0AD2CEAB62A8E021BCA486'
-    # get_api_list(project_id, group_id, file_path, cookie)
+    project_id = 1
+    group_id = -1
+    file_path = os.path.join(r'E:\michael\schedule', 'api4.md')
+    # cookie = 'JSESSIONID=644B5D0093E4AF0D8A719B6B1EE5B682'
+    get_api_list(project_id, group_id, file_path)
 
     # write_madown(1)
-    read_madown()
+    # read_madown()
 
 if __name__ == '__main__':
     main()
