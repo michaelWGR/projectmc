@@ -9,7 +9,7 @@ _KEY4 = '29e36d6ceb83210d60c240b20ff4491e'
 
 def get_location(address, city, key=_KEY1):
     '''
-    获取到指定坐标的经纬度
+    获取到指定坐标的经纬度string(lng,lat)
     :param key: 高德Key
     :param address: 结构化地址信息
     :param city: 指定查询的城市,指定城市的中文（如北京）、指定城市的中文全拼（beijing）、citycode（010）、adcode（110000）
@@ -24,7 +24,6 @@ def get_location(address, city, key=_KEY1):
 
     rp = requests.get(url=url, params=params)
     rp_dict = json.loads(rp.content)
-    print(rp_dict)
     location = rp_dict['geocodes'][0]['location']
 
     return location
@@ -82,6 +81,7 @@ def get_around_place(location, radius, offset='20', keywords='地铁|公交', ty
     return traffic_list
 
 def geodistance(lng1,lat1,lng2,lat2):
+    #计算两个经纬度距离/米
     EARTH_REDIUS = 6371
     lng1, lat1, lng2, lat2 = map(radians, [lng1, lat1, lng2, lat2])
     dlon=lng2-lng1
@@ -90,19 +90,29 @@ def geodistance(lng1,lat1,lng2,lat2):
     dis=2*asin(sqrt(a))*EARTH_REDIUS*1000
     return dis
 
+def transfor_location(lo):
+    if lo != '':
+        lng = float(lo.split(',')[0])
+        lat = float(lo.split(',')[1])
+        location = {'lng': lng, 'lat': lat}
+        return location
+    else:
+        return lo
 
 def main():
-    key = _KEY4
+    key = _KEY1
     address = '广州市天河区棠下二社涌边一横巷69天辉商业大厦'
     city = '广州'
-    print(key)
-    lo = get_location(key, address, city)
-    # if lo != '':
-    #     lng = float(lo.split(',')[0])
-    #     lat = float(lo.split(',')[1])
-    #     location = {'lng': lng, 'lat': lat}
-    #     print(location)
-    # print(lo)
+    lo = get_location(address, city, key=key)
+    lo_dict = transfor_location(lo)
+    print(lo_dict)
+
+    if lo != '':
+        lng = float(lo.split(',')[0])
+        lat = float(lo.split(',')[1])
+        location = {'lng': lng, 'lat': lat}
+        print(location)
+
     # get_regeo(lo, key=key)
 
     # address = '广州市黄埔大道西120号高志大厦'
