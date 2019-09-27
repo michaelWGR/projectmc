@@ -104,22 +104,19 @@ def main():
     address = '广州市天河区棠下二社涌边一横巷69天辉商业大厦'
     city = '广州'
     lo = get_location(address, city, key=key)
-    lo_dict = transfor_location(lo)
-    print(lo_dict)
+    lo_dict1 = transfor_location(lo)
+    print(lo_dict1)
+    get_regeo(lo, key=key)
 
-    if lo != '':
-        lng = float(lo.split(',')[0])
-        lat = float(lo.split(',')[1])
-        location = {'lng': lng, 'lat': lat}
-        print(location)
+    address = '广州市黄埔大道西120号高志大厦'
+    city = '广州'
+    lo2 = get_location(address, city, key=key)
+    lo_dict2 = transfor_location(lo2)
+    print(lo_dict2)
+    get_regeo(lo2, key=key)
 
-    # get_regeo(lo, key=key)
-
-    # address = '广州市黄埔大道西120号高志大厦'
-    # city = '广州'
-    # lo = get_location(key, address, city)
-    # print(lo)
-    # get_regeo(lo)
+    distance = geodistance(lo_dict1['lng'], lo_dict1['lat'], lo_dict2['lng'], lo_dict2['lat'])
+    print(distance)
     # tl = get_around_place(lo, '1000', key=key)
     # for i in tl:
     #     print(i)
