@@ -1,12 +1,15 @@
 import requests
 import json
+from math import radians, cos, sin, asin, sqrt
 
 _KEY1 = '619ed12d1faba843409f7e4733b69374'
 _KEY2 = 'a7a748325a547459c5611ea4449e01ba'
 _KEY3 = '36485fd9cf9d4865138d746840a6dba5'
+_KEY4 = '29e36d6ceb83210d60c240b20ff4491e'
 
-def get_location(key, address, city):
+def get_location(address, city, key=_KEY1):
     '''
+    获取到指定坐标的经纬度
     :param key: 高德Key
     :param address: 结构化地址信息
     :param city: 指定查询的城市,指定城市的中文（如北京）、指定城市的中文全拼（beijing）、citycode（010）、adcode（110000）
@@ -21,10 +24,12 @@ def get_location(key, address, city):
 
     rp = requests.get(url=url, params=params)
     rp_dict = json.loads(rp.content)
+    print(rp_dict)
     location = rp_dict['geocodes'][0]['location']
+
     return location
 
-def get_regeo(location, radius=100, key=_KEY1, roadlevel=0, extensions='all'):
+def get_regeo(location, radius=10, key=_KEY1, roadlevel=0, extensions='all'):
     '''
     :param location: 经纬度坐标
     :param radius: radius取值范围在0~3000，默认是1000。单位：米
@@ -47,44 +52,67 @@ def get_regeo(location, radius=100, key=_KEY1, roadlevel=0, extensions='all'):
     for i in json.loads(rp.content)['regeocode']['pois']:
         print(i)
 
-def get_around_place(location, radius, offset='20', page='1', keywords='地铁公交', types='150500|150501|150600|150700|150702', extensions='all', key=_KEY1):
-    url = 'https://restapi.amap.com/v3/place/around'
-    params = {
-        'key': key,
-        'location': location,
-        'keywords': keywords,
-        'types': types,
-        'radius': radius,
-        'offset': offset,
-        'page': page,
-        'extensions': extensions
-    }
-    rp = requests.get(url=url, params=params)
-    print(rp.content.decode('utf-8'))
-    rp_dict = json.loads(rp.content)
-    pois = rp_dict['pois']
+def get_around_place(location, radius, offset='20', keywords='地铁|公交', types='150500|150501|150700|150701|150702', extensions='all', key=_KEY1):
+    traffic_list = []
+    page = 1
+    while True:
+        url = 'https://restapi.amap.com/v3/place/around'
+        params = {
+            'key': key,
+            'location': location,
+            'keywords': keywords,
+            'types': types,
+            'radius': radius,
+            'offset': offset,
+            'page': page,
+            'extensions': extensions
+        }
+        rp = requests.get(url=url, params=params)
+        rp_dict = json.loads(rp.content)
+        pois = rp_dict['pois']
+        print(pois)
+        if len(pois) != 0:
+            page += 1
+            for i in pois:
+                if i['name']:
+                    traffic_list.append(i['name'])
+                    # print(i['name'])
+        else:
+            break
+    return traffic_list
 
-    # print(rp_dict['sug_address'])
-    # for i in rp_dict:
-    #     print('{}: {}'.format(i, rp_dict[i]))
-    print(pois)
-    for i in pois:
-        print(i)
+def geodistance(lng1,lat1,lng2,lat2):
+    EARTH_REDIUS = 6371
+    lng1, lat1, lng2, lat2 = map(radians, [lng1, lat1, lng2, lat2])
+    dlon=lng2-lng1
+    dlat=lat2-lat1
+    a=sin(dlat/2)**2 + cos(lat1) * cos(lat2) * sin(dlon/2)**2
+    dis=2*asin(sqrt(a))*EARTH_REDIUS*1000
+    return dis
+
 
 def main():
-    key = _KEY1
+    key = _KEY4
     address = '广州市天河区棠下二社涌边一横巷69天辉商业大厦'
     city = '广州'
+    print(key)
     lo = get_location(key, address, city)
-    print(lo)
-    get_regeo('113.383478,23.131367')
+    # if lo != '':
+    #     lng = float(lo.split(',')[0])
+    #     lat = float(lo.split(',')[1])
+    #     location = {'lng': lng, 'lat': lat}
+    #     print(location)
+    # print(lo)
+    # get_regeo(lo, key=key)
 
     # address = '广州市黄埔大道西120号高志大厦'
     # city = '广州'
     # lo = get_location(key, address, city)
     # print(lo)
     # get_regeo(lo)
-    # get_around_place('113.383479,23.131373', '5000', page='1', types='150700|150701|150702')
+    # tl = get_around_place(lo, '1000', key=key)
+    # for i in tl:
+    #     print(i)
 
 if __name__ == '__main__':
     main()
