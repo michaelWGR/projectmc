@@ -28,8 +28,9 @@ def get_location(address, city, key=_KEY1):
 
     return location
 
-def get_regeo(location, radius=10, key=_KEY1, roadlevel=0, extensions='all'):
+def get_regeo(location, radius=10, roadlevel=0, extensions='all', key=_KEY1):
     '''
+    通过经纬度获取地址
     :param location: 经纬度坐标
     :param radius: radius取值范围在0~3000，默认是1000。单位：米
     :param key: 高德Key
@@ -80,46 +81,84 @@ def get_around_place(location, radius, offset='20', keywords='地铁|公交', ty
             break
     return traffic_list
 
-def geodistance(lng1,lat1,lng2,lat2):
-    #计算两个经纬度距离/米
-    EARTH_REDIUS = 6371
-    lng1, lat1, lng2, lat2 = map(radians, [lng1, lat1, lng2, lat2])
-    dlon=lng2-lng1
-    dlat=lat2-lat1
-    a=sin(dlat/2)**2 + cos(lat1) * cos(lat2) * sin(dlon/2)**2
-    dis=2*asin(sqrt(a))*EARTH_REDIUS*1000
-    return dis
+# def geodistance(location1, location2):      # 通过球半径计算
+#     #计算两个经纬度距离/米(float)
+#     if location1 != '' and location2 != '':
+#         lng1 = float(location1.split(',')[0])
+#         lat1 = float(location1.split(',')[1])
+#         lng2 = float(location2.split(',')[0])
+#         lat2 = float(location2.split(',')[1])
+#     else:
+#         return
+#
+#     EARTH_REDIUS = 6371
+#     lng1, lat1, lng2, lat2 = map(radians, [lng1, lat1, lng2, lat2])
+#     dlon=lng2-lng1
+#     dlat=lat2-lat1
+#     a=sin(dlat/2)**2 + cos(lat1) * cos(lat2) * sin(dlon/2)**2
+#     dis=2*asin(sqrt(a))*EARTH_REDIUS*1000
+#     return dis
 
-def transfor_location(lo):
-    if lo != '':
-        lng = float(lo.split(',')[0])
-        lat = float(lo.split(',')[1])
-        location = {'lng': lng, 'lat': lat}
-        return location
+def get_centre_point(location1, location2):
+    # 获取两点间的圆心,返回string(lng,lat)
+    if location1 != '' and location2 != '':
+        lng1 = float(location1.split(',')[0])
+        lat1 = float(location1.split(',')[1])
+        lng2 = float(location2.split(',')[0])
+        lat2 = float(location2.split(',')[1])
     else:
-        return lo
+        return
+
+    lng = (lng1+lng2)/2
+    lat = (lat1+lat2)/2
+    centre_location = '{},{}'.format(lng, lat)
+    return centre_location
+
+def get_distance(origins, destination, type=0, key=_KEY1):      # 通过请求获取
+    '''
+    计算两点距离/米(int)
+    :param origins:出发点
+    :param destination:目的地
+    :param type: 0：直线距离,1：驾车导航距离（仅支持国内坐标）
+    :param key:
+    '''
+    url = 'https://restapi.amap.com/v3/distance'
+    params = {
+        'origins': origins,
+        'destination': destination,
+        'type': type,
+        'key': key
+    }
+    rp = requests.get(url=url, params=params)
+    rp_dict = json.loads(rp.content)
+    distance = rp_dict['results'][0]['distance']
+    return int(distance)
 
 def main():
     key = _KEY1
     address = '广州市天河区棠下二社涌边一横巷69天辉商业大厦'
     city = '广州'
-    lo = get_location(address, city, key=key)
-    lo_dict1 = transfor_location(lo)
-    print(lo_dict1)
-    get_regeo(lo, key=key)
+    lo1 = get_location(address, city, key=key)
+    get_regeo(lo1, key=key)
 
     address = '广州市黄埔大道西120号高志大厦'
     city = '广州'
     lo2 = get_location(address, city, key=key)
-    lo_dict2 = transfor_location(lo2)
-    print(lo_dict2)
     get_regeo(lo2, key=key)
 
-    distance = geodistance(lo_dict1['lng'], lo_dict1['lat'], lo_dict2['lng'], lo_dict2['lat'])
+    distance = get_distance(lo1, lo2)
     print(distance)
-    # tl = get_around_place(lo, '1000', key=key)
-    # for i in tl:
-    #     print(i)
+    circle_radius = int(distance/2)+500
+    print(circle_radius)
+    centre_location = get_centre_point(lo1, lo2)
+
+
+    tl = get_around_place(centre_location, circle_radius, key=key)
+    count = 0
+    for i in tl:
+        count += 1
+        print(i)
+    print(count)
 
 if __name__ == '__main__':
     main()
