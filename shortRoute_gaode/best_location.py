@@ -81,7 +81,7 @@ def get_around_place(location, radius, offset='20', keywords='地铁|公交', ty
             break
     return traffic_list
 
-# def geodistance(location1, location2):      # 通过球半径计算
+# def geodistance(location1, location2):      # 通过球半径计算，暂时不用
 #     #计算两个经纬度距离/米(float)
 #     if location1 != '' and location2 != '':
 #         lng1 = float(location1.split(',')[0])
