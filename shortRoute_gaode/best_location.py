@@ -13,7 +13,7 @@ def get_location(address, city, key=_KEY1):
     :param key: 高德Key
     :param address: 结构化地址信息
     :param city: 指定查询的城市,指定城市的中文（如北京）、指定城市的中文全拼（beijing）、citycode（010）、adcode（110000）
-    :return: 坐标
+    :return: 坐标，例如113.376984,23.125229
     '''
     url = 'https://restapi.amap.com/v3/geocode/geo'
     params = {
@@ -62,7 +62,7 @@ def get_around_place(location, radius, offset='20', keywords='地铁|公交', ty
     :param types: 查询POI类型
     :param extensions: base:返回基本信息；all：返回全部信息
     :param key:
-    :return: 返回信息列表
+    :return: 返回信息列表，例如[{'name': '员村山顶(东行)(公交站)', 'location': '113.357903,23.124016'},{'name': '员村山顶站(临时站)(公交站)', 'location': '113.357819,23.124031'}]
     '''
     traffic_list = []
     page = 1
@@ -114,7 +114,7 @@ def get_around_place(location, radius, offset='20', keywords='地铁|公交', ty
 #     return dis
 
 def get_centre_point(location1, location2):
-    # 获取两点间的圆心,返回string(lng,lat)
+    # 获取两点间的圆心,返回string(lng,lat)，例如113.357201,23.124350
     if location1 != '' and location2 != '':
         lng1 = float(location1.split(',')[0])
         lat1 = float(location1.split(',')[1])
@@ -135,6 +135,7 @@ def get_distance(origins, destination, type=0, key=_KEY1):      # 通过请求�
     :param destination:目的地
     :param type: 0：直线距离,1：驾车导航距离（仅支持国内坐标）
     :param key:
+    :return: 3814
     '''
     url = 'https://restapi.amap.com/v3/distance'
     params = {
@@ -161,7 +162,7 @@ def get_transit_direction(origin, destination, city='广州', cityd='广州', ex
     :param date: 出发日期，格式示例：date=2014-3-19
     :param time: 出发时间，格式示例：time=22:34
     :param key:
-    :return: 平均值信息的字典
+    :return: 平均值信息的字典,例如{'per_cost': 2.0, 'per_duration': 1509.6, 'per_walking_distance': 585.6, 'per_distance': 2509.2}
     '''
     transit_direction = {}
     url = 'https://restapi.amap.com/v3/direction/transit/integrated'
@@ -184,7 +185,6 @@ def get_transit_direction(origin, destination, city='广州', cityd='广州', ex
         duration_list = []
         walking_distance_list = []
         distance_list = []
-
         transits_list = rp_dict['route']['transits']
 
         try:
@@ -194,7 +194,7 @@ def get_transit_direction(origin, destination, city='广州', cityd='广州', ex
                     duration_list.append(float(t['duration']))
                     walking_distance_list.append(float(t['walking_distance']))
                     distance_list.append(float(t['distance']))
-                    print(t)
+                    # print(t)
             per_cost = sum(cost_list) / len(cost_list)
             per_duration = sum(duration_list) / len(duration_list)
             per_walking_distance = sum(walking_distance_list) / len(walking_distance_list)
@@ -213,6 +213,52 @@ def get_transit_direction(origin, destination, city='广州', cityd='广州', ex
     else:
         print("{rp_dict['route']['transits']} is error")
         return transit_direction
+
+def aggregate_target_info(*location, **traffic_dict):
+    '''
+    集成一个交通站点到各个终点的目标信息
+    :param location: 各个终点站的坐标，例如'113.357903,23.124016', '114.357903,24.124016'
+    :param traffic_dict: 一个交通站点的信息，例如{'name': '员村山顶(东行)(公交站)', 'location': '113.357903,23.124016'}
+    :return: 目标交通站的通勤时间信息，例如{name, location, total_per_duration, ......,detail: [{per_duration, ....}, {per_duration, ....}], around_place: {...}}
+    '''
+    target_info_dict = {}
+    traffic_location = traffic_dict['location']
+    # print(traffic_dict)
+    # print(traffic_location)
+
+    detail = []
+    per_cost_list = []
+    per_duration_list = []
+    per_walking_distance_list = []
+    per_distance_list = []
+    for lo in location:
+        d = get_transit_direction(traffic_location, lo)
+        if d != {}:
+            detail.append(d)
+            per_cost_list.append(d['per_cost'])
+            per_duration_list.append(d['per_duration'])
+            per_walking_distance_list.append(d['per_walking_distance'])
+            per_distance_list.append(d['per_distance'])
+
+    total_per_cost = sum(per_cost_list)/len(per_cost_list)
+    total_per_duration = sum(per_duration_list)/len(per_duration_list)
+    total_per_walking_distance = sum(per_walking_distance_list)/len(per_walking_distance_list)
+    total_per_distance = sum(per_distance_list)/len(per_distance_list)
+
+    # print(detail)
+
+    target_info_dict['name'] = traffic_dict['name']
+    target_info_dict['location'] = traffic_dict['location']
+    target_info_dict['total_per_cost'] = total_per_cost
+    target_info_dict['total_per_duration'] = total_per_duration
+    target_info_dict['total_per_walking_distance'] = total_per_walking_distance
+    target_info_dict['total_per_distance'] = total_per_distance
+    target_info_dict['detail'] = detail
+
+    print(target_info_dict)
+    return target_info_dict
+
+
 
 def main():
     key = _KEY1
@@ -233,15 +279,23 @@ def main():
     centre_location = get_centre_point(lo1, lo2)
 
 
-    # tl = get_around_place(centre_location, circle_radius, key=key)
-    # count = 0
-    # for i in tl:
-    #     count += 1
-    #     print(i)
-    # print(count)
+    tl = get_around_place(centre_location, circle_radius, key=key)
 
-    d = get_transit_direction('113.357903,23.124016', lo2, extensions='all',)
-    print(d)
+    result = []
+    count = 0
+    for i in tl:
+        count += 1
+        target_info_dict = aggregate_target_info(lo1, lo2, **i)
+        if target_info_dict:
+            result.append(target_info_dict)
+
+    print(count)
+
+    # d = get_transit_direction('113.357903,23.124016', lo2)
+    # print(d)
+
+    # test_traffic_dict = {'name': '员村山顶(东行)(公交站)', 'location': '113.357903,23.124016'}
+    # aggregate_target_info(lo1, lo2, **test_traffic_dict)
 
 if __name__ == '__main__':
     main()
