@@ -180,6 +180,9 @@ def get_transit_direction(origin, destination, city='广州', cityd='广州', ex
     }
     rp = requests.get(url=url, params=params)
     rp_dict = json.loads(rp.content)
+    print(rp_dict)
+    j = json.dumps(rp_dict)
+    print(j)
     if rp_dict['route']['transits']:
         cost_list = []
         duration_list = []
@@ -214,9 +217,10 @@ def get_transit_direction(origin, destination, city='广州', cityd='广州', ex
         print("{rp_dict['route']['transits']} is error")
         return transit_direction
 
-def aggregate_target_info(*location, **traffic_dict):
+def aggregate_target_info(key=_KEY1, *location, **traffic_dict):
     '''
     集成一个交通站点到各个终点的目标信息
+    :param key:
     :param location: 各个终点站的坐标，例如'113.357903,23.124016', '114.357903,24.124016'
     :param traffic_dict: 一个交通站点的信息，例如{'name': '员村山顶(东行)(公交站)', 'location': '113.357903,23.124016'}
     :return: 目标交通站的通勤时间信息，例如{name, location, total_per_duration, ......,detail: [{per_duration, ....}, {per_duration, ....}], around_place: {...}}
@@ -232,7 +236,7 @@ def aggregate_target_info(*location, **traffic_dict):
     per_walking_distance_list = []
     per_distance_list = []
     for lo in location:
-        d = get_transit_direction(traffic_location, lo)
+        d = get_transit_direction(traffic_location, lo, key=key)
         if d != {}:
             detail.append(d)
             per_cost_list.append(d['per_cost'])
@@ -258,6 +262,50 @@ def aggregate_target_info(*location, **traffic_dict):
     print(target_info_dict)
     return target_info_dict
 
+def quick_sort(array, dict_key=None):
+    '''
+    #快排算法，从低到高排序
+    :param array: 列表
+    :param dict_key: 列表内为dict的话，设置要排序的key的值，用‘.’符号分开，例如detail.0.per_cost
+    :return: 排好序的列表
+    '''
+    if len(array) <= 1:
+        return array
+    if dict_key != None:
+        dict_key_list = dict_key.split('.')
+        less = []
+        greater = []
+        base = array.pop()
+        base_value = base
+        for k in dict_key_list:
+            if k.isdigit():
+                k = int(k)
+            base_value = base_value[k]
+        for i in array:
+            i_value = i
+            for k in dict_key_list:
+                if k.isdigit():
+                    k = int(k)
+                i_value = i_value[k]
+
+            if i_value < base_value:
+                less.append(i)
+            else:
+                greater.append(i)
+
+        return quick_sort(less, dict_key=dict_key) + [base] + quick_sort(greater, dict_key=dict_key)
+
+    else:
+        less = []
+        greater = []
+        base = array.pop()
+        for i in array:
+            if i < base:
+                less.append(i)
+            else:
+                greater.append(i)
+
+        return quick_sort(less) + [base] + quick_sort(greater)
 
 
 def main():
@@ -279,25 +327,43 @@ def main():
     centre_location = get_centre_point(lo1, lo2)
 
 
-    tl = get_around_place(centre_location, circle_radius, key=key)
+    # tl = get_around_place(centre_location, circle_radius, key=key)
+    #
+    # best_location_list = []
+    # count = 0
+    # for i in tl:
+    #     count += 1
+    #     target_info_dict = aggregate_target_info(key, lo1, lo2, **i)
+    #     if target_info_dict:
+    #         best_location_list.append(target_info_dict)
+    #
+    # print(count)
+    # print('######################################################')
+    #
+    # sort_list = quick_sort(best_location_list, dict_key='total_per_duration')
+    # for s in sort_list:
+    #     print(s)
 
-    result = []
-    count = 0
-    for i in tl:
-        count += 1
-        target_info_dict = aggregate_target_info(lo1, lo2, **i)
-        if target_info_dict:
-            result.append(target_info_dict)
 
-    print(count)
+    d = get_transit_direction('113.357903,23.124016', lo2, extensions='all')
+    print(d)
 
-    # d = get_transit_direction('113.357903,23.124016', lo2)
-    # print(d)
 
     # test_traffic_dict = {'name': '员村山顶(东行)(公交站)', 'location': '113.357903,23.124016'}
-    # aggregate_target_info(lo1, lo2, **test_traffic_dict)
+    # aggregate_target_info(_KEY1, lo1, lo2, **test_traffic_dict)
 
 if __name__ == '__main__':
     main()
     # print(float('2.0'))
-    # TODO:公交的班车间隔时间，地点的周边设施范围800m
+    # TODO:公交的班车间隔时间，地点的周边设施范围800m,公寓、超市，站点的公交
+
+    # d = {'name': '员村山顶(东行)(公交站)', 'location': '113.357903,23.124016', 'total_per_cost': 2.0, 'total_per_duration': 1567.0, 'total_per_walking_distance': 661.1, 'total_per_distance': 3121.7, 'detail': [{'per_cost': 2.0, 'per_duration': 1624.4, 'per_walking_distance': 736.6, 'per_distance': 3734.2}, {'per_cost': 2.0, 'per_duration': 1509.6, 'per_walking_distance': 585.6, 'per_distance': 2509.2}]}
+    # # key = 'detail.0.per_cost'
+    # key = 'location'
+    # key_list = key.split('.')
+    # print(key_list)
+    # for k in key_list:
+    #     if k.isdigit():
+    #         k = int(k)
+    #     d = d[k]
+    # print(d)
