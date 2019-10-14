@@ -250,6 +250,11 @@ def aggregate_target_info(key=_KEY1, *location, **traffic_dict):
     total_per_distance = sum(per_distance_list)/len(per_distance_list)
 
     # print(detail)
+    around_market = get_around_place(traffic_location, radius=300, keywords='商场|超级市场', types='060100|060400',
+                                          key=key)
+    around_housing = get_around_place(traffic_location, radius=300, keywords='住宿|商务住宅',
+                                           types='100000|120000', key=key)
+
 
     target_info_dict['name'] = traffic_dict['name']
     target_info_dict['location'] = traffic_dict['location']
@@ -258,6 +263,8 @@ def aggregate_target_info(key=_KEY1, *location, **traffic_dict):
     target_info_dict['total_per_walking_distance'] = total_per_walking_distance
     target_info_dict['total_per_distance'] = total_per_distance
     target_info_dict['detail'] = detail
+    target_info_dict['around_market'] = around_market
+    target_info_dict['around_housing'] = around_housing
 
     print(target_info_dict)
     return target_info_dict
@@ -327,30 +334,38 @@ def main():
     centre_location = get_centre_point(lo1, lo2)
 
 
-    # tl = get_around_place(centre_location, circle_radius, key=key)
-    #
-    # best_location_list = []
-    # count = 0
-    # for i in tl:
-    #     count += 1
-    #     target_info_dict = aggregate_target_info(key, lo1, lo2, **i)
-    #     if target_info_dict:
-    #         best_location_list.append(target_info_dict)
-    #
-    # print(count)
-    # print('######################################################')
-    #
-    # sort_list = quick_sort(best_location_list, dict_key='total_per_duration')
-    # for s in sort_list:
-    #     print(s)
+    tl = get_around_place(centre_location, circle_radius, key=key)
+
+    best_location_list = []
+    count = 0
+    for i in tl:
+        count += 1
+        target_info_dict = aggregate_target_info(key, lo1, lo2, **i)
+        if target_info_dict:
+            best_location_list.append(target_info_dict)
+
+    print(count)
+    print('######################################################')
+
+    sort_list = quick_sort(best_location_list, dict_key='total_per_duration')
+    for s in sort_list:
+        print(s)
 
 
-    d = get_transit_direction('113.357903,23.124016', lo2, extensions='all')
-    print(d)
+    # d = get_transit_direction('113.357903,23.124016', lo2, extensions='all')
+    # print(d)
 
 
     # test_traffic_dict = {'name': '员村山顶(东行)(公交站)', 'location': '113.357903,23.124016'}
     # aggregate_target_info(_KEY1, lo1, lo2, **test_traffic_dict)
+
+    # around_market_list = get_around_place('113.357903,23.124016', radius=300, keywords='商场|超级市场', types='060100|060400', key=key)
+    # for a in around_market_list:
+    #     print(a)
+    # print('########################')
+    # around_housing_list = get_around_place('113.357903,23.124016', radius=300, keywords='住宿|商务住宅', types='100000|120000', key=key)
+    # for a in around_housing_list:
+    #     print(a)
 
 if __name__ == '__main__':
     main()
