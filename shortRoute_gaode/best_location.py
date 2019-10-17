@@ -149,7 +149,7 @@ def get_distance(origins, destination, type=0, key=_KEY1):      # 通过请求�
     distance = rp_dict['results'][0]['distance']
     return int(distance)
 
-def get_transit_direction(origin, destination, city='广州', cityd='广州', extensions='base', strategy=0, nightflag=0, date=None, time='8:30', key=_KEY1):
+def get_transit_direction(origin, destination, city='广州', cityd='广州', extensions='all', strategy=0, nightflag=0, date=None, time='8:30', key=_KEY1):
     '''
     获取到起点到终点的路线的平均值
     :param origin: 出发点（经度，纬度）
@@ -180,9 +180,10 @@ def get_transit_direction(origin, destination, city='广州', cityd='广州', ex
     }
     rp = requests.get(url=url, params=params)
     rp_dict = json.loads(rp.content)
-    print(rp_dict)
-    j = json.dumps(rp_dict)
+
+    j = json.dumps(rp_dict)   #测试
     print(j)
+
     if rp_dict['route']['transits']:
         cost_list = []
         duration_list = []
@@ -320,12 +321,12 @@ def main():
     address = '广州市天河区棠下二社涌边一横巷69天辉商业大厦'
     city = '广州'
     lo1 = get_location(address, city, key=key)
-    get_regeo(lo1, key=key)
+    # get_regeo(lo1, key=key)
 
     address = '广州市黄埔大道西120号高志大厦'
     city = '广州'
     lo2 = get_location(address, city, key=key)
-    get_regeo(lo2, key=key)
+    # get_regeo(lo2, key=key)
 
     distance = get_distance(lo1, lo2)
     print(distance)
@@ -334,26 +335,25 @@ def main():
     centre_location = get_centre_point(lo1, lo2)
 
 
-    tl = get_around_place(centre_location, circle_radius, key=key)
+    # tl = get_around_place(centre_location, circle_radius, key=key)
+    # best_location_list = []
+    # count = 0
+    # for i in tl:
+    #     count += 1
+    #     target_info_dict = aggregate_target_info(key, lo1, lo2, **i)
+    #     if target_info_dict:
+    #         best_location_list.append(target_info_dict)
+    #
+    # print(count)
+    # print('######################################################')
+    #
+    # sort_list = quick_sort(best_location_list, dict_key='total_per_duration')
+    # for s in sort_list:
+    #     print(s)
 
-    best_location_list = []
-    count = 0
-    for i in tl:
-        count += 1
-        target_info_dict = aggregate_target_info(key, lo1, lo2, **i)
-        if target_info_dict:
-            best_location_list.append(target_info_dict)
 
-    print(count)
-    print('######################################################')
-
-    sort_list = quick_sort(best_location_list, dict_key='total_per_duration')
-    for s in sort_list:
-        print(s)
-
-
-    # d = get_transit_direction('113.357903,23.124016', lo2, extensions='all')
-    # print(d)
+    d = get_transit_direction('113.357903,23.124016', lo2, key=key)
+    print(d)
 
 
     # test_traffic_dict = {'name': '员村山顶(东行)(公交站)', 'location': '113.357903,23.124016'}
