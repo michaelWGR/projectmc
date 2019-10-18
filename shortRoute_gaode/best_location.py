@@ -81,7 +81,7 @@ def get_around_place(location, radius, offset='20', keywords='地铁|公交', ty
         rp = requests.get(url=url, params=params)
         rp_dict = json.loads(rp.content)
         pois = rp_dict['pois']
-        print(pois)
+        # print(pois)
         if len(pois) != 0:
             page += 1
             for i in pois:
@@ -162,7 +162,7 @@ def get_transit_direction(origin, destination, city='广州', cityd='广州', ex
     :param date: 出发日期，格式示例：date=2014-3-19
     :param time: 出发时间，格式示例：time=22:34
     :param key:
-    :return: 平均值信息的字典,例如{'per_cost': 2.0, 'per_duration': 1509.6, 'per_walking_distance': 585.6, 'per_distance': 2509.2}
+    :return: 平均值信息的字典,例如{'per_cost': 2.0, 'per_duration': 1509.6, 'per_walking_distance': 585.6, 'per_distance': 2509.2, total_segments: [{bus_name:[], entrance:[], exit:[]},]}
     '''
     transit_direction = {}
     url = 'https://restapi.amap.com/v3/direction/transit/integrated'
@@ -181,8 +181,8 @@ def get_transit_direction(origin, destination, city='广州', cityd='广州', ex
     rp = requests.get(url=url, params=params)
     rp_dict = json.loads(rp.content)
 
-    j = json.dumps(rp_dict)   #测试
-    print(j)
+    # j = json.dumps(rp_dict)   #测试
+    # print(j)
 
     if rp_dict['route']['transits']:
         cost_list = []
@@ -191,14 +191,39 @@ def get_transit_direction(origin, destination, city='广州', cityd='广州', ex
         distance_list = []
         transits_list = rp_dict['route']['transits']
 
+        total_segments_list = []
+
         try:
             for t in transits_list:
+                bus_name = []
+                entrance = []
+                exit = []
+                aggre_segments = {}
                 if t != {}:
                     cost_list.append(float(t['cost']))
                     duration_list.append(float(t['duration']))
                     walking_distance_list.append(float(t['walking_distance']))
                     distance_list.append(float(t['distance']))
+                    segments_list = t['segments']
+                    if segments_list != []:
+                        for seg in segments_list:
+                            if seg['bus']['buslines']:
+                                for bl in seg['bus']['buslines']:
+                                    bus_name.append(bl['name'])
+                            if seg['entrance']:
+                                entrance.append(seg['entrance'])
+                            if seg['exit']:
+                                exit.append(seg['exit'])
+
+                aggre_segments['bus_name'] = bus_name
+                aggre_segments['entrance'] = entrance
+                aggre_segments['exit'] = exit
+
+                total_segments_list.append(aggre_segments)
+
+                    # print(segments_list)
                     # print(t)
+
             per_cost = sum(cost_list) / len(cost_list)
             per_duration = sum(duration_list) / len(duration_list)
             per_walking_distance = sum(walking_distance_list) / len(walking_distance_list)
@@ -208,6 +233,8 @@ def get_transit_direction(origin, destination, city='广州', cityd='广州', ex
             transit_direction['per_duration'] = per_duration
             transit_direction['per_walking_distance'] = per_walking_distance
             transit_direction['per_distance'] = per_distance
+
+            transit_direction['total_segments'] = total_segments_list
 
             return transit_direction
 
@@ -335,25 +362,25 @@ def main():
     centre_location = get_centre_point(lo1, lo2)
 
 
-    # tl = get_around_place(centre_location, circle_radius, key=key)
-    # best_location_list = []
-    # count = 0
-    # for i in tl:
-    #     count += 1
-    #     target_info_dict = aggregate_target_info(key, lo1, lo2, **i)
-    #     if target_info_dict:
-    #         best_location_list.append(target_info_dict)
-    #
-    # print(count)
-    # print('######################################################')
-    #
-    # sort_list = quick_sort(best_location_list, dict_key='total_per_duration')
-    # for s in sort_list:
-    #     print(s)
+    tl = get_around_place(centre_location, circle_radius, key=key)
+    best_location_list = []
+    count = 0
+    for i in tl:
+        count += 1
+        target_info_dict = aggregate_target_info(key, lo1, lo2, **i)
+        if target_info_dict:
+            best_location_list.append(target_info_dict)
+
+    print(count)
+    print('######################################################')
+
+    sort_list = quick_sort(best_location_list, dict_key='total_per_duration')
+    for s in sort_list:
+        print(s)
 
 
-    d = get_transit_direction('113.357903,23.124016', lo2, key=key)
-    print(d)
+    # d = get_transit_direction('113.357903,23.124016', lo2, key=key)
+    # print(d)
 
 
     # test_traffic_dict = {'name': '员村山顶(东行)(公交站)', 'location': '113.357903,23.124016'}
