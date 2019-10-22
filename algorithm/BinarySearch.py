@@ -5,7 +5,7 @@ def BinarySearch(array, t):
     high = len(array)-1
     # t = int(t)
     while low <= high:
-        mid = (low+high)/2
+        mid = (low+high)//2
 
         if array[mid] < t:
             low = mid+1
@@ -14,12 +14,14 @@ def BinarySearch(array, t):
             high = mid-1
 
         else:
-            return array[mid]
+            return array[mid],mid
 
     return -1
 
 if __name__ == '__main__':
     li = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-    print li[:2]
+    print(li[0])
     a = []
-    print BinarySearch(a,3)
+    print(BinarySearch(li,3))
+
+    print(int(4.7))
