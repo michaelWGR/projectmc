@@ -119,6 +119,7 @@ def update_usersecurityinfo():
     for e in error:
         print(e)
 
+    db.closeDB()
 
 
 
@@ -126,7 +127,7 @@ def main():
     # ex_sql()
 
     # p = '098d6bb820b56e8413cac932fd71b306'
-    en_p = encrypt_student_password('12345121218', '000000')
+    en_p = encrypt_student_password('18800000001', '123456')
     print(en_p)
     # if en_p == p:
     #     print('yes')

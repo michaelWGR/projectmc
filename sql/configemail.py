@@ -4,7 +4,7 @@ from email.mime.text import MIMEText
 from email.header import Header
 from email.mime.multipart import MIMEMultipart
 from httprunner import logger
-from common import get_conf
+from sql import get_conf
 
 
 mail_dict = get_conf('MAIL')
