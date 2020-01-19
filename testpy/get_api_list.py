@@ -71,7 +71,7 @@ def read_madown(path=r'E:\michael\schedule\liveApi_test.md'):
 def main():
     project_id = 1
     group_id = -1
-    file_path = os.path.join(r'E:\michael\schedule', 'api4.md')
+    file_path = os.path.join(r'E:\michael\schedule', 'api.md')
     # cookie = 'JSESSIONID=644B5D0093E4AF0D8A719B6B1EE5B682'
     get_api_list(project_id, group_id, file_path)
 
