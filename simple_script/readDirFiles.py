@@ -9,7 +9,7 @@ def readDir(dir_path, layer=0):             # layer为设置的层级，默认�
     all_files = []
 
     if dir_path[-1] == os.sep:
-        print u'文件夹路径末尾不能有{}'.format(os.sep)
+        print(u'文件夹路径末尾不能有{}'.format(os.sep))
         return
     if layer == 0:
         if os.path.isdir(dir_path):
@@ -52,7 +52,7 @@ if __name__ == '__main__':
     dirs = '/Users/michael/Documents/guirong/projectmc/classify_video/test1/1'
     files_list = readDir(dirs, 3)
     for f in files_list:
-        print f
+        print(f)
 
 
     # layer = 2
