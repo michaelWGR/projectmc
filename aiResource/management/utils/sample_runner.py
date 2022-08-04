@@ -52,7 +52,7 @@ class PornAdapter(object):
 
     def is_error_result(self, third_party, resource_id):
         try:
-            print third_party, resource_id
+            print(third_party, resource_id)
             result = DBPornResult.objects.get(product=third_party, resource=resource_id)
             return result.is_error != 0
         except DBPornResult.DoesNotExist as e:

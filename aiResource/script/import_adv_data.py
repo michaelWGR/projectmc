@@ -6,7 +6,7 @@ import random
 import string
 import datetime
 import argparse
-from utils.settings import *
+from .utils.settings import *
 
 __script_file_path__ = os.path.dirname(__file__)
 base_url = 'http://ai-resource.yypm.com/resource/'

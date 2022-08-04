@@ -8,10 +8,10 @@ from django.forms.models import model_to_dict
 from django.shortcuts import render_to_response
 from django.views.decorators.csrf import csrf_exempt
 
-from forms import PaginatorForm
-from enums import GameType, Hero
-from models import *
-from utils import JsonApi, JsonApiResponse
+from .forms import PaginatorForm
+from .enums import GameType, Hero
+from .models import *
+from .utils import JsonApi, JsonApiResponse
 
 
 # Create your views here.
@@ -21,7 +21,7 @@ def resource_index(request):
     page_form = PaginatorForm(request.GET)
     page_form.is_valid()
     checked = request.GET.get('checked')
-    print checked
+    print(checked)
 
     page_num = page_form.cleaned_data['page_num']
     page_size = page_form.cleaned_data['page_size']
@@ -53,7 +53,7 @@ def resource_index(request):
         if max_page_num > paginator.num_pages:
             max_page_num = paginator.num_pages
     elif current_page.number < max_page_num and current_page.number > show_page_num:
-        max_page_num -= show_page_num;
+        max_page_num -= show_page_num
 
     page_list = list()
 
@@ -291,5 +291,5 @@ def review_update(request):
 
         return JsonApiResponse(0, 'succeed', result=123)
     except Exception as e:
-        print e
+        print(e)
         return JsonApiResponse(1, 'fail', result="Update error.")

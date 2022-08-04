@@ -1,0 +1,927 @@
+[DEBUG] [2021-02-08 16:07:54,424] [utils.execute] (0.000) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None
+[DEBUG] [2021-02-08 16:07:54,425] [utils.execute] (0.000) PRAGMA foreign_keys; args=None
+[DEBUG] [2021-02-08 16:07:54,425] [utils.execute] (0.000) PRAGMA foreign_keys = 0; args=None
+[DEBUG] [2021-02-08 16:07:54,425] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-08 16:07:54,425] [schema.execute] CREATE TABLE "django_migrations" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "app" varchar(255) NOT NULL, "name" varchar(255) NOT NULL, "applied" datetime NOT NULL); (params None)
+[DEBUG] [2021-02-08 16:07:54,426] [utils.execute] (0.000) CREATE TABLE "django_migrations" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "app" varchar(255) NOT NULL, "name" varchar(255) NOT NULL, "applied" datetime NOT NULL); args=None
+[DEBUG] [2021-02-08 16:07:54,426] [utils.execute] (0.000) PRAGMA foreign_keys = 0; args=None
+[DEBUG] [2021-02-08 16:07:54,428] [utils.execute] (0.000) SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"; args=()
+[DEBUG] [2021-02-08 16:09:38,615] [utils.execute] (0.000) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None
+[DEBUG] [2021-02-08 16:09:38,617] [utils.execute] (0.000) SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"; args=()
+[DEBUG] [2021-02-08 16:09:38,618] [utils.execute] (0.000) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None
+[DEBUG] [2021-02-08 16:09:38,618] [utils.execute] (0.000) SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"; args=()
+[DEBUG] [2021-02-08 16:09:38,620] [utils.execute] (0.000) PRAGMA foreign_keys; args=None
+[DEBUG] [2021-02-08 16:09:38,620] [utils.execute] (0.000) PRAGMA foreign_keys = 0; args=None
+[DEBUG] [2021-02-08 16:09:38,620] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-08 16:09:38,621] [schema.execute] CREATE TABLE "django_content_type" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "name" varchar(100) NOT NULL, "app_label" varchar(100) NOT NULL, "model" varchar(100) NOT NULL); (params None)
+[DEBUG] [2021-02-08 16:09:38,621] [utils.execute] (0.000) CREATE TABLE "django_content_type" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "name" varchar(100) NOT NULL, "app_label" varchar(100) NOT NULL, "model" varchar(100) NOT NULL); args=None
+[DEBUG] [2021-02-08 16:09:38,623] [schema.execute] CREATE UNIQUE INDEX "django_content_type_app_label_model_76bd3d3b_uniq" ON "django_content_type" ("app_label", "model"); (params ())
+[DEBUG] [2021-02-08 16:09:38,623] [utils.execute] (0.000) CREATE UNIQUE INDEX "django_content_type_app_label_model_76bd3d3b_uniq" ON "django_content_type" ("app_label", "model"); args=()
+[DEBUG] [2021-02-08 16:09:38,624] [utils.execute] (0.000) PRAGMA foreign_keys = 0; args=None
+[DEBUG] [2021-02-08 16:09:38,624] [utils.execute] (0.000) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None
+[DEBUG] [2021-02-08 16:09:38,625] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-08 16:09:38,625] [utils.execute] (0.000) INSERT INTO "django_migrations" ("app", "name", "applied") VALUES ('contenttypes', '0001_initial', '2021-02-08 08:09:38.625122'); args=['contenttypes', '0001_initial', '2021-02-08 08:09:38.625122']
+[DEBUG] [2021-02-08 16:09:38,626] [utils.execute] (0.000) PRAGMA foreign_keys; args=None
+[DEBUG] [2021-02-08 16:09:38,626] [utils.execute] (0.000) PRAGMA foreign_keys = 0; args=None
+[DEBUG] [2021-02-08 16:09:38,626] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-08 16:09:38,628] [schema.execute] CREATE TABLE "auth_permission" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "name" varchar(50) NOT NULL, "content_type_id" integer NOT NULL REFERENCES "django_content_type" ("id"), "codename" varchar(100) NOT NULL); (params None)
+[DEBUG] [2021-02-08 16:09:38,628] [utils.execute] (0.000) CREATE TABLE "auth_permission" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "name" varchar(50) NOT NULL, "content_type_id" integer NOT NULL REFERENCES "django_content_type" ("id"), "codename" varchar(100) NOT NULL); args=None
+[DEBUG] [2021-02-08 16:09:38,631] [schema.execute] CREATE TABLE "auth_group" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "name" varchar(80) NOT NULL UNIQUE); (params None)
+[DEBUG] [2021-02-08 16:09:38,631] [utils.execute] (0.000) CREATE TABLE "auth_group" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "name" varchar(80) NOT NULL UNIQUE); args=None
+[DEBUG] [2021-02-08 16:09:38,632] [schema.execute] CREATE TABLE "auth_group_permissions" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "group_id" integer NOT NULL REFERENCES "auth_group" ("id"), "permission_id" integer NOT NULL REFERENCES "auth_permission" ("id")); (params None)
+[DEBUG] [2021-02-08 16:09:38,632] [utils.execute] (0.000) CREATE TABLE "auth_group_permissions" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "group_id" integer NOT NULL REFERENCES "auth_group" ("id"), "permission_id" integer NOT NULL REFERENCES "auth_permission" ("id")); args=None
+[DEBUG] [2021-02-08 16:09:38,645] [schema.execute] CREATE TABLE "auth_user" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "password" varchar(128) NOT NULL, "last_login" datetime NOT NULL, "is_superuser" bool NOT NULL, "username" varchar(30) NOT NULL UNIQUE, "first_name" varchar(30) NOT NULL, "last_name" varchar(30) NOT NULL, "email" varchar(75) NOT NULL, "is_staff" bool NOT NULL, "is_active" bool NOT NULL, "date_joined" datetime NOT NULL); (params None)
+[DEBUG] [2021-02-08 16:09:38,645] [utils.execute] (0.000) CREATE TABLE "auth_user" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "password" varchar(128) NOT NULL, "last_login" datetime NOT NULL, "is_superuser" bool NOT NULL, "username" varchar(30) NOT NULL UNIQUE, "first_name" varchar(30) NOT NULL, "last_name" varchar(30) NOT NULL, "email" varchar(75) NOT NULL, "is_staff" bool NOT NULL, "is_active" bool NOT NULL, "date_joined" datetime NOT NULL); args=None
+[DEBUG] [2021-02-08 16:09:38,646] [schema.execute] CREATE TABLE "auth_user_groups" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "user_id" integer NOT NULL REFERENCES "auth_user" ("id"), "group_id" integer NOT NULL REFERENCES "auth_group" ("id")); (params None)
+[DEBUG] [2021-02-08 16:09:38,646] [utils.execute] (0.000) CREATE TABLE "auth_user_groups" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "user_id" integer NOT NULL REFERENCES "auth_user" ("id"), "group_id" integer NOT NULL REFERENCES "auth_group" ("id")); args=None
+[DEBUG] [2021-02-08 16:09:38,646] [schema.execute] CREATE TABLE "auth_user_user_permissions" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "user_id" integer NOT NULL REFERENCES "auth_user" ("id"), "permission_id" integer NOT NULL REFERENCES "auth_permission" ("id")); (params None)
+[DEBUG] [2021-02-08 16:09:38,647] [utils.execute] (0.000) CREATE TABLE "auth_user_user_permissions" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "user_id" integer NOT NULL REFERENCES "auth_user" ("id"), "permission_id" integer NOT NULL REFERENCES "auth_permission" ("id")); args=None
+[DEBUG] [2021-02-08 16:09:38,647] [schema.execute] CREATE UNIQUE INDEX "auth_permission_content_type_id_codename_01ab375a_uniq" ON "auth_permission" ("content_type_id", "codename"); (params ())
+[DEBUG] [2021-02-08 16:09:38,647] [utils.execute] (0.000) CREATE UNIQUE INDEX "auth_permission_content_type_id_codename_01ab375a_uniq" ON "auth_permission" ("content_type_id", "codename"); args=()
+[DEBUG] [2021-02-08 16:09:38,647] [schema.execute] CREATE INDEX "auth_permission_content_type_id_2f476e4b" ON "auth_permission" ("content_type_id"); (params ())
+[DEBUG] [2021-02-08 16:09:38,647] [utils.execute] (0.000) CREATE INDEX "auth_permission_content_type_id_2f476e4b" ON "auth_permission" ("content_type_id"); args=()
+[DEBUG] [2021-02-08 16:09:38,647] [schema.execute] CREATE UNIQUE INDEX "auth_group_permissions_group_id_permission_id_0cd325b0_uniq" ON "auth_group_permissions" ("group_id", "permission_id"); (params ())
+[DEBUG] [2021-02-08 16:09:38,647] [utils.execute] (0.000) CREATE UNIQUE INDEX "auth_group_permissions_group_id_permission_id_0cd325b0_uniq" ON "auth_group_permissions" ("group_id", "permission_id"); args=()
+[DEBUG] [2021-02-08 16:09:38,647] [schema.execute] CREATE INDEX "auth_group_permissions_group_id_b120cbf9" ON "auth_group_permissions" ("group_id"); (params ())
+[DEBUG] [2021-02-08 16:09:38,648] [utils.execute] (0.000) CREATE INDEX "auth_group_permissions_group_id_b120cbf9" ON "auth_group_permissions" ("group_id"); args=()
+[DEBUG] [2021-02-08 16:09:38,648] [schema.execute] CREATE INDEX "auth_group_permissions_permission_id_84c5c92e" ON "auth_group_permissions" ("permission_id"); (params ())
+[DEBUG] [2021-02-08 16:09:38,648] [utils.execute] (0.000) CREATE INDEX "auth_group_permissions_permission_id_84c5c92e" ON "auth_group_permissions" ("permission_id"); args=()
+[DEBUG] [2021-02-08 16:09:38,648] [schema.execute] CREATE UNIQUE INDEX "auth_user_groups_user_id_group_id_94350c0c_uniq" ON "auth_user_groups" ("user_id", "group_id"); (params ())
+[DEBUG] [2021-02-08 16:09:38,648] [utils.execute] (0.000) CREATE UNIQUE INDEX "auth_user_groups_user_id_group_id_94350c0c_uniq" ON "auth_user_groups" ("user_id", "group_id"); args=()
+[DEBUG] [2021-02-08 16:09:38,648] [schema.execute] CREATE INDEX "auth_user_groups_user_id_6a12ed8b" ON "auth_user_groups" ("user_id"); (params ())
+[DEBUG] [2021-02-08 16:09:38,648] [utils.execute] (0.000) CREATE INDEX "auth_user_groups_user_id_6a12ed8b" ON "auth_user_groups" ("user_id"); args=()
+[DEBUG] [2021-02-08 16:09:38,648] [schema.execute] CREATE INDEX "auth_user_groups_group_id_97559544" ON "auth_user_groups" ("group_id"); (params ())
+[DEBUG] [2021-02-08 16:09:38,648] [utils.execute] (0.000) CREATE INDEX "auth_user_groups_group_id_97559544" ON "auth_user_groups" ("group_id"); args=()
+[DEBUG] [2021-02-08 16:09:38,648] [schema.execute] CREATE UNIQUE INDEX "auth_user_user_permissions_user_id_permission_id_14a6b632_uniq" ON "auth_user_user_permissions" ("user_id", "permission_id"); (params ())
+[DEBUG] [2021-02-08 16:09:38,649] [utils.execute] (0.000) CREATE UNIQUE INDEX "auth_user_user_permissions_user_id_permission_id_14a6b632_uniq" ON "auth_user_user_permissions" ("user_id", "permission_id"); args=()
+[DEBUG] [2021-02-08 16:09:38,649] [schema.execute] CREATE INDEX "auth_user_user_permissions_user_id_a95ead1b" ON "auth_user_user_permissions" ("user_id"); (params ())
+[DEBUG] [2021-02-08 16:09:38,649] [utils.execute] (0.000) CREATE INDEX "auth_user_user_permissions_user_id_a95ead1b" ON "auth_user_user_permissions" ("user_id"); args=()
+[DEBUG] [2021-02-08 16:09:38,649] [schema.execute] CREATE INDEX "auth_user_user_permissions_permission_id_1fbb5f2c" ON "auth_user_user_permissions" ("permission_id"); (params ())
+[DEBUG] [2021-02-08 16:09:38,649] [utils.execute] (0.000) CREATE INDEX "auth_user_user_permissions_permission_id_1fbb5f2c" ON "auth_user_user_permissions" ("permission_id"); args=()
+[DEBUG] [2021-02-08 16:09:38,650] [utils.execute] (0.000) PRAGMA foreign_keys = 0; args=None
+[DEBUG] [2021-02-08 16:09:38,651] [utils.execute] (0.000) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None
+[DEBUG] [2021-02-08 16:09:38,651] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-08 16:09:38,651] [utils.execute] (0.000) INSERT INTO "django_migrations" ("app", "name", "applied") VALUES ('auth', '0001_initial', '2021-02-08 08:09:38.651288'); args=['auth', '0001_initial', '2021-02-08 08:09:38.651288']
+[DEBUG] [2021-02-08 16:09:38,652] [utils.execute] (0.000) PRAGMA foreign_keys; args=None
+[DEBUG] [2021-02-08 16:09:38,652] [utils.execute] (0.000) PRAGMA foreign_keys = 0; args=None
+[DEBUG] [2021-02-08 16:09:38,652] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-08 16:09:38,668] [schema.execute] CREATE TABLE "django_admin_log" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "action_time" datetime NOT NULL, "object_id" text NULL, "object_repr" varchar(200) NOT NULL, "action_flag" smallint unsigned NOT NULL, "change_message" text NOT NULL, "content_type_id" integer NULL REFERENCES "django_content_type" ("id"), "user_id" integer NOT NULL REFERENCES "auth_user" ("id")); (params None)
+[DEBUG] [2021-02-08 16:09:38,669] [utils.execute] (0.000) CREATE TABLE "django_admin_log" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "action_time" datetime NOT NULL, "object_id" text NULL, "object_repr" varchar(200) NOT NULL, "action_flag" smallint unsigned NOT NULL, "change_message" text NOT NULL, "content_type_id" integer NULL REFERENCES "django_content_type" ("id"), "user_id" integer NOT NULL REFERENCES "auth_user" ("id")); args=None
+[DEBUG] [2021-02-08 16:09:38,669] [schema.execute] CREATE INDEX "django_admin_log_content_type_id_c4bce8eb" ON "django_admin_log" ("content_type_id"); (params ())
+[DEBUG] [2021-02-08 16:09:38,669] [utils.execute] (0.000) CREATE INDEX "django_admin_log_content_type_id_c4bce8eb" ON "django_admin_log" ("content_type_id"); args=()
+[DEBUG] [2021-02-08 16:09:38,669] [schema.execute] CREATE INDEX "django_admin_log_user_id_c564eba6" ON "django_admin_log" ("user_id"); (params ())
+[DEBUG] [2021-02-08 16:09:38,670] [utils.execute] (0.000) CREATE INDEX "django_admin_log_user_id_c564eba6" ON "django_admin_log" ("user_id"); args=()
+[DEBUG] [2021-02-08 16:09:38,670] [utils.execute] (0.000) PRAGMA foreign_keys = 0; args=None
+[DEBUG] [2021-02-08 16:09:38,671] [utils.execute] (0.000) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None
+[DEBUG] [2021-02-08 16:09:38,671] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-08 16:09:38,671] [utils.execute] (0.000) INSERT INTO "django_migrations" ("app", "name", "applied") VALUES ('admin', '0001_initial', '2021-02-08 08:09:38.671350'); args=['admin', '0001_initial', '2021-02-08 08:09:38.671350']
+[DEBUG] [2021-02-08 16:09:38,673] [utils.execute] (0.000) PRAGMA foreign_keys; args=None
+[DEBUG] [2021-02-08 16:09:38,673] [utils.execute] (0.000) PRAGMA foreign_keys = 0; args=None
+[DEBUG] [2021-02-08 16:09:38,673] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-08 16:09:38,686] [schema.execute] ALTER TABLE "django_admin_log" RENAME TO "django_admin_log__old"; (params ())
+[DEBUG] [2021-02-08 16:09:38,688] [utils.execute] (0.002) ALTER TABLE "django_admin_log" RENAME TO "django_admin_log__old"; args=()
+[DEBUG] [2021-02-08 16:09:38,689] [schema.execute] CREATE TABLE "django_admin_log" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "object_id" text NULL, "object_repr" varchar(200) NOT NULL, "action_flag" smallint unsigned NOT NULL, "change_message" text NOT NULL, "content_type_id" integer NULL REFERENCES "django_content_type" ("id"), "user_id" integer NOT NULL REFERENCES "auth_user" ("id"), "action_time" datetime NOT NULL); (params None)
+[DEBUG] [2021-02-08 16:09:38,689] [utils.execute] (0.000) CREATE TABLE "django_admin_log" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "object_id" text NULL, "object_repr" varchar(200) NOT NULL, "action_flag" smallint unsigned NOT NULL, "change_message" text NOT NULL, "content_type_id" integer NULL REFERENCES "django_content_type" ("id"), "user_id" integer NOT NULL REFERENCES "auth_user" ("id"), "action_time" datetime NOT NULL); args=None
+[DEBUG] [2021-02-08 16:09:38,689] [schema.execute] INSERT INTO "django_admin_log" ("id", "object_id", "object_repr", "action_flag", "change_message", "content_type_id", "user_id", "action_time") SELECT "id", "object_id", "object_repr", "action_flag", "change_message", "content_type_id", "user_id", "action_time" FROM "django_admin_log__old"; (params ())
+[DEBUG] [2021-02-08 16:09:38,689] [utils.execute] (0.000) INSERT INTO "django_admin_log" ("id", "object_id", "object_repr", "action_flag", "change_message", "content_type_id", "user_id", "action_time") SELECT "id", "object_id", "object_repr", "action_flag", "change_message", "content_type_id", "user_id", "action_time" FROM "django_admin_log__old"; args=()
+[DEBUG] [2021-02-08 16:09:38,689] [schema.execute] DROP TABLE "django_admin_log__old"; (params ())
+[DEBUG] [2021-02-08 16:09:38,690] [utils.execute] (0.000) DROP TABLE "django_admin_log__old"; args=()
+[DEBUG] [2021-02-08 16:09:38,690] [schema.execute] CREATE INDEX "django_admin_log_content_type_id_c4bce8eb" ON "django_admin_log" ("content_type_id"); (params ())
+[DEBUG] [2021-02-08 16:09:38,690] [utils.execute] (0.000) CREATE INDEX "django_admin_log_content_type_id_c4bce8eb" ON "django_admin_log" ("content_type_id"); args=()
+[DEBUG] [2021-02-08 16:09:38,690] [schema.execute] CREATE INDEX "django_admin_log_user_id_c564eba6" ON "django_admin_log" ("user_id"); (params ())
+[DEBUG] [2021-02-08 16:09:38,690] [utils.execute] (0.000) CREATE INDEX "django_admin_log_user_id_c564eba6" ON "django_admin_log" ("user_id"); args=()
+[DEBUG] [2021-02-08 16:09:38,691] [utils.execute] (0.000) PRAGMA foreign_keys = 0; args=None
+[DEBUG] [2021-02-08 16:09:38,691] [utils.execute] (0.000) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None
+[DEBUG] [2021-02-08 16:09:38,692] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-08 16:09:38,692] [utils.execute] (0.000) INSERT INTO "django_migrations" ("app", "name", "applied") VALUES ('admin', '0002_logentry_remove_auto_add', '2021-02-08 08:09:38.691993'); args=['admin', '0002_logentry_remove_auto_add', '2021-02-08 08:09:38.691993']
+[DEBUG] [2021-02-08 16:09:38,693] [utils.execute] (0.000) PRAGMA foreign_keys; args=None
+[DEBUG] [2021-02-08 16:09:38,693] [utils.execute] (0.000) PRAGMA foreign_keys = 0; args=None
+[DEBUG] [2021-02-08 16:09:38,693] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-08 16:09:38,704] [schema.execute] ALTER TABLE "django_content_type" RENAME TO "django_content_type__old"; (params ())
+[DEBUG] [2021-02-08 16:09:38,706] [utils.execute] (0.002) ALTER TABLE "django_content_type" RENAME TO "django_content_type__old"; args=()
+[DEBUG] [2021-02-08 16:09:38,707] [schema.execute] CREATE TABLE "django_content_type" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "app_label" varchar(100) NOT NULL, "model" varchar(100) NOT NULL, "name" varchar(100) NULL); (params None)
+[DEBUG] [2021-02-08 16:09:38,707] [utils.execute] (0.000) CREATE TABLE "django_content_type" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "app_label" varchar(100) NOT NULL, "model" varchar(100) NOT NULL, "name" varchar(100) NULL); args=None
+[DEBUG] [2021-02-08 16:09:38,707] [schema.execute] INSERT INTO "django_content_type" ("id", "app_label", "model", "name") SELECT "id", "app_label", "model", "name" FROM "django_content_type__old"; (params ())
+[DEBUG] [2021-02-08 16:09:38,707] [utils.execute] (0.000) INSERT INTO "django_content_type" ("id", "app_label", "model", "name") SELECT "id", "app_label", "model", "name" FROM "django_content_type__old"; args=()
+[DEBUG] [2021-02-08 16:09:38,707] [schema.execute] DROP TABLE "django_content_type__old"; (params ())
+[DEBUG] [2021-02-08 16:09:38,707] [utils.execute] (0.000) DROP TABLE "django_content_type__old"; args=()
+[DEBUG] [2021-02-08 16:09:38,708] [schema.execute] CREATE UNIQUE INDEX "django_content_type_app_label_model_76bd3d3b_uniq" ON "django_content_type" ("app_label", "model"); (params ())
+[DEBUG] [2021-02-08 16:09:38,708] [utils.execute] (0.000) CREATE UNIQUE INDEX "django_content_type_app_label_model_76bd3d3b_uniq" ON "django_content_type" ("app_label", "model"); args=()
+[DEBUG] [2021-02-08 16:09:38,717] [schema.execute] ALTER TABLE "django_content_type" RENAME TO "django_content_type__old"; (params ())
+[DEBUG] [2021-02-08 16:09:38,718] [utils.execute] (0.001) ALTER TABLE "django_content_type" RENAME TO "django_content_type__old"; args=()
+[DEBUG] [2021-02-08 16:09:38,719] [schema.execute] CREATE TABLE "django_content_type" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "app_label" varchar(100) NOT NULL, "model" varchar(100) NOT NULL); (params None)
+[DEBUG] [2021-02-08 16:09:38,719] [utils.execute] (0.000) CREATE TABLE "django_content_type" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "app_label" varchar(100) NOT NULL, "model" varchar(100) NOT NULL); args=None
+[DEBUG] [2021-02-08 16:09:38,719] [schema.execute] INSERT INTO "django_content_type" ("id", "app_label", "model") SELECT "id", "app_label", "model" FROM "django_content_type__old"; (params ())
+[DEBUG] [2021-02-08 16:09:38,719] [utils.execute] (0.000) INSERT INTO "django_content_type" ("id", "app_label", "model") SELECT "id", "app_label", "model" FROM "django_content_type__old"; args=()
+[DEBUG] [2021-02-08 16:09:38,719] [schema.execute] DROP TABLE "django_content_type__old"; (params ())
+[DEBUG] [2021-02-08 16:09:38,719] [utils.execute] (0.000) DROP TABLE "django_content_type__old"; args=()
+[DEBUG] [2021-02-08 16:09:38,719] [schema.execute] CREATE UNIQUE INDEX "django_content_type_app_label_model_76bd3d3b_uniq" ON "django_content_type" ("app_label", "model"); (params ())
+[DEBUG] [2021-02-08 16:09:38,719] [utils.execute] (0.000) CREATE UNIQUE INDEX "django_content_type_app_label_model_76bd3d3b_uniq" ON "django_content_type" ("app_label", "model"); args=()
+[DEBUG] [2021-02-08 16:09:38,722] [utils.execute] (0.000) PRAGMA foreign_keys = 0; args=None
+[DEBUG] [2021-02-08 16:09:38,723] [utils.execute] (0.000) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None
+[DEBUG] [2021-02-08 16:09:38,724] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-08 16:09:38,726] [utils.execute] (0.001) INSERT INTO "django_migrations" ("app", "name", "applied") VALUES ('contenttypes', '0002_remove_content_type_name', '2021-02-08 08:09:38.724252'); args=['contenttypes', '0002_remove_content_type_name', '2021-02-08 08:09:38.724252']
+[DEBUG] [2021-02-08 16:09:38,727] [utils.execute] (0.000) PRAGMA foreign_keys; args=None
+[DEBUG] [2021-02-08 16:09:38,727] [utils.execute] (0.000) PRAGMA foreign_keys = 0; args=None
+[DEBUG] [2021-02-08 16:09:38,727] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-08 16:09:38,731] [schema.execute] ALTER TABLE "auth_permission" RENAME TO "auth_permission__old"; (params ())
+[DEBUG] [2021-02-08 16:09:38,732] [utils.execute] (0.001) ALTER TABLE "auth_permission" RENAME TO "auth_permission__old"; args=()
+[DEBUG] [2021-02-08 16:09:38,732] [schema.execute] CREATE TABLE "auth_permission" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "content_type_id" integer NOT NULL REFERENCES "django_content_type" ("id"), "codename" varchar(100) NOT NULL, "name" varchar(255) NOT NULL); (params None)
+[DEBUG] [2021-02-08 16:09:38,733] [utils.execute] (0.000) CREATE TABLE "auth_permission" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "content_type_id" integer NOT NULL REFERENCES "django_content_type" ("id"), "codename" varchar(100) NOT NULL, "name" varchar(255) NOT NULL); args=None
+[DEBUG] [2021-02-08 16:09:38,733] [schema.execute] INSERT INTO "auth_permission" ("id", "content_type_id", "codename", "name") SELECT "id", "content_type_id", "codename", "name" FROM "auth_permission__old"; (params ())
+[DEBUG] [2021-02-08 16:09:38,733] [utils.execute] (0.000) INSERT INTO "auth_permission" ("id", "content_type_id", "codename", "name") SELECT "id", "content_type_id", "codename", "name" FROM "auth_permission__old"; args=()
+[DEBUG] [2021-02-08 16:09:38,733] [schema.execute] DROP TABLE "auth_permission__old"; (params ())
+[DEBUG] [2021-02-08 16:09:38,733] [utils.execute] (0.000) DROP TABLE "auth_permission__old"; args=()
+[DEBUG] [2021-02-08 16:09:38,733] [schema.execute] CREATE UNIQUE INDEX "auth_permission_content_type_id_codename_01ab375a_uniq" ON "auth_permission" ("content_type_id", "codename"); (params ())
+[DEBUG] [2021-02-08 16:09:38,733] [utils.execute] (0.000) CREATE UNIQUE INDEX "auth_permission_content_type_id_codename_01ab375a_uniq" ON "auth_permission" ("content_type_id", "codename"); args=()
+[DEBUG] [2021-02-08 16:09:38,733] [schema.execute] CREATE INDEX "auth_permission_content_type_id_2f476e4b" ON "auth_permission" ("content_type_id"); (params ())
+[DEBUG] [2021-02-08 16:09:38,734] [utils.execute] (0.000) CREATE INDEX "auth_permission_content_type_id_2f476e4b" ON "auth_permission" ("content_type_id"); args=()
+[DEBUG] [2021-02-08 16:09:38,735] [utils.execute] (0.000) PRAGMA foreign_keys = 0; args=None
+[DEBUG] [2021-02-08 16:09:38,735] [utils.execute] (0.000) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None
+[DEBUG] [2021-02-08 16:09:38,735] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-08 16:09:38,736] [utils.execute] (0.000) INSERT INTO "django_migrations" ("app", "name", "applied") VALUES ('auth', '0002_alter_permission_name_max_length', '2021-02-08 08:09:38.735863'); args=['auth', '0002_alter_permission_name_max_length', '2021-02-08 08:09:38.735863']
+[DEBUG] [2021-02-08 16:09:38,737] [utils.execute] (0.000) PRAGMA foreign_keys; args=None
+[DEBUG] [2021-02-08 16:09:38,737] [utils.execute] (0.000) PRAGMA foreign_keys = 0; args=None
+[DEBUG] [2021-02-08 16:09:38,737] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-08 16:09:38,746] [schema.execute] ALTER TABLE "auth_user" RENAME TO "auth_user__old"; (params ())
+[DEBUG] [2021-02-08 16:09:38,747] [utils.execute] (0.001) ALTER TABLE "auth_user" RENAME TO "auth_user__old"; args=()
+[DEBUG] [2021-02-08 16:09:38,748] [schema.execute] CREATE TABLE "auth_user" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "password" varchar(128) NOT NULL, "last_login" datetime NOT NULL, "is_superuser" bool NOT NULL, "username" varchar(30) NOT NULL UNIQUE, "first_name" varchar(30) NOT NULL, "last_name" varchar(30) NOT NULL, "is_staff" bool NOT NULL, "is_active" bool NOT NULL, "date_joined" datetime NOT NULL, "email" varchar(254) NOT NULL); (params None)
+[DEBUG] [2021-02-08 16:09:38,748] [utils.execute] (0.000) CREATE TABLE "auth_user" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "password" varchar(128) NOT NULL, "last_login" datetime NOT NULL, "is_superuser" bool NOT NULL, "username" varchar(30) NOT NULL UNIQUE, "first_name" varchar(30) NOT NULL, "last_name" varchar(30) NOT NULL, "is_staff" bool NOT NULL, "is_active" bool NOT NULL, "date_joined" datetime NOT NULL, "email" varchar(254) NOT NULL); args=None
+[DEBUG] [2021-02-08 16:09:38,748] [schema.execute] INSERT INTO "auth_user" ("id", "password", "last_login", "is_superuser", "username", "first_name", "last_name", "is_staff", "is_active", "date_joined", "email") SELECT "id", "password", "last_login", "is_superuser", "username", "first_name", "last_name", "is_staff", "is_active", "date_joined", "email" FROM "auth_user__old"; (params ())
+[DEBUG] [2021-02-08 16:09:38,748] [utils.execute] (0.000) INSERT INTO "auth_user" ("id", "password", "last_login", "is_superuser", "username", "first_name", "last_name", "is_staff", "is_active", "date_joined", "email") SELECT "id", "password", "last_login", "is_superuser", "username", "first_name", "last_name", "is_staff", "is_active", "date_joined", "email" FROM "auth_user__old"; args=()
+[DEBUG] [2021-02-08 16:09:38,748] [schema.execute] DROP TABLE "auth_user__old"; (params ())
+[DEBUG] [2021-02-08 16:09:38,748] [utils.execute] (0.000) DROP TABLE "auth_user__old"; args=()
+[DEBUG] [2021-02-08 16:09:38,749] [utils.execute] (0.000) PRAGMA foreign_keys = 0; args=None
+[DEBUG] [2021-02-08 16:09:38,750] [utils.execute] (0.000) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None
+[DEBUG] [2021-02-08 16:09:38,750] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-08 16:09:38,750] [utils.execute] (0.000) INSERT INTO "django_migrations" ("app", "name", "applied") VALUES ('auth', '0003_alter_user_email_max_length', '2021-02-08 08:09:38.750201'); args=['auth', '0003_alter_user_email_max_length', '2021-02-08 08:09:38.750201']
+[DEBUG] [2021-02-08 16:09:38,751] [utils.execute] (0.000) PRAGMA foreign_keys; args=None
+[DEBUG] [2021-02-08 16:09:38,751] [utils.execute] (0.000) PRAGMA foreign_keys = 0; args=None
+[DEBUG] [2021-02-08 16:09:38,751] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-08 16:09:38,769] [schema.execute] ALTER TABLE "auth_user" RENAME TO "auth_user__old"; (params ())
+[DEBUG] [2021-02-08 16:09:38,771] [utils.execute] (0.001) ALTER TABLE "auth_user" RENAME TO "auth_user__old"; args=()
+[DEBUG] [2021-02-08 16:09:38,771] [schema.execute] CREATE TABLE "auth_user" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "password" varchar(128) NOT NULL, "last_login" datetime NOT NULL, "is_superuser" bool NOT NULL, "first_name" varchar(30) NOT NULL, "last_name" varchar(30) NOT NULL, "email" varchar(254) NOT NULL, "is_staff" bool NOT NULL, "is_active" bool NOT NULL, "date_joined" datetime NOT NULL, "username" varchar(30) NOT NULL UNIQUE); (params None)
+[DEBUG] [2021-02-08 16:09:38,771] [utils.execute] (0.000) CREATE TABLE "auth_user" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "password" varchar(128) NOT NULL, "last_login" datetime NOT NULL, "is_superuser" bool NOT NULL, "first_name" varchar(30) NOT NULL, "last_name" varchar(30) NOT NULL, "email" varchar(254) NOT NULL, "is_staff" bool NOT NULL, "is_active" bool NOT NULL, "date_joined" datetime NOT NULL, "username" varchar(30) NOT NULL UNIQUE); args=None
+[DEBUG] [2021-02-08 16:09:38,771] [schema.execute] INSERT INTO "auth_user" ("id", "password", "last_login", "is_superuser", "first_name", "last_name", "email", "is_staff", "is_active", "date_joined", "username") SELECT "id", "password", "last_login", "is_superuser", "first_name", "last_name", "email", "is_staff", "is_active", "date_joined", "username" FROM "auth_user__old"; (params ())
+[DEBUG] [2021-02-08 16:09:38,771] [utils.execute] (0.000) INSERT INTO "auth_user" ("id", "password", "last_login", "is_superuser", "first_name", "last_name", "email", "is_staff", "is_active", "date_joined", "username") SELECT "id", "password", "last_login", "is_superuser", "first_name", "last_name", "email", "is_staff", "is_active", "date_joined", "username" FROM "auth_user__old"; args=()
+[DEBUG] [2021-02-08 16:09:38,771] [schema.execute] DROP TABLE "auth_user__old"; (params ())
+[DEBUG] [2021-02-08 16:09:38,772] [utils.execute] (0.000) DROP TABLE "auth_user__old"; args=()
+[DEBUG] [2021-02-08 16:09:38,772] [utils.execute] (0.000) PRAGMA foreign_keys = 0; args=None
+[DEBUG] [2021-02-08 16:09:38,773] [utils.execute] (0.000) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None
+[DEBUG] [2021-02-08 16:09:38,773] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-08 16:09:38,773] [utils.execute] (0.000) INSERT INTO "django_migrations" ("app", "name", "applied") VALUES ('auth', '0004_alter_user_username_opts', '2021-02-08 08:09:38.773367'); args=['auth', '0004_alter_user_username_opts', '2021-02-08 08:09:38.773367']
+[DEBUG] [2021-02-08 16:09:38,774] [utils.execute] (0.000) PRAGMA foreign_keys; args=None
+[DEBUG] [2021-02-08 16:09:38,775] [utils.execute] (0.000) PRAGMA foreign_keys = 0; args=None
+[DEBUG] [2021-02-08 16:09:38,775] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-08 16:09:38,781] [schema.execute] ALTER TABLE "auth_user" RENAME TO "auth_user__old"; (params ())
+[DEBUG] [2021-02-08 16:09:38,782] [utils.execute] (0.001) ALTER TABLE "auth_user" RENAME TO "auth_user__old"; args=()
+[DEBUG] [2021-02-08 16:09:38,783] [schema.execute] CREATE TABLE "auth_user" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "password" varchar(128) NOT NULL, "is_superuser" bool NOT NULL, "username" varchar(30) NOT NULL UNIQUE, "first_name" varchar(30) NOT NULL, "last_name" varchar(30) NOT NULL, "email" varchar(254) NOT NULL, "is_staff" bool NOT NULL, "is_active" bool NOT NULL, "date_joined" datetime NOT NULL, "last_login" datetime NULL); (params None)
+[DEBUG] [2021-02-08 16:09:38,783] [utils.execute] (0.000) CREATE TABLE "auth_user" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "password" varchar(128) NOT NULL, "is_superuser" bool NOT NULL, "username" varchar(30) NOT NULL UNIQUE, "first_name" varchar(30) NOT NULL, "last_name" varchar(30) NOT NULL, "email" varchar(254) NOT NULL, "is_staff" bool NOT NULL, "is_active" bool NOT NULL, "date_joined" datetime NOT NULL, "last_login" datetime NULL); args=None
+[DEBUG] [2021-02-08 16:09:38,783] [schema.execute] INSERT INTO "auth_user" ("id", "password", "is_superuser", "username", "first_name", "last_name", "email", "is_staff", "is_active", "date_joined", "last_login") SELECT "id", "password", "is_superuser", "username", "first_name", "last_name", "email", "is_staff", "is_active", "date_joined", "last_login" FROM "auth_user__old"; (params ())
+[DEBUG] [2021-02-08 16:09:38,783] [utils.execute] (0.000) INSERT INTO "auth_user" ("id", "password", "is_superuser", "username", "first_name", "last_name", "email", "is_staff", "is_active", "date_joined", "last_login") SELECT "id", "password", "is_superuser", "username", "first_name", "last_name", "email", "is_staff", "is_active", "date_joined", "last_login" FROM "auth_user__old"; args=()
+[DEBUG] [2021-02-08 16:09:38,783] [schema.execute] DROP TABLE "auth_user__old"; (params ())
+[DEBUG] [2021-02-08 16:09:38,783] [utils.execute] (0.000) DROP TABLE "auth_user__old"; args=()
+[DEBUG] [2021-02-08 16:09:38,784] [utils.execute] (0.000) PRAGMA foreign_keys = 0; args=None
+[DEBUG] [2021-02-08 16:09:38,784] [utils.execute] (0.000) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None
+[DEBUG] [2021-02-08 16:09:38,784] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-08 16:09:38,785] [utils.execute] (0.000) INSERT INTO "django_migrations" ("app", "name", "applied") VALUES ('auth', '0005_alter_user_last_login_null', '2021-02-08 08:09:38.784942'); args=['auth', '0005_alter_user_last_login_null', '2021-02-08 08:09:38.784942']
+[DEBUG] [2021-02-08 16:09:38,786] [utils.execute] (0.000) PRAGMA foreign_keys; args=None
+[DEBUG] [2021-02-08 16:09:38,786] [utils.execute] (0.000) PRAGMA foreign_keys = 0; args=None
+[DEBUG] [2021-02-08 16:09:38,786] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-08 16:09:38,786] [utils.execute] (0.000) PRAGMA foreign_keys = 0; args=None
+[DEBUG] [2021-02-08 16:09:38,786] [utils.execute] (0.000) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None
+[DEBUG] [2021-02-08 16:09:38,787] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-08 16:09:38,787] [utils.execute] (0.000) INSERT INTO "django_migrations" ("app", "name", "applied") VALUES ('auth', '0006_require_contenttypes_0002', '2021-02-08 08:09:38.787033'); args=['auth', '0006_require_contenttypes_0002', '2021-02-08 08:09:38.787033']
+[DEBUG] [2021-02-08 16:09:38,789] [utils.execute] (0.000) PRAGMA foreign_keys; args=None
+[DEBUG] [2021-02-08 16:09:38,789] [utils.execute] (0.000) PRAGMA foreign_keys = 0; args=None
+[DEBUG] [2021-02-08 16:09:38,789] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-08 16:09:38,795] [schema.execute] ALTER TABLE "auth_user" RENAME TO "auth_user__old"; (params ())
+[DEBUG] [2021-02-08 16:09:38,796] [utils.execute] (0.001) ALTER TABLE "auth_user" RENAME TO "auth_user__old"; args=()
+[DEBUG] [2021-02-08 16:09:38,797] [schema.execute] CREATE TABLE "auth_user" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "password" varchar(128) NOT NULL, "last_login" datetime NULL, "is_superuser" bool NOT NULL, "first_name" varchar(30) NOT NULL, "last_name" varchar(30) NOT NULL, "email" varchar(254) NOT NULL, "is_staff" bool NOT NULL, "is_active" bool NOT NULL, "date_joined" datetime NOT NULL, "username" varchar(30) NOT NULL UNIQUE); (params None)
+[DEBUG] [2021-02-08 16:09:38,797] [utils.execute] (0.000) CREATE TABLE "auth_user" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "password" varchar(128) NOT NULL, "last_login" datetime NULL, "is_superuser" bool NOT NULL, "first_name" varchar(30) NOT NULL, "last_name" varchar(30) NOT NULL, "email" varchar(254) NOT NULL, "is_staff" bool NOT NULL, "is_active" bool NOT NULL, "date_joined" datetime NOT NULL, "username" varchar(30) NOT NULL UNIQUE); args=None
+[DEBUG] [2021-02-08 16:09:38,797] [schema.execute] INSERT INTO "auth_user" ("id", "password", "last_login", "is_superuser", "first_name", "last_name", "email", "is_staff", "is_active", "date_joined", "username") SELECT "id", "password", "last_login", "is_superuser", "first_name", "last_name", "email", "is_staff", "is_active", "date_joined", "username" FROM "auth_user__old"; (params ())
+[DEBUG] [2021-02-08 16:09:38,797] [utils.execute] (0.000) INSERT INTO "auth_user" ("id", "password", "last_login", "is_superuser", "first_name", "last_name", "email", "is_staff", "is_active", "date_joined", "username") SELECT "id", "password", "last_login", "is_superuser", "first_name", "last_name", "email", "is_staff", "is_active", "date_joined", "username" FROM "auth_user__old"; args=()
+[DEBUG] [2021-02-08 16:09:38,797] [schema.execute] DROP TABLE "auth_user__old"; (params ())
+[DEBUG] [2021-02-08 16:09:38,797] [utils.execute] (0.000) DROP TABLE "auth_user__old"; args=()
+[DEBUG] [2021-02-08 16:09:38,798] [utils.execute] (0.000) PRAGMA foreign_keys = 0; args=None
+[DEBUG] [2021-02-08 16:09:38,798] [utils.execute] (0.000) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None
+[DEBUG] [2021-02-08 16:09:38,798] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-08 16:09:38,799] [utils.execute] (0.000) INSERT INTO "django_migrations" ("app", "name", "applied") VALUES ('auth', '0007_alter_validators_add_error_messages', '2021-02-08 08:09:38.798886'); args=['auth', '0007_alter_validators_add_error_messages', '2021-02-08 08:09:38.798886']
+[DEBUG] [2021-02-08 16:09:38,800] [utils.execute] (0.000) PRAGMA foreign_keys; args=None
+[DEBUG] [2021-02-08 16:09:38,800] [utils.execute] (0.000) PRAGMA foreign_keys = 0; args=None
+[DEBUG] [2021-02-08 16:09:38,800] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-08 16:09:38,806] [schema.execute] ALTER TABLE "auth_user" RENAME TO "auth_user__old"; (params ())
+[DEBUG] [2021-02-08 16:09:38,807] [utils.execute] (0.001) ALTER TABLE "auth_user" RENAME TO "auth_user__old"; args=()
+[DEBUG] [2021-02-08 16:09:38,807] [schema.execute] CREATE TABLE "auth_user" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "password" varchar(128) NOT NULL, "last_login" datetime NULL, "is_superuser" bool NOT NULL, "first_name" varchar(30) NOT NULL, "last_name" varchar(30) NOT NULL, "email" varchar(254) NOT NULL, "is_staff" bool NOT NULL, "is_active" bool NOT NULL, "date_joined" datetime NOT NULL, "username" varchar(150) NOT NULL UNIQUE); (params None)
+[DEBUG] [2021-02-08 16:09:38,807] [utils.execute] (0.000) CREATE TABLE "auth_user" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "password" varchar(128) NOT NULL, "last_login" datetime NULL, "is_superuser" bool NOT NULL, "first_name" varchar(30) NOT NULL, "last_name" varchar(30) NOT NULL, "email" varchar(254) NOT NULL, "is_staff" bool NOT NULL, "is_active" bool NOT NULL, "date_joined" datetime NOT NULL, "username" varchar(150) NOT NULL UNIQUE); args=None
+[DEBUG] [2021-02-08 16:09:38,808] [schema.execute] INSERT INTO "auth_user" ("id", "password", "last_login", "is_superuser", "first_name", "last_name", "email", "is_staff", "is_active", "date_joined", "username") SELECT "id", "password", "last_login", "is_superuser", "first_name", "last_name", "email", "is_staff", "is_active", "date_joined", "username" FROM "auth_user__old"; (params ())
+[DEBUG] [2021-02-08 16:09:38,808] [utils.execute] (0.000) INSERT INTO "auth_user" ("id", "password", "last_login", "is_superuser", "first_name", "last_name", "email", "is_staff", "is_active", "date_joined", "username") SELECT "id", "password", "last_login", "is_superuser", "first_name", "last_name", "email", "is_staff", "is_active", "date_joined", "username" FROM "auth_user__old"; args=()
+[DEBUG] [2021-02-08 16:09:38,808] [schema.execute] DROP TABLE "auth_user__old"; (params ())
+[DEBUG] [2021-02-08 16:09:38,808] [utils.execute] (0.000) DROP TABLE "auth_user__old"; args=()
+[DEBUG] [2021-02-08 16:09:38,809] [utils.execute] (0.000) PRAGMA foreign_keys = 0; args=None
+[DEBUG] [2021-02-08 16:09:38,809] [utils.execute] (0.000) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None
+[DEBUG] [2021-02-08 16:09:38,809] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-08 16:09:38,810] [utils.execute] (0.000) INSERT INTO "django_migrations" ("app", "name", "applied") VALUES ('auth', '0008_alter_user_username_max_length', '2021-02-08 08:09:38.809623'); args=['auth', '0008_alter_user_username_max_length', '2021-02-08 08:09:38.809623']
+[DEBUG] [2021-02-08 16:09:38,811] [utils.execute] (0.000) PRAGMA foreign_keys; args=None
+[DEBUG] [2021-02-08 16:09:38,811] [utils.execute] (0.000) PRAGMA foreign_keys = 0; args=None
+[DEBUG] [2021-02-08 16:09:38,811] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-08 16:09:38,813] [schema.execute] CREATE TABLE "resources" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "path" text NOT NULL, "type" integer NOT NULL, "process_type" integer NOT NULL, "value" text NOT NULL, "pid" integer NOT NULL, "next_id" integer NOT NULL, "pre_id" integer NOT NULL, "is_leaf" integer NOT NULL, "ctime" datetime NOT NULL, "mtime" datetime NOT NULL, "remark" text NULL); (params None)
+[DEBUG] [2021-02-08 16:09:38,814] [utils.execute] (0.000) CREATE TABLE "resources" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "path" text NOT NULL, "type" integer NOT NULL, "process_type" integer NOT NULL, "value" text NOT NULL, "pid" integer NOT NULL, "next_id" integer NOT NULL, "pre_id" integer NOT NULL, "is_leaf" integer NOT NULL, "ctime" datetime NOT NULL, "mtime" datetime NOT NULL, "remark" text NULL); args=None
+[DEBUG] [2021-02-08 16:09:38,814] [utils.execute] (0.000) PRAGMA foreign_keys = 0; args=None
+[DEBUG] [2021-02-08 16:09:38,815] [utils.execute] (0.000) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None
+[DEBUG] [2021-02-08 16:09:38,815] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-08 16:09:38,816] [utils.execute] (0.000) INSERT INTO "django_migrations" ("app", "name", "applied") VALUES ('management', '0001_initial', '2021-02-08 08:09:38.815335'); args=['management', '0001_initial', '2021-02-08 08:09:38.815335']
+[DEBUG] [2021-02-08 16:09:38,816] [utils.execute] (0.000) PRAGMA foreign_keys; args=None
+[DEBUG] [2021-02-08 16:09:38,817] [utils.execute] (0.000) PRAGMA foreign_keys = 0; args=None
+[DEBUG] [2021-02-08 16:09:38,817] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-08 16:09:38,819] [schema.execute] ALTER TABLE "resources" RENAME TO "resources__old"; (params ())
+[DEBUG] [2021-02-08 16:09:38,820] [utils.execute] (0.001) ALTER TABLE "resources" RENAME TO "resources__old"; args=()
+[DEBUG] [2021-02-08 16:09:38,820] [schema.execute] CREATE TABLE "resources" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "type" integer NOT NULL, "process_type" integer NOT NULL, "value" text NOT NULL, "pid" integer NOT NULL, "next_id" integer NOT NULL, "pre_id" integer NOT NULL, "is_leaf" integer NOT NULL, "ctime" datetime NOT NULL, "mtime" datetime NOT NULL, "remark" text NULL, "path" varchar(512) NOT NULL); (params None)
+[DEBUG] [2021-02-08 16:09:38,821] [utils.execute] (0.000) CREATE TABLE "resources" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "type" integer NOT NULL, "process_type" integer NOT NULL, "value" text NOT NULL, "pid" integer NOT NULL, "next_id" integer NOT NULL, "pre_id" integer NOT NULL, "is_leaf" integer NOT NULL, "ctime" datetime NOT NULL, "mtime" datetime NOT NULL, "remark" text NULL, "path" varchar(512) NOT NULL); args=None
+[DEBUG] [2021-02-08 16:09:38,821] [schema.execute] INSERT INTO "resources" ("id", "type", "process_type", "value", "pid", "next_id", "pre_id", "is_leaf", "ctime", "mtime", "remark", "path") SELECT "id", "type", "process_type", "value", "pid", "next_id", "pre_id", "is_leaf", "ctime", "mtime", "remark", "path" FROM "resources__old"; (params ())
+[DEBUG] [2021-02-08 16:09:38,821] [utils.execute] (0.000) INSERT INTO "resources" ("id", "type", "process_type", "value", "pid", "next_id", "pre_id", "is_leaf", "ctime", "mtime", "remark", "path") SELECT "id", "type", "process_type", "value", "pid", "next_id", "pre_id", "is_leaf", "ctime", "mtime", "remark", "path" FROM "resources__old"; args=()
+[DEBUG] [2021-02-08 16:09:38,821] [schema.execute] DROP TABLE "resources__old"; (params ())
+[DEBUG] [2021-02-08 16:09:38,821] [utils.execute] (0.000) DROP TABLE "resources__old"; args=()
+[DEBUG] [2021-02-08 16:09:38,822] [utils.execute] (0.000) PRAGMA foreign_keys = 0; args=None
+[DEBUG] [2021-02-08 16:09:38,822] [utils.execute] (0.000) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None
+[DEBUG] [2021-02-08 16:09:38,822] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-08 16:09:38,823] [utils.execute] (0.000) INSERT INTO "django_migrations" ("app", "name", "applied") VALUES ('management', '0002_auto_20180724_0947', '2021-02-08 08:09:38.822622'); args=['management', '0002_auto_20180724_0947', '2021-02-08 08:09:38.822622']
+[DEBUG] [2021-02-08 16:09:38,823] [utils.execute] (0.000) PRAGMA foreign_keys; args=None
+[DEBUG] [2021-02-08 16:09:38,823] [utils.execute] (0.000) PRAGMA foreign_keys = 0; args=None
+[DEBUG] [2021-02-08 16:09:38,823] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-08 16:09:38,826] [schema.execute] ALTER TABLE "resources" RENAME TO "resources__old"; (params ())
+[DEBUG] [2021-02-08 16:09:38,827] [utils.execute] (0.001) ALTER TABLE "resources" RENAME TO "resources__old"; args=()
+[DEBUG] [2021-02-08 16:09:38,827] [schema.execute] CREATE TABLE "resources" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "path" varchar(512) NOT NULL, "type" integer NOT NULL, "process_type" integer NOT NULL, "pid" integer NOT NULL, "next_id" integer NOT NULL, "pre_id" integer NOT NULL, "is_leaf" integer NOT NULL, "ctime" datetime NOT NULL, "mtime" datetime NOT NULL, "remark" text NULL, "value" text NULL); (params None)
+[DEBUG] [2021-02-08 16:09:38,828] [utils.execute] (0.000) CREATE TABLE "resources" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "path" varchar(512) NOT NULL, "type" integer NOT NULL, "process_type" integer NOT NULL, "pid" integer NOT NULL, "next_id" integer NOT NULL, "pre_id" integer NOT NULL, "is_leaf" integer NOT NULL, "ctime" datetime NOT NULL, "mtime" datetime NOT NULL, "remark" text NULL, "value" text NULL); args=None
+[DEBUG] [2021-02-08 16:09:38,828] [schema.execute] INSERT INTO "resources" ("id", "path", "type", "process_type", "pid", "next_id", "pre_id", "is_leaf", "ctime", "mtime", "remark", "value") SELECT "id", "path", "type", "process_type", "pid", "next_id", "pre_id", "is_leaf", "ctime", "mtime", "remark", "value" FROM "resources__old"; (params ())
+[DEBUG] [2021-02-08 16:09:38,828] [utils.execute] (0.000) INSERT INTO "resources" ("id", "path", "type", "process_type", "pid", "next_id", "pre_id", "is_leaf", "ctime", "mtime", "remark", "value") SELECT "id", "path", "type", "process_type", "pid", "next_id", "pre_id", "is_leaf", "ctime", "mtime", "remark", "value" FROM "resources__old"; args=()
+[DEBUG] [2021-02-08 16:09:38,828] [schema.execute] DROP TABLE "resources__old"; (params ())
+[DEBUG] [2021-02-08 16:09:38,828] [utils.execute] (0.000) DROP TABLE "resources__old"; args=()
+[DEBUG] [2021-02-08 16:09:38,829] [utils.execute] (0.000) PRAGMA foreign_keys = 0; args=None
+[DEBUG] [2021-02-08 16:09:38,829] [utils.execute] (0.000) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None
+[DEBUG] [2021-02-08 16:09:38,830] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-08 16:09:38,830] [utils.execute] (0.000) INSERT INTO "django_migrations" ("app", "name", "applied") VALUES ('management', '0003_auto_20180724_2030', '2021-02-08 08:09:38.829990'); args=['management', '0003_auto_20180724_2030', '2021-02-08 08:09:38.829990']
+[DEBUG] [2021-02-08 16:09:38,831] [utils.execute] (0.000) PRAGMA foreign_keys; args=None
+[DEBUG] [2021-02-08 16:09:38,831] [utils.execute] (0.000) PRAGMA foreign_keys = 0; args=None
+[DEBUG] [2021-02-08 16:09:38,832] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-08 16:09:38,836] [schema.execute] ALTER TABLE "resources" RENAME TO "resources__old"; (params ())
+[DEBUG] [2021-02-08 16:09:38,837] [utils.execute] (0.002) ALTER TABLE "resources" RENAME TO "resources__old"; args=()
+[DEBUG] [2021-02-08 16:09:38,838] [schema.execute] CREATE TABLE "resources" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "path" varchar(512) NOT NULL, "type" integer NOT NULL, "process_type" integer NOT NULL, "value" text NULL, "pid" integer NOT NULL, "next_id" integer NOT NULL, "pre_id" integer NOT NULL, "is_leaf" integer NOT NULL, "ctime" datetime NOT NULL, "mtime" datetime NOT NULL, "remark" text NULL, "checked" integer NOT NULL); (params None)
+[DEBUG] [2021-02-08 16:09:38,838] [utils.execute] (0.000) CREATE TABLE "resources" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "path" varchar(512) NOT NULL, "type" integer NOT NULL, "process_type" integer NOT NULL, "value" text NULL, "pid" integer NOT NULL, "next_id" integer NOT NULL, "pre_id" integer NOT NULL, "is_leaf" integer NOT NULL, "ctime" datetime NOT NULL, "mtime" datetime NOT NULL, "remark" text NULL, "checked" integer NOT NULL); args=None
+[DEBUG] [2021-02-08 16:09:38,838] [schema.execute] INSERT INTO "resources" ("id", "path", "type", "process_type", "value", "pid", "next_id", "pre_id", "is_leaf", "ctime", "mtime", "remark", "checked") SELECT "id", "path", "type", "process_type", "value", "pid", "next_id", "pre_id", "is_leaf", "ctime", "mtime", "remark", 0 FROM "resources__old"; (params ())
+[DEBUG] [2021-02-08 16:09:38,838] [utils.execute] (0.000) INSERT INTO "resources" ("id", "path", "type", "process_type", "value", "pid", "next_id", "pre_id", "is_leaf", "ctime", "mtime", "remark", "checked") SELECT "id", "path", "type", "process_type", "value", "pid", "next_id", "pre_id", "is_leaf", "ctime", "mtime", "remark", 0 FROM "resources__old"; args=()
+[DEBUG] [2021-02-08 16:09:38,839] [schema.execute] DROP TABLE "resources__old"; (params ())
+[DEBUG] [2021-02-08 16:09:38,839] [utils.execute] (0.000) DROP TABLE "resources__old"; args=()
+[DEBUG] [2021-02-08 16:09:38,840] [utils.execute] (0.000) PRAGMA foreign_keys = 0; args=None
+[DEBUG] [2021-02-08 16:09:38,840] [utils.execute] (0.000) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None
+[DEBUG] [2021-02-08 16:09:38,840] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-08 16:09:38,841] [utils.execute] (0.000) INSERT INTO "django_migrations" ("app", "name", "applied") VALUES ('management', '0004_resource_checked', '2021-02-08 08:09:38.840705'); args=['management', '0004_resource_checked', '2021-02-08 08:09:38.840705']
+[DEBUG] [2021-02-08 16:09:38,842] [utils.execute] (0.000) PRAGMA foreign_keys; args=None
+[DEBUG] [2021-02-08 16:09:38,842] [utils.execute] (0.000) PRAGMA foreign_keys = 0; args=None
+[DEBUG] [2021-02-08 16:09:38,842] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-08 16:09:38,845] [schema.execute] ALTER TABLE "resources" RENAME TO "resources__old"; (params ())
+[DEBUG] [2021-02-08 16:09:38,847] [utils.execute] (0.002) ALTER TABLE "resources" RENAME TO "resources__old"; args=()
+[DEBUG] [2021-02-08 16:09:38,847] [schema.execute] CREATE TABLE "resources" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "path" varchar(512) NOT NULL, "type" integer NOT NULL, "process_type" integer NOT NULL, "value" text NULL, "pid" integer NOT NULL, "next_id" integer NOT NULL, "pre_id" integer NOT NULL, "is_leaf" integer NOT NULL, "ctime" datetime NOT NULL, "mtime" datetime NOT NULL, "remark" text NULL, "checked" integer NOT NULL, "business_type" integer NOT NULL); (params None)
+[DEBUG] [2021-02-08 16:09:38,848] [utils.execute] (0.000) CREATE TABLE "resources" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "path" varchar(512) NOT NULL, "type" integer NOT NULL, "process_type" integer NOT NULL, "value" text NULL, "pid" integer NOT NULL, "next_id" integer NOT NULL, "pre_id" integer NOT NULL, "is_leaf" integer NOT NULL, "ctime" datetime NOT NULL, "mtime" datetime NOT NULL, "remark" text NULL, "checked" integer NOT NULL, "business_type" integer NOT NULL); args=None
+[DEBUG] [2021-02-08 16:09:38,848] [schema.execute] INSERT INTO "resources" ("id", "path", "type", "process_type", "value", "pid", "next_id", "pre_id", "is_leaf", "ctime", "mtime", "remark", "checked", "business_type") SELECT "id", "path", "type", "process_type", "value", "pid", "next_id", "pre_id", "is_leaf", "ctime", "mtime", "remark", "checked", 0 FROM "resources__old"; (params ())
+[DEBUG] [2021-02-08 16:09:38,848] [utils.execute] (0.000) INSERT INTO "resources" ("id", "path", "type", "process_type", "value", "pid", "next_id", "pre_id", "is_leaf", "ctime", "mtime", "remark", "checked", "business_type") SELECT "id", "path", "type", "process_type", "value", "pid", "next_id", "pre_id", "is_leaf", "ctime", "mtime", "remark", "checked", 0 FROM "resources__old"; args=()
+[DEBUG] [2021-02-08 16:09:38,848] [schema.execute] DROP TABLE "resources__old"; (params ())
+[DEBUG] [2021-02-08 16:09:38,848] [utils.execute] (0.000) DROP TABLE "resources__old"; args=()
+[DEBUG] [2021-02-08 16:09:38,858] [utils.execute] (0.000) SELECT "resources"."id", "resources"."path", "resources"."type", "resources"."process_type", "resources"."value", "resources"."pid", "resources"."next_id", "resources"."pre_id", "resources"."is_leaf", "resources"."ctime", "resources"."mtime", "resources"."remark", "resources"."checked", "resources"."business_type" FROM "resources"; args=()
+[DEBUG] [2021-02-08 16:09:38,859] [utils.execute] (0.000) PRAGMA foreign_keys = 0; args=None
+[DEBUG] [2021-02-08 16:09:38,860] [utils.execute] (0.000) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None
+[DEBUG] [2021-02-08 16:09:38,860] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-08 16:09:38,860] [utils.execute] (0.000) INSERT INTO "django_migrations" ("app", "name", "applied") VALUES ('management', '0005_resource_business_type', '2021-02-08 08:09:38.860259'); args=['management', '0005_resource_business_type', '2021-02-08 08:09:38.860259']
+[DEBUG] [2021-02-08 16:09:38,861] [utils.execute] (0.000) PRAGMA foreign_keys; args=None
+[DEBUG] [2021-02-08 16:09:38,861] [utils.execute] (0.000) PRAGMA foreign_keys = 0; args=None
+[DEBUG] [2021-02-08 16:09:38,862] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-08 16:09:38,864] [schema.execute] ALTER TABLE "resources" RENAME TO "resources__old"; (params ())
+[DEBUG] [2021-02-08 16:09:38,865] [utils.execute] (0.001) ALTER TABLE "resources" RENAME TO "resources__old"; args=()
+[DEBUG] [2021-02-08 16:09:38,866] [schema.execute] CREATE TABLE "resources" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "path" varchar(512) NOT NULL, "type" integer NOT NULL, "process_type" integer NOT NULL, "value" text NULL, "pid" integer NOT NULL, "next_id" integer NOT NULL, "pre_id" integer NOT NULL, "is_leaf" integer NOT NULL, "ctime" datetime NOT NULL, "mtime" datetime NOT NULL, "remark" text NULL, "checked" integer NOT NULL, "business_type" integer NOT NULL, "col_int_01" integer NOT NULL); (params None)
+[DEBUG] [2021-02-08 16:09:38,866] [utils.execute] (0.000) CREATE TABLE "resources" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "path" varchar(512) NOT NULL, "type" integer NOT NULL, "process_type" integer NOT NULL, "value" text NULL, "pid" integer NOT NULL, "next_id" integer NOT NULL, "pre_id" integer NOT NULL, "is_leaf" integer NOT NULL, "ctime" datetime NOT NULL, "mtime" datetime NOT NULL, "remark" text NULL, "checked" integer NOT NULL, "business_type" integer NOT NULL, "col_int_01" integer NOT NULL); args=None
+[DEBUG] [2021-02-08 16:09:38,866] [schema.execute] INSERT INTO "resources" ("id", "path", "type", "process_type", "value", "pid", "next_id", "pre_id", "is_leaf", "ctime", "mtime", "remark", "checked", "business_type", "col_int_01") SELECT "id", "path", "type", "process_type", "value", "pid", "next_id", "pre_id", "is_leaf", "ctime", "mtime", "remark", "checked", "business_type", 0 FROM "resources__old"; (params ())
+[DEBUG] [2021-02-08 16:09:38,866] [utils.execute] (0.000) INSERT INTO "resources" ("id", "path", "type", "process_type", "value", "pid", "next_id", "pre_id", "is_leaf", "ctime", "mtime", "remark", "checked", "business_type", "col_int_01") SELECT "id", "path", "type", "process_type", "value", "pid", "next_id", "pre_id", "is_leaf", "ctime", "mtime", "remark", "checked", "business_type", 0 FROM "resources__old"; args=()
+[DEBUG] [2021-02-08 16:09:38,866] [schema.execute] DROP TABLE "resources__old"; (params ())
+[DEBUG] [2021-02-08 16:09:38,866] [utils.execute] (0.000) DROP TABLE "resources__old"; args=()
+[DEBUG] [2021-02-08 16:09:38,868] [schema.execute] ALTER TABLE "resources" RENAME TO "resources__old"; (params ())
+[DEBUG] [2021-02-08 16:09:38,869] [utils.execute] (0.001) ALTER TABLE "resources" RENAME TO "resources__old"; args=()
+[DEBUG] [2021-02-08 16:09:38,870] [schema.execute] CREATE TABLE "resources" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "path" varchar(512) NOT NULL, "type" integer NOT NULL, "process_type" integer NOT NULL, "value" text NULL, "pid" integer NOT NULL, "next_id" integer NOT NULL, "pre_id" integer NOT NULL, "is_leaf" integer NOT NULL, "ctime" datetime NOT NULL, "mtime" datetime NOT NULL, "remark" text NULL, "checked" integer NOT NULL, "business_type" integer NOT NULL, "col_int_01" integer NOT NULL, "col_json_01" text NULL); (params None)
+[DEBUG] [2021-02-08 16:09:38,870] [utils.execute] (0.000) CREATE TABLE "resources" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "path" varchar(512) NOT NULL, "type" integer NOT NULL, "process_type" integer NOT NULL, "value" text NULL, "pid" integer NOT NULL, "next_id" integer NOT NULL, "pre_id" integer NOT NULL, "is_leaf" integer NOT NULL, "ctime" datetime NOT NULL, "mtime" datetime NOT NULL, "remark" text NULL, "checked" integer NOT NULL, "business_type" integer NOT NULL, "col_int_01" integer NOT NULL, "col_json_01" text NULL); args=None
+[DEBUG] [2021-02-08 16:09:38,870] [schema.execute] INSERT INTO "resources" ("id", "path", "type", "process_type", "value", "pid", "next_id", "pre_id", "is_leaf", "ctime", "mtime", "remark", "checked", "business_type", "col_int_01", "col_json_01") SELECT "id", "path", "type", "process_type", "value", "pid", "next_id", "pre_id", "is_leaf", "ctime", "mtime", "remark", "checked", "business_type", "col_int_01", NULL FROM "resources__old"; (params ())
+[DEBUG] [2021-02-08 16:09:38,870] [utils.execute] (0.000) INSERT INTO "resources" ("id", "path", "type", "process_type", "value", "pid", "next_id", "pre_id", "is_leaf", "ctime", "mtime", "remark", "checked", "business_type", "col_int_01", "col_json_01") SELECT "id", "path", "type", "process_type", "value", "pid", "next_id", "pre_id", "is_leaf", "ctime", "mtime", "remark", "checked", "business_type", "col_int_01", NULL FROM "resources__old"; args=()
+[DEBUG] [2021-02-08 16:09:38,870] [schema.execute] DROP TABLE "resources__old"; (params ())
+[DEBUG] [2021-02-08 16:09:38,870] [utils.execute] (0.000) DROP TABLE "resources__old"; args=()
+[DEBUG] [2021-02-08 16:09:38,873] [schema.execute] ALTER TABLE "resources" RENAME TO "resources__old"; (params ())
+[DEBUG] [2021-02-08 16:09:38,874] [utils.execute] (0.001) ALTER TABLE "resources" RENAME TO "resources__old"; args=()
+[DEBUG] [2021-02-08 16:09:38,874] [schema.execute] CREATE TABLE "resources" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "path" varchar(512) NOT NULL, "type" integer NOT NULL, "process_type" integer NOT NULL, "value" text NULL, "pid" integer NOT NULL, "next_id" integer NOT NULL, "pre_id" integer NOT NULL, "is_leaf" integer NOT NULL, "ctime" datetime NOT NULL, "mtime" datetime NOT NULL, "remark" text NULL, "checked" integer NOT NULL, "business_type" integer NOT NULL, "col_int_01" integer NOT NULL, "col_json_01" text NULL, "is_debug" integer NOT NULL); (params None)
+[DEBUG] [2021-02-08 16:09:38,875] [utils.execute] (0.000) CREATE TABLE "resources" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "path" varchar(512) NOT NULL, "type" integer NOT NULL, "process_type" integer NOT NULL, "value" text NULL, "pid" integer NOT NULL, "next_id" integer NOT NULL, "pre_id" integer NOT NULL, "is_leaf" integer NOT NULL, "ctime" datetime NOT NULL, "mtime" datetime NOT NULL, "remark" text NULL, "checked" integer NOT NULL, "business_type" integer NOT NULL, "col_int_01" integer NOT NULL, "col_json_01" text NULL, "is_debug" integer NOT NULL); args=None
+[DEBUG] [2021-02-08 16:09:38,875] [schema.execute] INSERT INTO "resources" ("id", "path", "type", "process_type", "value", "pid", "next_id", "pre_id", "is_leaf", "ctime", "mtime", "remark", "checked", "business_type", "col_int_01", "col_json_01", "is_debug") SELECT "id", "path", "type", "process_type", "value", "pid", "next_id", "pre_id", "is_leaf", "ctime", "mtime", "remark", "checked", "business_type", "col_int_01", "col_json_01", 0 FROM "resources__old"; (params ())
+[DEBUG] [2021-02-08 16:09:38,875] [utils.execute] (0.000) INSERT INTO "resources" ("id", "path", "type", "process_type", "value", "pid", "next_id", "pre_id", "is_leaf", "ctime", "mtime", "remark", "checked", "business_type", "col_int_01", "col_json_01", "is_debug") SELECT "id", "path", "type", "process_type", "value", "pid", "next_id", "pre_id", "is_leaf", "ctime", "mtime", "remark", "checked", "business_type", "col_int_01", "col_json_01", 0 FROM "resources__old"; args=()
+[DEBUG] [2021-02-08 16:09:38,875] [schema.execute] DROP TABLE "resources__old"; (params ())
+[DEBUG] [2021-02-08 16:09:38,875] [utils.execute] (0.000) DROP TABLE "resources__old"; args=()
+[DEBUG] [2021-02-08 16:09:38,876] [utils.execute] (0.000) PRAGMA foreign_keys = 0; args=None
+[DEBUG] [2021-02-08 16:09:38,877] [utils.execute] (0.000) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None
+[DEBUG] [2021-02-08 16:09:38,877] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-08 16:09:38,877] [utils.execute] (0.000) INSERT INTO "django_migrations" ("app", "name", "applied") VALUES ('management', '0006_auto_20180731_1315', '2021-02-08 08:09:38.877417'); args=['management', '0006_auto_20180731_1315', '2021-02-08 08:09:38.877417']
+[DEBUG] [2021-02-08 16:09:38,878] [utils.execute] (0.000) PRAGMA foreign_keys; args=None
+[DEBUG] [2021-02-08 16:09:38,878] [utils.execute] (0.000) PRAGMA foreign_keys = 0; args=None
+[DEBUG] [2021-02-08 16:09:38,879] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-08 16:09:38,881] [schema.execute] CREATE TABLE "ocr_results" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "product" varchar(16) NOT NULL, "items" text NULL, "is_error" integer NOT NULL, "errors" text NULL, "ctime" datetime NOT NULL, "mtime" datetime NOT NULL, "remark" text NULL, "resource_id" integer NOT NULL); (params None)
+[DEBUG] [2021-02-08 16:09:38,882] [utils.execute] (0.000) CREATE TABLE "ocr_results" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "product" varchar(16) NOT NULL, "items" text NULL, "is_error" integer NOT NULL, "errors" text NULL, "ctime" datetime NOT NULL, "mtime" datetime NOT NULL, "remark" text NULL, "resource_id" integer NOT NULL); args=None
+[DEBUG] [2021-02-08 16:09:38,885] [schema.execute] CREATE TABLE "porn_results" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "product" varchar(16) NOT NULL, "label" integer NOT NULL, "rate" real NOT NULL, "is_review" integer NOT NULL, "is_error" integer NOT NULL, "errors" text NULL, "ctime" datetime NOT NULL, "mtime" datetime NOT NULL, "remark" text NULL, "resource_id" integer NOT NULL); (params None)
+[DEBUG] [2021-02-08 16:09:38,885] [utils.execute] (0.000) CREATE TABLE "porn_results" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "product" varchar(16) NOT NULL, "label" integer NOT NULL, "rate" real NOT NULL, "is_review" integer NOT NULL, "is_error" integer NOT NULL, "errors" text NULL, "ctime" datetime NOT NULL, "mtime" datetime NOT NULL, "remark" text NULL, "resource_id" integer NOT NULL); args=None
+[DEBUG] [2021-02-08 16:09:38,885] [schema.execute] CREATE INDEX "ocr_results_product_c0be7e50" ON "ocr_results" ("product"); (params ())
+[DEBUG] [2021-02-08 16:09:38,885] [utils.execute] (0.000) CREATE INDEX "ocr_results_product_c0be7e50" ON "ocr_results" ("product"); args=()
+[DEBUG] [2021-02-08 16:09:38,886] [schema.execute] CREATE INDEX "ocr_results_resource_id_e2764644" ON "ocr_results" ("resource_id"); (params ())
+[DEBUG] [2021-02-08 16:09:38,886] [utils.execute] (0.000) CREATE INDEX "ocr_results_resource_id_e2764644" ON "ocr_results" ("resource_id"); args=()
+[DEBUG] [2021-02-08 16:09:38,886] [schema.execute] CREATE INDEX "porn_results_product_4e16175b" ON "porn_results" ("product"); (params ())
+[DEBUG] [2021-02-08 16:09:38,886] [utils.execute] (0.000) CREATE INDEX "porn_results_product_4e16175b" ON "porn_results" ("product"); args=()
+[DEBUG] [2021-02-08 16:09:38,886] [schema.execute] CREATE INDEX "porn_results_resource_id_83a9a9ef" ON "porn_results" ("resource_id"); (params ())
+[DEBUG] [2021-02-08 16:09:38,886] [utils.execute] (0.000) CREATE INDEX "porn_results_resource_id_83a9a9ef" ON "porn_results" ("resource_id"); args=()
+[DEBUG] [2021-02-08 16:09:38,887] [utils.execute] (0.000) PRAGMA foreign_keys = 0; args=None
+[DEBUG] [2021-02-08 16:09:38,887] [utils.execute] (0.000) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None
+[DEBUG] [2021-02-08 16:09:38,887] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-08 16:09:38,888] [utils.execute] (0.000) INSERT INTO "django_migrations" ("app", "name", "applied") VALUES ('management', '0007_ocrresult_pornresult', '2021-02-08 08:09:38.887781'); args=['management', '0007_ocrresult_pornresult', '2021-02-08 08:09:38.887781']
+[DEBUG] [2021-02-08 16:09:38,889] [utils.execute] (0.000) PRAGMA foreign_keys; args=None
+[DEBUG] [2021-02-08 16:09:38,889] [utils.execute] (0.000) PRAGMA foreign_keys = 0; args=None
+[DEBUG] [2021-02-08 16:09:38,889] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-08 16:09:38,893] [schema.execute] CREATE TABLE "temp_reviews" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "review_status" integer NOT NULL, "old_value" integer NULL, "new_value" integer NULL, "ctime" datetime NOT NULL, "mtime" datetime NOT NULL, "resource_id" integer NOT NULL); (params None)
+[DEBUG] [2021-02-08 16:09:38,894] [utils.execute] (0.000) CREATE TABLE "temp_reviews" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "review_status" integer NOT NULL, "old_value" integer NULL, "new_value" integer NULL, "ctime" datetime NOT NULL, "mtime" datetime NOT NULL, "resource_id" integer NOT NULL); args=None
+[DEBUG] [2021-02-08 16:09:38,894] [schema.execute] CREATE INDEX "temp_reviews_resource_id_845cad91" ON "temp_reviews" ("resource_id"); (params ())
+[DEBUG] [2021-02-08 16:09:38,894] [utils.execute] (0.000) CREATE INDEX "temp_reviews_resource_id_845cad91" ON "temp_reviews" ("resource_id"); args=()
+[DEBUG] [2021-02-08 16:09:38,895] [utils.execute] (0.000) PRAGMA foreign_keys = 0; args=None
+[DEBUG] [2021-02-08 16:09:38,895] [utils.execute] (0.000) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None
+[DEBUG] [2021-02-08 16:09:38,896] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-08 16:09:38,896] [utils.execute] (0.000) INSERT INTO "django_migrations" ("app", "name", "applied") VALUES ('management', '0008_tempreview', '2021-02-08 08:09:38.896201'); args=['management', '0008_tempreview', '2021-02-08 08:09:38.896201']
+[DEBUG] [2021-02-08 16:09:38,898] [utils.execute] (0.000) PRAGMA foreign_keys; args=None
+[DEBUG] [2021-02-08 16:09:38,898] [utils.execute] (0.000) PRAGMA foreign_keys = 0; args=None
+[DEBUG] [2021-02-08 16:09:38,898] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-08 16:09:38,899] [schema.execute] CREATE TABLE "django_session" ("session_key" varchar(40) NOT NULL PRIMARY KEY, "session_data" text NOT NULL, "expire_date" datetime NOT NULL); (params None)
+[DEBUG] [2021-02-08 16:09:38,900] [utils.execute] (0.000) CREATE TABLE "django_session" ("session_key" varchar(40) NOT NULL PRIMARY KEY, "session_data" text NOT NULL, "expire_date" datetime NOT NULL); args=None
+[DEBUG] [2021-02-08 16:09:38,900] [schema.execute] CREATE INDEX "django_session_expire_date_a5c62663" ON "django_session" ("expire_date"); (params ())
+[DEBUG] [2021-02-08 16:09:38,900] [utils.execute] (0.000) CREATE INDEX "django_session_expire_date_a5c62663" ON "django_session" ("expire_date"); args=()
+[DEBUG] [2021-02-08 16:09:38,901] [utils.execute] (0.000) PRAGMA foreign_keys = 0; args=None
+[DEBUG] [2021-02-08 16:09:38,901] [utils.execute] (0.000) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None
+[DEBUG] [2021-02-08 16:09:38,901] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-08 16:09:38,902] [utils.execute] (0.000) INSERT INTO "django_migrations" ("app", "name", "applied") VALUES ('sessions', '0001_initial', '2021-02-08 08:09:38.901885'); args=['sessions', '0001_initial', '2021-02-08 08:09:38.901885']
+[DEBUG] [2021-02-08 16:09:38,903] [utils.execute] (0.000) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None
+[DEBUG] [2021-02-08 16:09:38,903] [utils.execute] (0.000) SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"; args=()
+[DEBUG] [2021-02-08 16:09:38,914] [utils.execute] (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'admin' AND "django_content_type"."model" = 'logentry'); args=('admin', 'logentry')
+[DEBUG] [2021-02-08 16:09:38,915] [utils.execute] (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'admin' AND "django_content_type"."model" = 'logentry'); args=('admin', 'logentry')
+[DEBUG] [2021-02-08 16:09:38,915] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-08 16:09:38,916] [utils.execute] (0.000) INSERT INTO "django_content_type" ("app_label", "model") VALUES ('admin', 'logentry'); args=['admin', 'logentry']
+[DEBUG] [2021-02-08 16:09:38,919] [utils.execute] (0.000) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (1) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(1,)
+[DEBUG] [2021-02-08 16:09:38,919] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-08 16:09:38,920] [utils.execute] (0.001) INSERT INTO "auth_permission" ("name", "content_type_id", "codename") SELECT 'Can add log entry', 1, 'add_logentry' UNION ALL SELECT 'Can change log entry', 1, 'change_logentry' UNION ALL SELECT 'Can delete log entry', 1, 'delete_logentry'; args=('Can add log entry', 1, 'add_logentry', 'Can change log entry', 1, 'change_logentry', 'Can delete log entry', 1, 'delete_logentry')
+[DEBUG] [2021-02-08 16:09:38,921] [utils.execute] (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'admin'; args=('admin',)
+[DEBUG] [2021-02-08 16:09:38,922] [utils.execute] (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'auth' AND "django_content_type"."model" = 'permission'); args=('auth', 'permission')
+[DEBUG] [2021-02-08 16:09:38,922] [utils.execute] (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'auth' AND "django_content_type"."model" = 'permission'); args=('auth', 'permission')
+[DEBUG] [2021-02-08 16:09:38,923] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-08 16:09:38,923] [utils.execute] (0.000) INSERT INTO "django_content_type" ("app_label", "model") VALUES ('auth', 'permission'); args=['auth', 'permission']
+[DEBUG] [2021-02-08 16:09:38,924] [utils.execute] (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'auth' AND "django_content_type"."model" = 'group'); args=('auth', 'group')
+[DEBUG] [2021-02-08 16:09:38,925] [utils.execute] (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'auth' AND "django_content_type"."model" = 'group'); args=('auth', 'group')
+[DEBUG] [2021-02-08 16:09:38,925] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-08 16:09:38,925] [utils.execute] (0.000) INSERT INTO "django_content_type" ("app_label", "model") VALUES ('auth', 'group'); args=['auth', 'group']
+[DEBUG] [2021-02-08 16:09:38,926] [utils.execute] (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'auth' AND "django_content_type"."model" = 'user'); args=('auth', 'user')
+[DEBUG] [2021-02-08 16:09:38,927] [utils.execute] (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'auth' AND "django_content_type"."model" = 'user'); args=('auth', 'user')
+[DEBUG] [2021-02-08 16:09:38,927] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-08 16:09:38,927] [utils.execute] (0.000) INSERT INTO "django_content_type" ("app_label", "model") VALUES ('auth', 'user'); args=['auth', 'user']
+[DEBUG] [2021-02-08 16:09:38,929] [utils.execute] (0.000) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (2, 3, 4) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(2, 3, 4)
+[DEBUG] [2021-02-08 16:09:38,929] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-08 16:09:38,930] [utils.execute] (0.000) INSERT INTO "auth_permission" ("name", "content_type_id", "codename") SELECT 'Can add permission', 2, 'add_permission' UNION ALL SELECT 'Can change permission', 2, 'change_permission' UNION ALL SELECT 'Can delete permission', 2, 'delete_permission' UNION ALL SELECT 'Can add group', 3, 'add_group' UNION ALL SELECT 'Can change group', 3, 'change_group' UNION ALL SELECT 'Can delete group', 3, 'delete_group' UNION ALL SELECT 'Can add user', 4, 'add_user' UNION ALL SELECT 'Can change user', 4, 'change_user' UNION ALL SELECT 'Can delete user', 4, 'delete_user'; args=('Can add permission', 2, 'add_permission', 'Can change permission', 2, 'change_permission', 'Can delete permission', 2, 'delete_permission', 'Can add group', 3, 'add_group', 'Can change group', 3, 'change_group', 'Can delete group', 3, 'delete_group', 'Can add user', 4, 'add_user', 'Can change user', 4, 'change_user', 'Can delete user', 4, 'delete_user')
+[DEBUG] [2021-02-08 16:09:38,931] [utils.execute] (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'auth'; args=('auth',)
+[DEBUG] [2021-02-08 16:09:38,931] [utils.execute] (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'contenttypes' AND "django_content_type"."model" = 'contenttype'); args=('contenttypes', 'contenttype')
+[DEBUG] [2021-02-08 16:09:38,932] [utils.execute] (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'contenttypes' AND "django_content_type"."model" = 'contenttype'); args=('contenttypes', 'contenttype')
+[DEBUG] [2021-02-08 16:09:38,932] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-08 16:09:38,932] [utils.execute] (0.000) INSERT INTO "django_content_type" ("app_label", "model") VALUES ('contenttypes', 'contenttype'); args=['contenttypes', 'contenttype']
+[DEBUG] [2021-02-08 16:09:38,933] [utils.execute] (0.000) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (5) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(5,)
+[DEBUG] [2021-02-08 16:09:38,934] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-08 16:09:38,934] [utils.execute] (0.000) INSERT INTO "auth_permission" ("name", "content_type_id", "codename") SELECT 'Can add content type', 5, 'add_contenttype' UNION ALL SELECT 'Can change content type', 5, 'change_contenttype' UNION ALL SELECT 'Can delete content type', 5, 'delete_contenttype'; args=('Can add content type', 5, 'add_contenttype', 'Can change content type', 5, 'change_contenttype', 'Can delete content type', 5, 'delete_contenttype')
+[DEBUG] [2021-02-08 16:09:38,935] [utils.execute] (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'contenttypes'; args=('contenttypes',)
+[DEBUG] [2021-02-08 16:09:38,936] [utils.execute] (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'sessions' AND "django_content_type"."model" = 'session'); args=('sessions', 'session')
+[DEBUG] [2021-02-08 16:09:38,936] [utils.execute] (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'sessions' AND "django_content_type"."model" = 'session'); args=('sessions', 'session')
+[DEBUG] [2021-02-08 16:09:38,936] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-08 16:09:38,937] [utils.execute] (0.000) INSERT INTO "django_content_type" ("app_label", "model") VALUES ('sessions', 'session'); args=['sessions', 'session']
+[DEBUG] [2021-02-08 16:09:38,938] [utils.execute] (0.000) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (6) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(6,)
+[DEBUG] [2021-02-08 16:09:38,938] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-08 16:09:38,939] [utils.execute] (0.000) INSERT INTO "auth_permission" ("name", "content_type_id", "codename") SELECT 'Can add session', 6, 'add_session' UNION ALL SELECT 'Can change session', 6, 'change_session' UNION ALL SELECT 'Can delete session', 6, 'delete_session'; args=('Can add session', 6, 'add_session', 'Can change session', 6, 'change_session', 'Can delete session', 6, 'delete_session')
+[DEBUG] [2021-02-08 16:09:38,940] [utils.execute] (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'sessions'; args=('sessions',)
+[DEBUG] [2021-02-08 16:09:38,940] [utils.execute] (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'management' AND "django_content_type"."model" = 'resource'); args=('management', 'resource')
+[DEBUG] [2021-02-08 16:09:38,941] [utils.execute] (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'management' AND "django_content_type"."model" = 'resource'); args=('management', 'resource')
+[DEBUG] [2021-02-08 16:09:38,941] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-08 16:09:38,941] [utils.execute] (0.000) INSERT INTO "django_content_type" ("app_label", "model") VALUES ('management', 'resource'); args=['management', 'resource']
+[DEBUG] [2021-02-08 16:09:38,942] [utils.execute] (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'management' AND "django_content_type"."model" = 'ocrresult'); args=('management', 'ocrresult')
+[DEBUG] [2021-02-08 16:09:38,943] [utils.execute] (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'management' AND "django_content_type"."model" = 'ocrresult'); args=('management', 'ocrresult')
+[DEBUG] [2021-02-08 16:09:38,943] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-08 16:09:38,943] [utils.execute] (0.000) INSERT INTO "django_content_type" ("app_label", "model") VALUES ('management', 'ocrresult'); args=['management', 'ocrresult']
+[DEBUG] [2021-02-08 16:09:38,944] [utils.execute] (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'management' AND "django_content_type"."model" = 'pornresult'); args=('management', 'pornresult')
+[DEBUG] [2021-02-08 16:09:38,945] [utils.execute] (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'management' AND "django_content_type"."model" = 'pornresult'); args=('management', 'pornresult')
+[DEBUG] [2021-02-08 16:09:38,945] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-08 16:09:38,945] [utils.execute] (0.000) INSERT INTO "django_content_type" ("app_label", "model") VALUES ('management', 'pornresult'); args=['management', 'pornresult']
+[DEBUG] [2021-02-08 16:09:38,946] [utils.execute] (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'management' AND "django_content_type"."model" = 'tempreview'); args=('management', 'tempreview')
+[DEBUG] [2021-02-08 16:09:38,947] [utils.execute] (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'management' AND "django_content_type"."model" = 'tempreview'); args=('management', 'tempreview')
+[DEBUG] [2021-02-08 16:09:38,947] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-08 16:09:38,947] [utils.execute] (0.000) INSERT INTO "django_content_type" ("app_label", "model") VALUES ('management', 'tempreview'); args=['management', 'tempreview']
+[DEBUG] [2021-02-08 16:09:38,949] [utils.execute] (0.000) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (8, 9, 10, 7) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(8, 9, 10, 7)
+[DEBUG] [2021-02-08 16:09:38,949] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-08 16:09:38,950] [utils.execute] (0.000) INSERT INTO "auth_permission" ("name", "content_type_id", "codename") SELECT 'Can add resource', 7, 'add_resource' UNION ALL SELECT 'Can change resource', 7, 'change_resource' UNION ALL SELECT 'Can delete resource', 7, 'delete_resource' UNION ALL SELECT 'Can add ocr result', 8, 'add_ocrresult' UNION ALL SELECT 'Can change ocr result', 8, 'change_ocrresult' UNION ALL SELECT 'Can delete ocr result', 8, 'delete_ocrresult' UNION ALL SELECT 'Can add porn result', 9, 'add_pornresult' UNION ALL SELECT 'Can change porn result', 9, 'change_pornresult' UNION ALL SELECT 'Can delete porn result', 9, 'delete_pornresult' UNION ALL SELECT 'Can add temp review', 10, 'add_tempreview' UNION ALL SELECT 'Can change temp review', 10, 'change_tempreview' UNION ALL SELECT 'Can delete temp review', 10, 'delete_tempreview'; args=('Can add resource', 7, 'add_resource', 'Can change resource', 7, 'change_resource', 'Can delete resource', 7, 'delete_resource', 'Can add ocr result', 8, 'add_ocrresult', 'Can change ocr result', 8, 'change_ocrresult', 'Can delete ocr result', 8, 'delete_ocrresult', 'Can add porn result', 9, 'add_pornresult', 'Can change porn result', 9, 'change_pornresult', 'Can delete porn result', 9, 'delete_pornresult', 'Can add temp review', 10, 'add_tempreview', 'Can change temp review', 10, 'change_tempreview', 'Can delete temp review', 10, 'delete_tempreview')
+[DEBUG] [2021-02-08 16:09:38,951] [utils.execute] (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'management'; args=('management',)
+[DEBUG] [2021-02-08 16:09:49,511] [utils.execute] (0.001) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None
+[DEBUG] [2021-02-08 16:09:49,514] [utils.execute] (0.000) SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"; args=()
+[INFO] [2021-02-08 16:09:51,625] [basehttp.log_message] "GET / HTTP/1.1" 302 0
+[DEBUG] [2021-02-08 16:09:51,656] [utils.execute] (0.001) SELECT COUNT(*) AS "__count" FROM "resources" WHERE "resources"."type" = 0; args=(0,)
+[INFO] [2021-02-08 16:09:51,684] [basehttp.log_message] "GET /management/resource HTTP/1.1" 200 3655
+[INFO] [2021-02-08 16:09:51,737] [basehttp.log_message] "GET /assets/bootstrap-toggle/css/bootstrap-toggle.min.css HTTP/1.1" 200 1590
+[INFO] [2021-02-08 16:09:51,743] [basehttp.log_message] "GET /assets/aiResource/css/dashboard.css HTTP/1.1" 200 1816
+[INFO] [2021-02-08 16:09:51,746] [basehttp.log_message] "GET /assets/ie/js/ie10-viewport-bug-workaround.js HTTP/1.1" 200 662
+[INFO] [2021-02-08 16:09:51,753] [basehttp.log_message] "GET /assets/jq-paginator/js/jqPaginator.min.js HTTP/1.1" 200 5016
+[INFO] [2021-02-08 16:09:51,754] [basehttp.log_message] "GET /assets/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 122540
+[INFO] [2021-02-08 16:09:51,760] [basehttp.log_message] "GET /assets/bootstrap/js/bootstrap.min.js HTTP/1.1" 200 36816
+[INFO] [2021-02-08 16:09:51,763] [basehttp.log_message] "GET /assets/jquery/js/jquery-1.12.2.min.js HTTP/1.1" 200 97244
+[INFO] [2021-02-08 16:09:51,763] [basehttp.log_message] "GET /assets/jquery-query-object/js/jquery.query-object.js HTTP/1.1" 200 8194
+[INFO] [2021-02-08 16:09:51,766] [basehttp.log_message] "GET /assets/aiResource/js/resource/resource.js HTTP/1.1" 200 984
+[DEBUG] [2021-02-08 16:09:51,896] [base._resolve_lookup] Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "/Users/michael/venv/django1.11/lib/python3.7/site-packages/django/core/handlers/exception.py", line 41, in inner
+    response = get_response(request)
+  File "/Users/michael/venv/django1.11/lib/python3.7/site-packages/django/core/handlers/base.py", line 249, in _legacy_get_response
+    response = self._get_response(request)
+  File "/Users/michael/venv/django1.11/lib/python3.7/site-packages/django/core/handlers/base.py", line 172, in _get_response
+    resolver_match = resolver.resolve(request.path_info)
+  File "/Users/michael/venv/django1.11/lib/python3.7/site-packages/django/urls/resolvers.py", line 394, in resolve
+    raise Resolver404({'tried': tried, 'path': new_path})
+django.urls.exceptions.Resolver404: {'tried': [[<RegexURLPattern index ^$>], [<RegexURLResolver <module 'management.urls' from '/Users/michael/Documents/michael/project/projectmc/aiResource/management/urls.py'> (None:None) ^management/>], [<RegexURLResolver <RegexURLPattern list> (admin:admin) ^admin/>]], 'path': 'favicon.ico'}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/michael/venv/django1.11/lib/python3.7/site-packages/django/template/base.py", line 882, in _resolve_lookup
+    current = current[bit]
+TypeError: 'RegexURLResolver' object is not subscriptable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/michael/venv/django1.11/lib/python3.7/site-packages/django/template/base.py", line 890, in _resolve_lookup
+    current = getattr(current, bit)
+AttributeError: 'RegexURLResolver' object has no attribute 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/michael/venv/django1.11/lib/python3.7/site-packages/django/template/base.py", line 896, in _resolve_lookup
+    current = current[int(bit)]
+ValueError: invalid literal for int() with base 10: 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/michael/venv/django1.11/lib/python3.7/site-packages/django/template/base.py", line 903, in _resolve_lookup
+    (bit, current))  # missing attribute
+django.template.base.VariableDoesNotExist: Failed lookup for key [name] in "<RegexURLResolver <module 'management.urls' from '/Users/michael/Documents/michael/project/projectmc/aiResource/management/urls.py'> (None:None) ^management/>"
+[DEBUG] [2021-02-08 16:09:51,900] [base._resolve_lookup] Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "/Users/michael/venv/django1.11/lib/python3.7/site-packages/django/core/handlers/exception.py", line 41, in inner
+    response = get_response(request)
+  File "/Users/michael/venv/django1.11/lib/python3.7/site-packages/django/core/handlers/base.py", line 249, in _legacy_get_response
+    response = self._get_response(request)
+  File "/Users/michael/venv/django1.11/lib/python3.7/site-packages/django/core/handlers/base.py", line 172, in _get_response
+    resolver_match = resolver.resolve(request.path_info)
+  File "/Users/michael/venv/django1.11/lib/python3.7/site-packages/django/urls/resolvers.py", line 394, in resolve
+    raise Resolver404({'tried': tried, 'path': new_path})
+django.urls.exceptions.Resolver404: {'tried': [[<RegexURLPattern index ^$>], [<RegexURLResolver <module 'management.urls' from '/Users/michael/Documents/michael/project/projectmc/aiResource/management/urls.py'> (None:None) ^management/>], [<RegexURLResolver <RegexURLPattern list> (admin:admin) ^admin/>]], 'path': 'favicon.ico'}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/michael/venv/django1.11/lib/python3.7/site-packages/django/template/base.py", line 882, in _resolve_lookup
+    current = current[bit]
+TypeError: 'RegexURLResolver' object is not subscriptable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/michael/venv/django1.11/lib/python3.7/site-packages/django/template/base.py", line 890, in _resolve_lookup
+    current = getattr(current, bit)
+AttributeError: 'RegexURLResolver' object has no attribute 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/michael/venv/django1.11/lib/python3.7/site-packages/django/template/base.py", line 896, in _resolve_lookup
+    current = current[int(bit)]
+ValueError: invalid literal for int() with base 10: 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/michael/venv/django1.11/lib/python3.7/site-packages/django/template/base.py", line 903, in _resolve_lookup
+    (bit, current))  # missing attribute
+django.template.base.VariableDoesNotExist: Failed lookup for key [name] in '<RegexURLResolver <RegexURLPattern list> (admin:admin) ^admin/>'
+[WARNING] [2021-02-08 16:09:51,901] [base.get_response] Not Found: /favicon.ico
+[WARNING] [2021-02-08 16:09:51,901] [basehttp.log_message] "GET /favicon.ico HTTP/1.1" 404 2194
+[DEBUG] [2021-02-08 16:09:55,843] [utils.execute] (0.001) select * from resources join (SELECT `resources`.`id` FROM `resources` WHERE NOT(`resources`.`pid` = 0) ORDER BY `resources`.`id` DESC LIMIT 20 OFFSET 0) as b using(id); args=()
+[INFO] [2021-02-08 16:09:55,846] [basehttp.log_message] "GET /management/list HTTP/1.1" 200 5891
+[INFO] [2021-02-08 16:09:55,875] [basehttp.log_message] "GET /assets/datatables/datatables.min.css HTTP/1.1" 200 14305
+[INFO] [2021-02-08 16:09:55,880] [basehttp.log_message] "GET /assets/jquery/js/jqpaginator.min.js HTTP/1.1" 200 4932
+[INFO] [2021-02-08 16:09:55,881] [basehttp.log_message] "GET /assets/datatables/datatables.min.js HTTP/1.1" 200 82729
+[INFO] [2021-02-08 16:09:55,883] [basehttp.log_message] "GET /assets/jquery/js/jquery-1.12.2.js HTTP/1.1" 200 293840
+[DEBUG] [2021-02-08 16:09:58,750] [utils.execute] (0.001) SELECT COUNT(*) AS "__count" FROM "resources" WHERE "resources"."type" = 0; args=(0,)
+[INFO] [2021-02-08 16:09:58,758] [basehttp.log_message] "GET /management/resource HTTP/1.1" 200 3655
+[DEBUG] [2021-02-08 16:10:01,916] [utils.execute] (0.000) select * from resources join (SELECT `resources`.`id` FROM `resources` WHERE NOT(`resources`.`pid` = 0) ORDER BY `resources`.`id` DESC LIMIT 20 OFFSET 0) as b using(id); args=()
+[INFO] [2021-02-08 16:10:01,917] [basehttp.log_message] "GET /management/list HTTP/1.1" 200 5891
+[DEBUG] [2021-02-08 16:10:06,190] [utils.execute] (0.000) select * from resources join (SELECT `resources`.`id` FROM `resources` WHERE NOT(`resources`.`pid` = 0) ORDER BY `resources`.`id` DESC LIMIT 20 OFFSET 20) as b using(id); args=()
+[INFO] [2021-02-08 16:10:06,191] [basehttp.log_message] "GET /management/list?page=2 HTTP/1.1" 200 5891
+[DEBUG] [2021-02-08 16:10:07,591] [utils.execute] (0.001) select * from resources join (SELECT `resources`.`id` FROM `resources` WHERE NOT(`resources`.`pid` = 0) ORDER BY `resources`.`id` DESC LIMIT 20 OFFSET 40) as b using(id); args=()
+[INFO] [2021-02-08 16:10:07,592] [basehttp.log_message] "GET /management/list?page=3 HTTP/1.1" 200 5891
+[DEBUG] [2021-02-08 16:10:07,822] [utils.execute] (0.000) select * from resources join (SELECT `resources`.`id` FROM `resources` WHERE NOT(`resources`.`pid` = 0) ORDER BY `resources`.`id` DESC LIMIT 20 OFFSET 60) as b using(id); args=()
+[INFO] [2021-02-08 16:10:07,823] [basehttp.log_message] "GET /management/list?page=4 HTTP/1.1" 200 5891
+[DEBUG] [2021-02-08 16:10:07,959] [utils.execute] (0.000) select * from resources join (SELECT `resources`.`id` FROM `resources` WHERE NOT(`resources`.`pid` = 0) ORDER BY `resources`.`id` DESC LIMIT 20 OFFSET 80) as b using(id); args=()
+[INFO] [2021-02-08 16:10:07,960] [basehttp.log_message] "GET /management/list?page=5 HTTP/1.1" 200 5891
+[DEBUG] [2021-02-08 16:10:08,103] [utils.execute] (0.001) select * from resources join (SELECT `resources`.`id` FROM `resources` WHERE NOT(`resources`.`pid` = 0) ORDER BY `resources`.`id` DESC LIMIT 20 OFFSET 100) as b using(id); args=()
+[INFO] [2021-02-08 16:10:08,104] [basehttp.log_message] "GET /management/list?page=6 HTTP/1.1" 200 5891
+[DEBUG] [2021-02-08 16:10:08,783] [utils.execute] (0.001) select * from resources join (SELECT `resources`.`id` FROM `resources` WHERE NOT(`resources`.`pid` = 0) ORDER BY `resources`.`id` DESC LIMIT 20 OFFSET 120) as b using(id); args=()
+[INFO] [2021-02-08 16:10:08,784] [basehttp.log_message] "GET /management/list?page=7 HTTP/1.1" 200 5891
+[DEBUG] [2021-02-08 16:10:08,977] [utils.execute] (0.001) select * from resources join (SELECT `resources`.`id` FROM `resources` WHERE NOT(`resources`.`pid` = 0) ORDER BY `resources`.`id` DESC LIMIT 20 OFFSET 140) as b using(id); args=()
+[INFO] [2021-02-08 16:10:08,978] [basehttp.log_message] "GET /management/list?page=8 HTTP/1.1" 200 5891
+[DEBUG] [2021-02-08 16:10:09,131] [utils.execute] (0.000) select * from resources join (SELECT `resources`.`id` FROM `resources` WHERE NOT(`resources`.`pid` = 0) ORDER BY `resources`.`id` DESC LIMIT 20 OFFSET 160) as b using(id); args=()
+[INFO] [2021-02-08 16:10:09,132] [basehttp.log_message] "GET /management/list?page=9 HTTP/1.1" 200 5892
+[DEBUG] [2021-02-08 16:10:09,286] [utils.execute] (0.000) select * from resources join (SELECT `resources`.`id` FROM `resources` WHERE NOT(`resources`.`pid` = 0) ORDER BY `resources`.`id` DESC LIMIT 20 OFFSET 180) as b using(id); args=()
+[INFO] [2021-02-08 16:10:09,287] [basehttp.log_message] "GET /management/list?page=10 HTTP/1.1" 200 5893
+[DEBUG] [2021-02-08 16:10:09,454] [utils.execute] (0.000) select * from resources join (SELECT `resources`.`id` FROM `resources` WHERE NOT(`resources`.`pid` = 0) ORDER BY `resources`.`id` DESC LIMIT 20 OFFSET 200) as b using(id); args=()
+[INFO] [2021-02-08 16:10:09,455] [basehttp.log_message] "GET /management/list?page=11 HTTP/1.1" 200 5893
+[DEBUG] [2021-02-08 16:10:09,614] [utils.execute] (0.000) select * from resources join (SELECT `resources`.`id` FROM `resources` WHERE NOT(`resources`.`pid` = 0) ORDER BY `resources`.`id` DESC LIMIT 20 OFFSET 220) as b using(id); args=()
+[INFO] [2021-02-08 16:10:09,615] [basehttp.log_message] "GET /management/list?page=12 HTTP/1.1" 200 5893
+[DEBUG] [2021-02-08 16:10:09,778] [utils.execute] (0.000) select * from resources join (SELECT `resources`.`id` FROM `resources` WHERE NOT(`resources`.`pid` = 0) ORDER BY `resources`.`id` DESC LIMIT 20 OFFSET 240) as b using(id); args=()
+[INFO] [2021-02-08 16:10:09,779] [basehttp.log_message] "GET /management/list?page=13 HTTP/1.1" 200 5893
+[DEBUG] [2021-02-08 16:10:09,931] [utils.execute] (0.000) select * from resources join (SELECT `resources`.`id` FROM `resources` WHERE NOT(`resources`.`pid` = 0) ORDER BY `resources`.`id` DESC LIMIT 20 OFFSET 260) as b using(id); args=()
+[INFO] [2021-02-08 16:10:09,932] [basehttp.log_message] "GET /management/list?page=14 HTTP/1.1" 200 5893
+[DEBUG] [2021-02-08 16:10:10,927] [utils.execute] (0.001) select * from resources join (SELECT `resources`.`id` FROM `resources` WHERE NOT(`resources`.`pid` = 0) ORDER BY `resources`.`id` DESC LIMIT 20 OFFSET 280) as b using(id); args=()
+[INFO] [2021-02-08 16:10:10,928] [basehttp.log_message] "GET /management/list?page=15 HTTP/1.1" 200 5893
+[DEBUG] [2021-02-08 16:10:11,090] [utils.execute] (0.000) select * from resources join (SELECT `resources`.`id` FROM `resources` WHERE NOT(`resources`.`pid` = 0) ORDER BY `resources`.`id` DESC LIMIT 20 OFFSET 300) as b using(id); args=()
+[INFO] [2021-02-08 16:10:11,091] [basehttp.log_message] "GET /management/list?page=16 HTTP/1.1" 200 5893
+[DEBUG] [2021-02-08 16:10:11,256] [utils.execute] (0.000) select * from resources join (SELECT `resources`.`id` FROM `resources` WHERE NOT(`resources`.`pid` = 0) ORDER BY `resources`.`id` DESC LIMIT 20 OFFSET 320) as b using(id); args=()
+[INFO] [2021-02-08 16:10:11,257] [basehttp.log_message] "GET /management/list?page=17 HTTP/1.1" 200 5893
+[DEBUG] [2021-02-08 16:10:11,466] [utils.execute] (0.000) select * from resources join (SELECT `resources`.`id` FROM `resources` WHERE NOT(`resources`.`pid` = 0) ORDER BY `resources`.`id` DESC LIMIT 20 OFFSET 340) as b using(id); args=()
+[INFO] [2021-02-08 16:10:11,467] [basehttp.log_message] "GET /management/list?page=18 HTTP/1.1" 200 5893
+[DEBUG] [2021-02-08 16:10:11,648] [utils.execute] (0.001) select * from resources join (SELECT `resources`.`id` FROM `resources` WHERE NOT(`resources`.`pid` = 0) ORDER BY `resources`.`id` DESC LIMIT 20 OFFSET 360) as b using(id); args=()
+[INFO] [2021-02-08 16:10:11,649] [basehttp.log_message] "GET /management/list?page=19 HTTP/1.1" 200 5893
+[DEBUG] [2021-02-08 16:10:11,788] [utils.execute] (0.000) select * from resources join (SELECT `resources`.`id` FROM `resources` WHERE NOT(`resources`.`pid` = 0) ORDER BY `resources`.`id` DESC LIMIT 20 OFFSET 380) as b using(id); args=()
+[INFO] [2021-02-08 16:10:11,789] [basehttp.log_message] "GET /management/list?page=20 HTTP/1.1" 200 5893
+[DEBUG] [2021-02-08 16:10:11,963] [utils.execute] (0.000) select * from resources join (SELECT `resources`.`id` FROM `resources` WHERE NOT(`resources`.`pid` = 0) ORDER BY `resources`.`id` DESC LIMIT 20 OFFSET 400) as b using(id); args=()
+[INFO] [2021-02-08 16:10:11,964] [basehttp.log_message] "GET /management/list?page=21 HTTP/1.1" 200 5893
+[DEBUG] [2021-02-08 16:10:15,471] [utils.execute] (0.000) SELECT COUNT(*) AS "__count" FROM "resources" WHERE "resources"."type" = 0; args=(0,)
+[INFO] [2021-02-08 16:10:15,476] [basehttp.log_message] "GET /management/resource HTTP/1.1" 200 3655
+[DEBUG] [2021-02-08 16:20:45,360] [utils.execute] (0.000) select * from resources join (SELECT `resources`.`id` FROM `resources` WHERE NOT(`resources`.`pid` = 0) ORDER BY `resources`.`id` DESC LIMIT 20 OFFSET 0) as b using(id); args=()
+[INFO] [2021-02-08 16:20:45,361] [basehttp.log_message] "GET /management/list HTTP/1.1" 200 5891
+[DEBUG] [2021-02-08 16:20:46,853] [utils.execute] (0.000) SELECT COUNT(*) AS "__count" FROM "resources" WHERE "resources"."type" = 0; args=(0,)
+[INFO] [2021-02-08 16:20:46,860] [basehttp.log_message] "GET /management/resource HTTP/1.1" 200 3655
+[DEBUG] [2021-02-08 16:27:51,136] [utils.execute] (0.001) select * from resources join (SELECT `resources`.`id` FROM `resources` WHERE NOT(`resources`.`pid` = 0) ORDER BY `resources`.`id` DESC LIMIT 20 OFFSET 0) as b using(id); args=()
+[INFO] [2021-02-08 16:27:51,140] [basehttp.log_message] "GET /management/list HTTP/1.1" 200 5891
+[DEBUG] [2021-02-08 16:27:52,066] [utils.execute] (0.001) SELECT COUNT(*) AS "__count" FROM "resources" WHERE "resources"."type" = 0; args=(0,)
+[INFO] [2021-02-08 16:27:52,072] [basehttp.log_message] "GET /management/resource HTTP/1.1" 200 3655
+[DEBUG] [2021-02-08 16:33:05,045] [utils.execute] (0.001) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None
+[DEBUG] [2021-02-08 16:33:05,060] [utils.execute] (0.000) SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"; args=()
+[DEBUG] [2021-02-08 16:37:33,004] [utils.execute] (0.000) select * from resources join (SELECT `resources`.`id` FROM `resources` WHERE NOT(`resources`.`pid` = 0) ORDER BY `resources`.`id` DESC LIMIT 20 OFFSET 0) as b using(id); args=()
+[INFO] [2021-02-08 16:37:33,008] [basehttp.log_message] "GET /management/list HTTP/1.1" 200 5891
+[DEBUG] [2021-02-08 16:37:39,358] [utils.execute] (0.000) select * from resources join (SELECT `resources`.`id` FROM `resources` WHERE NOT(`resources`.`pid` = 0) ORDER BY `resources`.`id` DESC LIMIT 20 OFFSET 20) as b using(id); args=()
+[INFO] [2021-02-08 16:37:39,359] [basehttp.log_message] "GET /management/list?page=2 HTTP/1.1" 200 5891
+[DEBUG] [2021-02-08 16:39:51,011] [utils.execute] (0.001) SELECT COUNT(*) AS "__count" FROM "resources" WHERE "resources"."type" = 0; args=(0,)
+[INFO] [2021-02-08 16:39:51,017] [basehttp.log_message] "GET /management/resource HTTP/1.1" 200 3655
+[DEBUG] [2021-02-08 16:43:54,041] [utils.execute] (0.001) select * from resources join (SELECT `resources`.`id` FROM `resources` WHERE NOT(`resources`.`pid` = 0) ORDER BY `resources`.`id` DESC LIMIT 20 OFFSET 0) as b using(id); args=()
+[INFO] [2021-02-08 16:43:54,042] [basehttp.log_message] "GET /management/list HTTP/1.1" 200 5891
+[DEBUG] [2021-02-08 16:44:01,163] [utils.execute] (0.000) select * from resources join (SELECT `resources`.`id` FROM `resources` WHERE NOT(`resources`.`pid` = 0) and value="0" ORDER BY `resources`.`id` DESC LIMIT 20 OFFSET 0) as b using(id); args=()
+[INFO] [2021-02-08 16:44:01,164] [basehttp.log_message] "GET /management/list HTTP/1.1" 200 5891
+[DEBUG] [2021-02-08 16:44:05,250] [utils.execute] (0.000) select * from resources join (SELECT `resources`.`id` FROM `resources` WHERE NOT(`resources`.`pid` = 0) and value="1" ORDER BY `resources`.`id` DESC LIMIT 20 OFFSET 0) as b using(id); args=()
+[INFO] [2021-02-08 16:44:05,252] [basehttp.log_message] "GET /management/list HTTP/1.1" 200 5891
+[DEBUG] [2021-02-09 15:14:31,513] [utils.execute] (0.004) SELECT COUNT(*) AS "__count" FROM "resources" WHERE "resources"."path" = '/Users/michael/Documents/michael/test_video/video/20201210200513.mp4'; args=('/Users/michael/Documents/michael/test_video/video/20201210200513.mp4',)
+[DEBUG] [2021-02-09 15:35:04,233] [utils.execute] (0.004) SELECT COUNT(*) AS "__count" FROM "resources" WHERE "resources"."path" = '/Users/michael/Documents/michael/test_video/video/20201210200513.mp4'; args=('/Users/michael/Documents/michael/test_video/video/20201210200513.mp4',)
+[DEBUG] [2021-02-09 15:35:04,233] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-09 15:35:04,235] [utils.execute] (0.001) INSERT INTO "resources" ("path", "type", "business_type", "value", "pid", "next_id", "pre_id", "is_leaf", "checked", "process_type", "ctime", "mtime", "remark", "col_int_01", "col_json_01", "is_debug") VALUES ('/Users/michael/Documents/michael/test_video/video/20201210200513.mp4', 0, 0, NULL, 0, 0, 0, 1, 0, 0, '2021-02-09 07:35:04.234281', '2021-02-09 07:35:04.234337', NULL, 1, NULL, 0); args=['/Users/michael/Documents/michael/test_video/video/20201210200513.mp4', 0, 0, None, 0, 0, 0, 1, 0, 0, '2021-02-09 07:35:04.234281', '2021-02-09 07:35:04.234337', None, 1, None, 0]
+[DEBUG] [2021-02-09 15:35:04,235] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-09 15:35:04,236] [utils.execute] (0.000) INSERT INTO "resources" ("path", "type", "business_type", "value", "pid", "next_id", "pre_id", "is_leaf", "checked", "process_type", "ctime", "mtime", "remark", "col_int_01", "col_json_01", "is_debug") VALUES ('http://ai-resource.yypm.com/resource/sample/20210209/20201210200513/20201210200513_000001.jpg', 1, 0, NULL, 1, 0, 0, 1, 0, 1, '2021-02-09 07:35:04.236074', '2021-02-09 07:35:04.236097', NULL, 1, NULL, 0); args=['http://ai-resource.yypm.com/resource/sample/20210209/20201210200513/20201210200513_000001.jpg', 1, 0, None, 1, 0, 0, 1, 0, 1, '2021-02-09 07:35:04.236074', '2021-02-09 07:35:04.236097', None, 1, None, 0]
+[DEBUG] [2021-02-09 15:35:04,237] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-09 15:35:04,237] [utils.execute] (0.000) INSERT INTO "resources" ("path", "type", "business_type", "value", "pid", "next_id", "pre_id", "is_leaf", "checked", "process_type", "ctime", "mtime", "remark", "col_int_01", "col_json_01", "is_debug") VALUES ('http://ai-resource.yypm.com/resource/sample/20210209/20201210200513/20201210200513_000002.jpg', 1, 0, NULL, 1, 0, 2, 1, 0, 1, '2021-02-09 07:35:04.237384', '2021-02-09 07:35:04.237405', NULL, 1, NULL, 0); args=['http://ai-resource.yypm.com/resource/sample/20210209/20201210200513/20201210200513_000002.jpg', 1, 0, None, 1, 0, 2, 1, 0, 1, '2021-02-09 07:35:04.237384', '2021-02-09 07:35:04.237405', None, 1, None, 0]
+[DEBUG] [2021-02-09 15:35:04,238] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-09 15:35:04,238] [utils.execute] (0.000) UPDATE "resources" SET "next_id" = 3 WHERE "resources"."id" = 2; args=(3, 2)
+[DEBUG] [2021-02-09 15:35:04,239] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-09 15:35:04,240] [utils.execute] (0.000) INSERT INTO "resources" ("path", "type", "business_type", "value", "pid", "next_id", "pre_id", "is_leaf", "checked", "process_type", "ctime", "mtime", "remark", "col_int_01", "col_json_01", "is_debug") VALUES ('http://ai-resource.yypm.com/resource/sample/20210209/20201210200513/20201210200513_000003.jpg', 1, 0, NULL, 1, 0, 3, 1, 0, 1, '2021-02-09 07:35:04.239985', '2021-02-09 07:35:04.240007', NULL, 1, NULL, 0); args=['http://ai-resource.yypm.com/resource/sample/20210209/20201210200513/20201210200513_000003.jpg', 1, 0, None, 1, 0, 3, 1, 0, 1, '2021-02-09 07:35:04.239985', '2021-02-09 07:35:04.240007', None, 1, None, 0]
+[DEBUG] [2021-02-09 15:35:04,240] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-09 15:35:04,241] [utils.execute] (0.000) UPDATE "resources" SET "next_id" = 4 WHERE "resources"."id" = 3; args=(4, 3)
+[DEBUG] [2021-02-09 15:35:04,241] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-09 15:35:04,242] [utils.execute] (0.000) INSERT INTO "resources" ("path", "type", "business_type", "value", "pid", "next_id", "pre_id", "is_leaf", "checked", "process_type", "ctime", "mtime", "remark", "col_int_01", "col_json_01", "is_debug") VALUES ('http://ai-resource.yypm.com/resource/sample/20210209/20201210200513/20201210200513_000004.jpg', 1, 0, NULL, 1, 0, 4, 1, 0, 1, '2021-02-09 07:35:04.242116', '2021-02-09 07:35:04.242143', NULL, 1, NULL, 0); args=['http://ai-resource.yypm.com/resource/sample/20210209/20201210200513/20201210200513_000004.jpg', 1, 0, None, 1, 0, 4, 1, 0, 1, '2021-02-09 07:35:04.242116', '2021-02-09 07:35:04.242143', None, 1, None, 0]
+[DEBUG] [2021-02-09 15:35:04,243] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-09 15:35:04,243] [utils.execute] (0.000) UPDATE "resources" SET "next_id" = 5 WHERE "resources"."id" = 4; args=(5, 4)
+[DEBUG] [2021-02-09 15:35:04,244] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-09 15:35:04,244] [utils.execute] (0.000) INSERT INTO "resources" ("path", "type", "business_type", "value", "pid", "next_id", "pre_id", "is_leaf", "checked", "process_type", "ctime", "mtime", "remark", "col_int_01", "col_json_01", "is_debug") VALUES ('http://ai-resource.yypm.com/resource/sample/20210209/20201210200513/20201210200513_000005.jpg', 1, 0, NULL, 1, 0, 5, 1, 0, 1, '2021-02-09 07:35:04.244180', '2021-02-09 07:35:04.244205', NULL, 1, NULL, 0); args=['http://ai-resource.yypm.com/resource/sample/20210209/20201210200513/20201210200513_000005.jpg', 1, 0, None, 1, 0, 5, 1, 0, 1, '2021-02-09 07:35:04.244180', '2021-02-09 07:35:04.244205', None, 1, None, 0]
+[DEBUG] [2021-02-09 15:35:04,245] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-09 15:35:04,245] [utils.execute] (0.000) UPDATE "resources" SET "next_id" = 6 WHERE "resources"."id" = 5; args=(6, 5)
+[DEBUG] [2021-02-09 15:35:04,245] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-09 15:35:04,246] [utils.execute] (0.000) INSERT INTO "resources" ("path", "type", "business_type", "value", "pid", "next_id", "pre_id", "is_leaf", "checked", "process_type", "ctime", "mtime", "remark", "col_int_01", "col_json_01", "is_debug") VALUES ('http://ai-resource.yypm.com/resource/sample/20210209/20201210200513/20201210200513_000006.jpg', 1, 0, NULL, 1, 0, 6, 1, 0, 1, '2021-02-09 07:35:04.246166', '2021-02-09 07:35:04.246190', NULL, 1, NULL, 0); args=['http://ai-resource.yypm.com/resource/sample/20210209/20201210200513/20201210200513_000006.jpg', 1, 0, None, 1, 0, 6, 1, 0, 1, '2021-02-09 07:35:04.246166', '2021-02-09 07:35:04.246190', None, 1, None, 0]
+[DEBUG] [2021-02-09 15:35:04,247] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-09 15:35:04,247] [utils.execute] (0.000) UPDATE "resources" SET "next_id" = 7 WHERE "resources"."id" = 6; args=(7, 6)
+[DEBUG] [2021-02-09 15:35:04,248] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-09 15:35:04,248] [utils.execute] (0.000) INSERT INTO "resources" ("path", "type", "business_type", "value", "pid", "next_id", "pre_id", "is_leaf", "checked", "process_type", "ctime", "mtime", "remark", "col_int_01", "col_json_01", "is_debug") VALUES ('http://ai-resource.yypm.com/resource/sample/20210209/20201210200513/20201210200513_000007.jpg', 1, 0, NULL, 1, 0, 7, 1, 0, 1, '2021-02-09 07:35:04.248199', '2021-02-09 07:35:04.248223', NULL, 1, NULL, 0); args=['http://ai-resource.yypm.com/resource/sample/20210209/20201210200513/20201210200513_000007.jpg', 1, 0, None, 1, 0, 7, 1, 0, 1, '2021-02-09 07:35:04.248199', '2021-02-09 07:35:04.248223', None, 1, None, 0]
+[DEBUG] [2021-02-09 15:35:04,249] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-09 15:35:04,249] [utils.execute] (0.000) UPDATE "resources" SET "next_id" = 8 WHERE "resources"."id" = 7; args=(8, 7)
+[DEBUG] [2021-02-09 15:35:04,249] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-09 15:35:04,250] [utils.execute] (0.000) INSERT INTO "resources" ("path", "type", "business_type", "value", "pid", "next_id", "pre_id", "is_leaf", "checked", "process_type", "ctime", "mtime", "remark", "col_int_01", "col_json_01", "is_debug") VALUES ('http://ai-resource.yypm.com/resource/sample/20210209/20201210200513/20201210200513_000008.jpg', 1, 0, NULL, 1, 0, 8, 1, 0, 1, '2021-02-09 07:35:04.250115', '2021-02-09 07:35:04.250137', NULL, 1, NULL, 0); args=['http://ai-resource.yypm.com/resource/sample/20210209/20201210200513/20201210200513_000008.jpg', 1, 0, None, 1, 0, 8, 1, 0, 1, '2021-02-09 07:35:04.250115', '2021-02-09 07:35:04.250137', None, 1, None, 0]
+[DEBUG] [2021-02-09 15:35:04,251] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-09 15:35:04,251] [utils.execute] (0.000) UPDATE "resources" SET "next_id" = 9 WHERE "resources"."id" = 8; args=(9, 8)
+[DEBUG] [2021-02-09 15:35:04,252] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-09 15:35:04,252] [utils.execute] (0.000) INSERT INTO "resources" ("path", "type", "business_type", "value", "pid", "next_id", "pre_id", "is_leaf", "checked", "process_type", "ctime", "mtime", "remark", "col_int_01", "col_json_01", "is_debug") VALUES ('http://ai-resource.yypm.com/resource/sample/20210209/20201210200513/20201210200513_000009.jpg', 1, 0, NULL, 1, 0, 9, 1, 0, 1, '2021-02-09 07:35:04.252183', '2021-02-09 07:35:04.252206', NULL, 1, NULL, 0); args=['http://ai-resource.yypm.com/resource/sample/20210209/20201210200513/20201210200513_000009.jpg', 1, 0, None, 1, 0, 9, 1, 0, 1, '2021-02-09 07:35:04.252183', '2021-02-09 07:35:04.252206', None, 1, None, 0]
+[DEBUG] [2021-02-09 15:35:04,253] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-09 15:35:04,253] [utils.execute] (0.000) UPDATE "resources" SET "next_id" = 10 WHERE "resources"."id" = 9; args=(10, 9)
+[DEBUG] [2021-02-09 15:35:04,254] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-09 15:35:04,254] [utils.execute] (0.000) INSERT INTO "resources" ("path", "type", "business_type", "value", "pid", "next_id", "pre_id", "is_leaf", "checked", "process_type", "ctime", "mtime", "remark", "col_int_01", "col_json_01", "is_debug") VALUES ('http://ai-resource.yypm.com/resource/sample/20210209/20201210200513/20201210200513_000010.jpg', 1, 0, NULL, 1, 0, 10, 1, 0, 1, '2021-02-09 07:35:04.254220', '2021-02-09 07:35:04.254244', NULL, 1, NULL, 0); args=['http://ai-resource.yypm.com/resource/sample/20210209/20201210200513/20201210200513_000010.jpg', 1, 0, None, 1, 0, 10, 1, 0, 1, '2021-02-09 07:35:04.254220', '2021-02-09 07:35:04.254244', None, 1, None, 0]
+[DEBUG] [2021-02-09 15:35:04,255] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-09 15:35:04,255] [utils.execute] (0.000) UPDATE "resources" SET "next_id" = 11 WHERE "resources"."id" = 10; args=(11, 10)
+[DEBUG] [2021-02-09 15:35:04,256] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-09 15:35:04,256] [utils.execute] (0.000) INSERT INTO "resources" ("path", "type", "business_type", "value", "pid", "next_id", "pre_id", "is_leaf", "checked", "process_type", "ctime", "mtime", "remark", "col_int_01", "col_json_01", "is_debug") VALUES ('http://ai-resource.yypm.com/resource/sample/20210209/20201210200513/20201210200513_000011.jpg', 1, 0, NULL, 1, 0, 11, 1, 0, 1, '2021-02-09 07:35:04.256236', '2021-02-09 07:35:04.256259', NULL, 1, NULL, 0); args=['http://ai-resource.yypm.com/resource/sample/20210209/20201210200513/20201210200513_000011.jpg', 1, 0, None, 1, 0, 11, 1, 0, 1, '2021-02-09 07:35:04.256236', '2021-02-09 07:35:04.256259', None, 1, None, 0]
+[DEBUG] [2021-02-09 15:35:04,257] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-09 15:35:04,257] [utils.execute] (0.000) UPDATE "resources" SET "next_id" = 12 WHERE "resources"."id" = 11; args=(12, 11)
+[DEBUG] [2021-02-09 15:35:04,258] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-09 15:35:04,258] [utils.execute] (0.000) INSERT INTO "resources" ("path", "type", "business_type", "value", "pid", "next_id", "pre_id", "is_leaf", "checked", "process_type", "ctime", "mtime", "remark", "col_int_01", "col_json_01", "is_debug") VALUES ('http://ai-resource.yypm.com/resource/sample/20210209/20201210200513/20201210200513_000012.jpg', 1, 0, NULL, 1, 0, 12, 1, 0, 1, '2021-02-09 07:35:04.258433', '2021-02-09 07:35:04.258459', NULL, 1, NULL, 0); args=['http://ai-resource.yypm.com/resource/sample/20210209/20201210200513/20201210200513_000012.jpg', 1, 0, None, 1, 0, 12, 1, 0, 1, '2021-02-09 07:35:04.258433', '2021-02-09 07:35:04.258459', None, 1, None, 0]
+[DEBUG] [2021-02-09 15:35:04,259] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-09 15:35:04,259] [utils.execute] (0.000) UPDATE "resources" SET "next_id" = 13 WHERE "resources"."id" = 12; args=(13, 12)
+[DEBUG] [2021-02-09 15:35:04,260] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-09 15:35:04,260] [utils.execute] (0.000) INSERT INTO "resources" ("path", "type", "business_type", "value", "pid", "next_id", "pre_id", "is_leaf", "checked", "process_type", "ctime", "mtime", "remark", "col_int_01", "col_json_01", "is_debug") VALUES ('http://ai-resource.yypm.com/resource/sample/20210209/20201210200513/20201210200513_000013.jpg', 1, 0, NULL, 1, 0, 13, 1, 0, 1, '2021-02-09 07:35:04.260470', '2021-02-09 07:35:04.260496', NULL, 1, NULL, 0); args=['http://ai-resource.yypm.com/resource/sample/20210209/20201210200513/20201210200513_000013.jpg', 1, 0, None, 1, 0, 13, 1, 0, 1, '2021-02-09 07:35:04.260470', '2021-02-09 07:35:04.260496', None, 1, None, 0]
+[DEBUG] [2021-02-09 15:35:04,261] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-09 15:35:04,261] [utils.execute] (0.000) UPDATE "resources" SET "next_id" = 14 WHERE "resources"."id" = 13; args=(14, 13)
+[DEBUG] [2021-02-09 15:35:04,262] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-09 15:35:04,262] [utils.execute] (0.000) INSERT INTO "resources" ("path", "type", "business_type", "value", "pid", "next_id", "pre_id", "is_leaf", "checked", "process_type", "ctime", "mtime", "remark", "col_int_01", "col_json_01", "is_debug") VALUES ('http://ai-resource.yypm.com/resource/sample/20210209/20201210200513/20201210200513_000014.jpg', 1, 0, NULL, 1, 0, 14, 1, 0, 1, '2021-02-09 07:35:04.262528', '2021-02-09 07:35:04.262551', NULL, 1, NULL, 0); args=['http://ai-resource.yypm.com/resource/sample/20210209/20201210200513/20201210200513_000014.jpg', 1, 0, None, 1, 0, 14, 1, 0, 1, '2021-02-09 07:35:04.262528', '2021-02-09 07:35:04.262551', None, 1, None, 0]
+[DEBUG] [2021-02-09 15:35:04,263] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-09 15:35:04,263] [utils.execute] (0.000) UPDATE "resources" SET "next_id" = 15 WHERE "resources"."id" = 14; args=(15, 14)
+[DEBUG] [2021-02-09 15:35:04,264] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-09 15:35:04,264] [utils.execute] (0.000) INSERT INTO "resources" ("path", "type", "business_type", "value", "pid", "next_id", "pre_id", "is_leaf", "checked", "process_type", "ctime", "mtime", "remark", "col_int_01", "col_json_01", "is_debug") VALUES ('http://ai-resource.yypm.com/resource/sample/20210209/20201210200513/20201210200513_000015.jpg', 1, 0, NULL, 1, 0, 15, 1, 0, 1, '2021-02-09 07:35:04.264504', '2021-02-09 07:35:04.264529', NULL, 1, NULL, 0); args=['http://ai-resource.yypm.com/resource/sample/20210209/20201210200513/20201210200513_000015.jpg', 1, 0, None, 1, 0, 15, 1, 0, 1, '2021-02-09 07:35:04.264504', '2021-02-09 07:35:04.264529', None, 1, None, 0]
+[DEBUG] [2021-02-09 15:35:04,265] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-09 15:35:04,265] [utils.execute] (0.000) UPDATE "resources" SET "next_id" = 16 WHERE "resources"."id" = 15; args=(16, 15)
+[DEBUG] [2021-02-09 15:35:04,266] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-09 15:35:04,266] [utils.execute] (0.000) INSERT INTO "resources" ("path", "type", "business_type", "value", "pid", "next_id", "pre_id", "is_leaf", "checked", "process_type", "ctime", "mtime", "remark", "col_int_01", "col_json_01", "is_debug") VALUES ('http://ai-resource.yypm.com/resource/sample/20210209/20201210200513/20201210200513_000016.jpg', 1, 0, NULL, 1, 0, 16, 1, 0, 1, '2021-02-09 07:35:04.266517', '2021-02-09 07:35:04.266541', NULL, 1, NULL, 0); args=['http://ai-resource.yypm.com/resource/sample/20210209/20201210200513/20201210200513_000016.jpg', 1, 0, None, 1, 0, 16, 1, 0, 1, '2021-02-09 07:35:04.266517', '2021-02-09 07:35:04.266541', None, 1, None, 0]
+[DEBUG] [2021-02-09 15:35:04,267] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-09 15:35:04,268] [utils.execute] (0.000) UPDATE "resources" SET "next_id" = 17 WHERE "resources"."id" = 16; args=(17, 16)
+[DEBUG] [2021-02-09 15:35:04,268] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-09 15:35:04,269] [utils.execute] (0.000) INSERT INTO "resources" ("path", "type", "business_type", "value", "pid", "next_id", "pre_id", "is_leaf", "checked", "process_type", "ctime", "mtime", "remark", "col_int_01", "col_json_01", "is_debug") VALUES ('http://ai-resource.yypm.com/resource/sample/20210209/20201210200513/20201210200513_000017.jpg', 1, 0, NULL, 1, 0, 17, 1, 0, 1, '2021-02-09 07:35:04.268740', '2021-02-09 07:35:04.268766', NULL, 1, NULL, 0); args=['http://ai-resource.yypm.com/resource/sample/20210209/20201210200513/20201210200513_000017.jpg', 1, 0, None, 1, 0, 17, 1, 0, 1, '2021-02-09 07:35:04.268740', '2021-02-09 07:35:04.268766', None, 1, None, 0]
+[DEBUG] [2021-02-09 15:35:04,269] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-09 15:35:04,270] [utils.execute] (0.000) UPDATE "resources" SET "next_id" = 18 WHERE "resources"."id" = 17; args=(18, 17)
+[DEBUG] [2021-02-09 15:35:04,270] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-09 15:35:04,271] [utils.execute] (0.000) INSERT INTO "resources" ("path", "type", "business_type", "value", "pid", "next_id", "pre_id", "is_leaf", "checked", "process_type", "ctime", "mtime", "remark", "col_int_01", "col_json_01", "is_debug") VALUES ('http://ai-resource.yypm.com/resource/sample/20210209/20201210200513/20201210200513_000018.jpg', 1, 0, NULL, 1, 0, 18, 1, 0, 1, '2021-02-09 07:35:04.270703', '2021-02-09 07:35:04.270727', NULL, 1, NULL, 0); args=['http://ai-resource.yypm.com/resource/sample/20210209/20201210200513/20201210200513_000018.jpg', 1, 0, None, 1, 0, 18, 1, 0, 1, '2021-02-09 07:35:04.270703', '2021-02-09 07:35:04.270727', None, 1, None, 0]
+[DEBUG] [2021-02-09 15:35:04,271] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-09 15:35:04,272] [utils.execute] (0.000) UPDATE "resources" SET "next_id" = 19 WHERE "resources"."id" = 18; args=(19, 18)
+[DEBUG] [2021-02-09 15:35:04,272] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-09 15:35:04,273] [utils.execute] (0.000) INSERT INTO "resources" ("path", "type", "business_type", "value", "pid", "next_id", "pre_id", "is_leaf", "checked", "process_type", "ctime", "mtime", "remark", "col_int_01", "col_json_01", "is_debug") VALUES ('http://ai-resource.yypm.com/resource/sample/20210209/20201210200513/20201210200513_000019.jpg', 1, 0, NULL, 1, 0, 19, 1, 0, 1, '2021-02-09 07:35:04.272711', '2021-02-09 07:35:04.272735', NULL, 1, NULL, 0); args=['http://ai-resource.yypm.com/resource/sample/20210209/20201210200513/20201210200513_000019.jpg', 1, 0, None, 1, 0, 19, 1, 0, 1, '2021-02-09 07:35:04.272711', '2021-02-09 07:35:04.272735', None, 1, None, 0]
+[DEBUG] [2021-02-09 15:35:04,273] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-09 15:35:04,273] [utils.execute] (0.000) UPDATE "resources" SET "next_id" = 20 WHERE "resources"."id" = 19; args=(20, 19)
+[DEBUG] [2021-02-09 15:35:04,274] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-09 15:35:04,274] [utils.execute] (0.000) INSERT INTO "resources" ("path", "type", "business_type", "value", "pid", "next_id", "pre_id", "is_leaf", "checked", "process_type", "ctime", "mtime", "remark", "col_int_01", "col_json_01", "is_debug") VALUES ('http://ai-resource.yypm.com/resource/sample/20210209/20201210200513/20201210200513_000020.jpg', 1, 0, NULL, 1, 0, 20, 1, 0, 1, '2021-02-09 07:35:04.274642', '2021-02-09 07:35:04.274666', NULL, 1, NULL, 0); args=['http://ai-resource.yypm.com/resource/sample/20210209/20201210200513/20201210200513_000020.jpg', 1, 0, None, 1, 0, 20, 1, 0, 1, '2021-02-09 07:35:04.274642', '2021-02-09 07:35:04.274666', None, 1, None, 0]
+[DEBUG] [2021-02-09 15:35:04,275] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-09 15:35:04,276] [utils.execute] (0.000) UPDATE "resources" SET "next_id" = 21 WHERE "resources"."id" = 20; args=(21, 20)
+[DEBUG] [2021-02-09 15:35:04,276] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-09 15:35:04,276] [utils.execute] (0.000) INSERT INTO "resources" ("path", "type", "business_type", "value", "pid", "next_id", "pre_id", "is_leaf", "checked", "process_type", "ctime", "mtime", "remark", "col_int_01", "col_json_01", "is_debug") VALUES ('http://ai-resource.yypm.com/resource/sample/20210209/20201210200513/20201210200513_000021.jpg', 1, 0, NULL, 1, 0, 21, 1, 0, 1, '2021-02-09 07:35:04.276657', '2021-02-09 07:35:04.276680', NULL, 1, NULL, 0); args=['http://ai-resource.yypm.com/resource/sample/20210209/20201210200513/20201210200513_000021.jpg', 1, 0, None, 1, 0, 21, 1, 0, 1, '2021-02-09 07:35:04.276657', '2021-02-09 07:35:04.276680', None, 1, None, 0]
+[DEBUG] [2021-02-09 15:35:04,277] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-09 15:35:04,278] [utils.execute] (0.000) UPDATE "resources" SET "next_id" = 22 WHERE "resources"."id" = 21; args=(22, 21)
+[DEBUG] [2021-02-09 15:35:04,278] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-09 15:35:04,279] [utils.execute] (0.000) INSERT INTO "resources" ("path", "type", "business_type", "value", "pid", "next_id", "pre_id", "is_leaf", "checked", "process_type", "ctime", "mtime", "remark", "col_int_01", "col_json_01", "is_debug") VALUES ('http://ai-resource.yypm.com/resource/sample/20210209/20201210200513/20201210200513_000022.jpg', 1, 0, NULL, 1, 0, 22, 1, 0, 1, '2021-02-09 07:35:04.278749', '2021-02-09 07:35:04.278773', NULL, 1, NULL, 0); args=['http://ai-resource.yypm.com/resource/sample/20210209/20201210200513/20201210200513_000022.jpg', 1, 0, None, 1, 0, 22, 1, 0, 1, '2021-02-09 07:35:04.278749', '2021-02-09 07:35:04.278773', None, 1, None, 0]
+[DEBUG] [2021-02-09 15:35:04,279] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-09 15:35:04,280] [utils.execute] (0.000) UPDATE "resources" SET "next_id" = 23 WHERE "resources"."id" = 22; args=(23, 22)
+[DEBUG] [2021-02-09 15:35:04,280] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-09 15:35:04,281] [utils.execute] (0.000) INSERT INTO "resources" ("path", "type", "business_type", "value", "pid", "next_id", "pre_id", "is_leaf", "checked", "process_type", "ctime", "mtime", "remark", "col_int_01", "col_json_01", "is_debug") VALUES ('http://ai-resource.yypm.com/resource/sample/20210209/20201210200513/20201210200513_000023.jpg', 1, 0, NULL, 1, 0, 23, 1, 0, 1, '2021-02-09 07:35:04.280946', '2021-02-09 07:35:04.280968', NULL, 1, NULL, 0); args=['http://ai-resource.yypm.com/resource/sample/20210209/20201210200513/20201210200513_000023.jpg', 1, 0, None, 1, 0, 23, 1, 0, 1, '2021-02-09 07:35:04.280946', '2021-02-09 07:35:04.280968', None, 1, None, 0]
+[DEBUG] [2021-02-09 15:35:04,282] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-09 15:35:04,282] [utils.execute] (0.000) UPDATE "resources" SET "next_id" = 24 WHERE "resources"."id" = 23; args=(24, 23)
+[DEBUG] [2021-02-09 15:35:04,282] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-09 15:35:04,283] [utils.execute] (0.000) INSERT INTO "resources" ("path", "type", "business_type", "value", "pid", "next_id", "pre_id", "is_leaf", "checked", "process_type", "ctime", "mtime", "remark", "col_int_01", "col_json_01", "is_debug") VALUES ('http://ai-resource.yypm.com/resource/sample/20210209/20201210200513/20201210200513_000024.jpg', 1, 0, NULL, 1, 0, 24, 1, 0, 1, '2021-02-09 07:35:04.283128', '2021-02-09 07:35:04.283150', NULL, 1, NULL, 0); args=['http://ai-resource.yypm.com/resource/sample/20210209/20201210200513/20201210200513_000024.jpg', 1, 0, None, 1, 0, 24, 1, 0, 1, '2021-02-09 07:35:04.283128', '2021-02-09 07:35:04.283150', None, 1, None, 0]
+[DEBUG] [2021-02-09 15:35:04,284] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-09 15:35:04,284] [utils.execute] (0.000) UPDATE "resources" SET "next_id" = 25 WHERE "resources"."id" = 24; args=(25, 24)
+[DEBUG] [2021-02-09 15:35:04,285] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-09 15:35:04,285] [utils.execute] (0.000) INSERT INTO "resources" ("path", "type", "business_type", "value", "pid", "next_id", "pre_id", "is_leaf", "checked", "process_type", "ctime", "mtime", "remark", "col_int_01", "col_json_01", "is_debug") VALUES ('http://ai-resource.yypm.com/resource/sample/20210209/20201210200513/20201210200513_000025.jpg', 1, 0, NULL, 1, 0, 25, 1, 0, 1, '2021-02-09 07:35:04.285256', '2021-02-09 07:35:04.285278', NULL, 1, NULL, 0); args=['http://ai-resource.yypm.com/resource/sample/20210209/20201210200513/20201210200513_000025.jpg', 1, 0, None, 1, 0, 25, 1, 0, 1, '2021-02-09 07:35:04.285256', '2021-02-09 07:35:04.285278', None, 1, None, 0]
+[DEBUG] [2021-02-09 15:35:04,286] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-09 15:35:04,286] [utils.execute] (0.000) UPDATE "resources" SET "next_id" = 26 WHERE "resources"."id" = 25; args=(26, 25)
+[DEBUG] [2021-02-09 15:35:04,287] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-09 15:35:04,287] [utils.execute] (0.000) INSERT INTO "resources" ("path", "type", "business_type", "value", "pid", "next_id", "pre_id", "is_leaf", "checked", "process_type", "ctime", "mtime", "remark", "col_int_01", "col_json_01", "is_debug") VALUES ('http://ai-resource.yypm.com/resource/sample/20210209/20201210200513/20201210200513_000026.jpg', 1, 0, NULL, 1, 0, 26, 1, 0, 1, '2021-02-09 07:35:04.287455', '2021-02-09 07:35:04.287478', NULL, 1, NULL, 0); args=['http://ai-resource.yypm.com/resource/sample/20210209/20201210200513/20201210200513_000026.jpg', 1, 0, None, 1, 0, 26, 1, 0, 1, '2021-02-09 07:35:04.287455', '2021-02-09 07:35:04.287478', None, 1, None, 0]
+[DEBUG] [2021-02-09 15:35:04,288] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-09 15:35:04,288] [utils.execute] (0.000) UPDATE "resources" SET "next_id" = 27 WHERE "resources"."id" = 26; args=(27, 26)
+[DEBUG] [2021-02-09 15:35:04,289] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-09 15:35:04,294] [utils.execute] (0.005) INSERT INTO "resources" ("path", "type", "business_type", "value", "pid", "next_id", "pre_id", "is_leaf", "checked", "process_type", "ctime", "mtime", "remark", "col_int_01", "col_json_01", "is_debug") VALUES ('http://ai-resource.yypm.com/resource/sample/20210209/20201210200513/20201210200513_000027.jpg', 1, 0, NULL, 1, 0, 27, 1, 0, 1, '2021-02-09 07:35:04.289582', '2021-02-09 07:35:04.289607', NULL, 1, NULL, 0); args=['http://ai-resource.yypm.com/resource/sample/20210209/20201210200513/20201210200513_000027.jpg', 1, 0, None, 1, 0, 27, 1, 0, 1, '2021-02-09 07:35:04.289582', '2021-02-09 07:35:04.289607', None, 1, None, 0]
+[DEBUG] [2021-02-09 15:35:04,295] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-09 15:35:04,295] [utils.execute] (0.000) UPDATE "resources" SET "next_id" = 28 WHERE "resources"."id" = 27; args=(28, 27)
+[DEBUG] [2021-02-09 15:35:04,296] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-09 15:35:04,297] [utils.execute] (0.000) INSERT INTO "resources" ("path", "type", "business_type", "value", "pid", "next_id", "pre_id", "is_leaf", "checked", "process_type", "ctime", "mtime", "remark", "col_int_01", "col_json_01", "is_debug") VALUES ('http://ai-resource.yypm.com/resource/sample/20210209/20201210200513/20201210200513_000028.jpg', 1, 0, NULL, 1, 0, 28, 1, 0, 1, '2021-02-09 07:35:04.296857', '2021-02-09 07:35:04.296885', NULL, 1, NULL, 0); args=['http://ai-resource.yypm.com/resource/sample/20210209/20201210200513/20201210200513_000028.jpg', 1, 0, None, 1, 0, 28, 1, 0, 1, '2021-02-09 07:35:04.296857', '2021-02-09 07:35:04.296885', None, 1, None, 0]
+[DEBUG] [2021-02-09 15:35:04,298] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-09 15:35:04,299] [utils.execute] (0.000) UPDATE "resources" SET "next_id" = 29 WHERE "resources"."id" = 28; args=(29, 28)
+[DEBUG] [2021-02-09 15:35:04,299] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-09 15:35:04,300] [utils.execute] (0.000) INSERT INTO "resources" ("path", "type", "business_type", "value", "pid", "next_id", "pre_id", "is_leaf", "checked", "process_type", "ctime", "mtime", "remark", "col_int_01", "col_json_01", "is_debug") VALUES ('http://ai-resource.yypm.com/resource/sample/20210209/20201210200513/20201210200513_000029.jpg', 1, 0, NULL, 1, 0, 29, 1, 0, 1, '2021-02-09 07:35:04.299837', '2021-02-09 07:35:04.299863', NULL, 1, NULL, 0); args=['http://ai-resource.yypm.com/resource/sample/20210209/20201210200513/20201210200513_000029.jpg', 1, 0, None, 1, 0, 29, 1, 0, 1, '2021-02-09 07:35:04.299837', '2021-02-09 07:35:04.299863', None, 1, None, 0]
+[DEBUG] [2021-02-09 15:35:04,301] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-09 15:35:04,301] [utils.execute] (0.000) UPDATE "resources" SET "next_id" = 30 WHERE "resources"."id" = 29; args=(30, 29)
+[DEBUG] [2021-02-09 15:35:04,302] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-09 15:35:04,302] [utils.execute] (0.000) INSERT INTO "resources" ("path", "type", "business_type", "value", "pid", "next_id", "pre_id", "is_leaf", "checked", "process_type", "ctime", "mtime", "remark", "col_int_01", "col_json_01", "is_debug") VALUES ('http://ai-resource.yypm.com/resource/sample/20210209/20201210200513/20201210200513_000030.jpg', 1, 0, NULL, 1, 0, 30, 1, 0, 1, '2021-02-09 07:35:04.302529', '2021-02-09 07:35:04.302555', NULL, 1, NULL, 0); args=['http://ai-resource.yypm.com/resource/sample/20210209/20201210200513/20201210200513_000030.jpg', 1, 0, None, 1, 0, 30, 1, 0, 1, '2021-02-09 07:35:04.302529', '2021-02-09 07:35:04.302555', None, 1, None, 0]
+[DEBUG] [2021-02-09 15:35:04,303] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-09 15:35:04,304] [utils.execute] (0.000) UPDATE "resources" SET "next_id" = 31 WHERE "resources"."id" = 30; args=(31, 30)
+[DEBUG] [2021-02-09 15:35:04,305] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-09 15:35:04,305] [utils.execute] (0.000) INSERT INTO "resources" ("path", "type", "business_type", "value", "pid", "next_id", "pre_id", "is_leaf", "checked", "process_type", "ctime", "mtime", "remark", "col_int_01", "col_json_01", "is_debug") VALUES ('http://ai-resource.yypm.com/resource/sample/20210209/20201210200513/20201210200513_000031.jpg', 1, 0, NULL, 1, 0, 31, 1, 0, 1, '2021-02-09 07:35:04.305570', '2021-02-09 07:35:04.305604', NULL, 1, NULL, 0); args=['http://ai-resource.yypm.com/resource/sample/20210209/20201210200513/20201210200513_000031.jpg', 1, 0, None, 1, 0, 31, 1, 0, 1, '2021-02-09 07:35:04.305570', '2021-02-09 07:35:04.305604', None, 1, None, 0]
+[DEBUG] [2021-02-09 15:35:04,306] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-09 15:35:04,307] [utils.execute] (0.000) UPDATE "resources" SET "next_id" = 32 WHERE "resources"."id" = 31; args=(32, 31)
+[DEBUG] [2021-02-09 15:35:04,307] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-09 15:35:04,308] [utils.execute] (0.000) INSERT INTO "resources" ("path", "type", "business_type", "value", "pid", "next_id", "pre_id", "is_leaf", "checked", "process_type", "ctime", "mtime", "remark", "col_int_01", "col_json_01", "is_debug") VALUES ('http://ai-resource.yypm.com/resource/sample/20210209/20201210200513/20201210200513_000032.jpg', 1, 0, NULL, 1, 0, 32, 1, 0, 1, '2021-02-09 07:35:04.308033', '2021-02-09 07:35:04.308060', NULL, 1, NULL, 0); args=['http://ai-resource.yypm.com/resource/sample/20210209/20201210200513/20201210200513_000032.jpg', 1, 0, None, 1, 0, 32, 1, 0, 1, '2021-02-09 07:35:04.308033', '2021-02-09 07:35:04.308060', None, 1, None, 0]
+[DEBUG] [2021-02-09 15:35:04,309] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-09 15:35:04,309] [utils.execute] (0.000) UPDATE "resources" SET "next_id" = 33 WHERE "resources"."id" = 32; args=(33, 32)
+[DEBUG] [2021-02-09 15:35:04,310] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-09 15:35:04,310] [utils.execute] (0.000) INSERT INTO "resources" ("path", "type", "business_type", "value", "pid", "next_id", "pre_id", "is_leaf", "checked", "process_type", "ctime", "mtime", "remark", "col_int_01", "col_json_01", "is_debug") VALUES ('http://ai-resource.yypm.com/resource/sample/20210209/20201210200513/20201210200513_000033.jpg', 1, 0, NULL, 1, 0, 33, 1, 0, 1, '2021-02-09 07:35:04.310534', '2021-02-09 07:35:04.310562', NULL, 1, NULL, 0); args=['http://ai-resource.yypm.com/resource/sample/20210209/20201210200513/20201210200513_000033.jpg', 1, 0, None, 1, 0, 33, 1, 0, 1, '2021-02-09 07:35:04.310534', '2021-02-09 07:35:04.310562', None, 1, None, 0]
+[DEBUG] [2021-02-09 15:35:04,311] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-09 15:35:04,311] [utils.execute] (0.000) UPDATE "resources" SET "next_id" = 34 WHERE "resources"."id" = 33; args=(34, 33)
+[DEBUG] [2021-02-09 15:35:04,312] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-09 15:35:04,313] [utils.execute] (0.000) INSERT INTO "resources" ("path", "type", "business_type", "value", "pid", "next_id", "pre_id", "is_leaf", "checked", "process_type", "ctime", "mtime", "remark", "col_int_01", "col_json_01", "is_debug") VALUES ('http://ai-resource.yypm.com/resource/sample/20210209/20201210200513/20201210200513_000034.jpg', 1, 0, NULL, 1, 0, 34, 1, 0, 1, '2021-02-09 07:35:04.312699', '2021-02-09 07:35:04.312724', NULL, 1, NULL, 0); args=['http://ai-resource.yypm.com/resource/sample/20210209/20201210200513/20201210200513_000034.jpg', 1, 0, None, 1, 0, 34, 1, 0, 1, '2021-02-09 07:35:04.312699', '2021-02-09 07:35:04.312724', None, 1, None, 0]
+[DEBUG] [2021-02-09 15:35:04,313] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-09 15:35:04,314] [utils.execute] (0.000) UPDATE "resources" SET "next_id" = 35 WHERE "resources"."id" = 34; args=(35, 34)
+[DEBUG] [2021-02-09 15:35:04,314] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-09 15:35:04,315] [utils.execute] (0.000) INSERT INTO "resources" ("path", "type", "business_type", "value", "pid", "next_id", "pre_id", "is_leaf", "checked", "process_type", "ctime", "mtime", "remark", "col_int_01", "col_json_01", "is_debug") VALUES ('http://ai-resource.yypm.com/resource/sample/20210209/20201210200513/20201210200513_000035.jpg', 1, 0, NULL, 1, 0, 35, 1, 0, 1, '2021-02-09 07:35:04.314803', '2021-02-09 07:35:04.314829', NULL, 1, NULL, 0); args=['http://ai-resource.yypm.com/resource/sample/20210209/20201210200513/20201210200513_000035.jpg', 1, 0, None, 1, 0, 35, 1, 0, 1, '2021-02-09 07:35:04.314803', '2021-02-09 07:35:04.314829', None, 1, None, 0]
+[DEBUG] [2021-02-09 15:35:04,315] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-09 15:35:04,316] [utils.execute] (0.000) UPDATE "resources" SET "next_id" = 36 WHERE "resources"."id" = 35; args=(36, 35)
+[DEBUG] [2021-02-09 15:35:04,316] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-09 15:35:04,317] [utils.execute] (0.000) INSERT INTO "resources" ("path", "type", "business_type", "value", "pid", "next_id", "pre_id", "is_leaf", "checked", "process_type", "ctime", "mtime", "remark", "col_int_01", "col_json_01", "is_debug") VALUES ('http://ai-resource.yypm.com/resource/sample/20210209/20201210200513/20201210200513_000036.jpg', 1, 0, NULL, 1, 0, 36, 1, 0, 1, '2021-02-09 07:35:04.316907', '2021-02-09 07:35:04.316930', NULL, 1, NULL, 0); args=['http://ai-resource.yypm.com/resource/sample/20210209/20201210200513/20201210200513_000036.jpg', 1, 0, None, 1, 0, 36, 1, 0, 1, '2021-02-09 07:35:04.316907', '2021-02-09 07:35:04.316930', None, 1, None, 0]
+[DEBUG] [2021-02-09 15:35:04,317] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-09 15:35:04,318] [utils.execute] (0.000) UPDATE "resources" SET "next_id" = 37 WHERE "resources"."id" = 36; args=(37, 36)
+[DEBUG] [2021-02-09 15:35:04,318] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-09 15:35:04,319] [utils.execute] (0.000) INSERT INTO "resources" ("path", "type", "business_type", "value", "pid", "next_id", "pre_id", "is_leaf", "checked", "process_type", "ctime", "mtime", "remark", "col_int_01", "col_json_01", "is_debug") VALUES ('http://ai-resource.yypm.com/resource/sample/20210209/20201210200513/20201210200513_000037.jpg', 1, 0, NULL, 1, 0, 37, 1, 0, 1, '2021-02-09 07:35:04.318779', '2021-02-09 07:35:04.318801', NULL, 1, NULL, 0); args=['http://ai-resource.yypm.com/resource/sample/20210209/20201210200513/20201210200513_000037.jpg', 1, 0, None, 1, 0, 37, 1, 0, 1, '2021-02-09 07:35:04.318779', '2021-02-09 07:35:04.318801', None, 1, None, 0]
+[DEBUG] [2021-02-09 15:35:04,319] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-09 15:35:04,320] [utils.execute] (0.000) UPDATE "resources" SET "next_id" = 38 WHERE "resources"."id" = 37; args=(38, 37)
+[DEBUG] [2021-02-09 15:35:04,320] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-09 15:35:04,321] [utils.execute] (0.000) INSERT INTO "resources" ("path", "type", "business_type", "value", "pid", "next_id", "pre_id", "is_leaf", "checked", "process_type", "ctime", "mtime", "remark", "col_int_01", "col_json_01", "is_debug") VALUES ('http://ai-resource.yypm.com/resource/sample/20210209/20201210200513/20201210200513_000038.jpg', 1, 0, NULL, 1, 0, 38, 1, 0, 1, '2021-02-09 07:35:04.320714', '2021-02-09 07:35:04.320742', NULL, 1, NULL, 0); args=['http://ai-resource.yypm.com/resource/sample/20210209/20201210200513/20201210200513_000038.jpg', 1, 0, None, 1, 0, 38, 1, 0, 1, '2021-02-09 07:35:04.320714', '2021-02-09 07:35:04.320742', None, 1, None, 0]
+[DEBUG] [2021-02-09 15:35:04,321] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-09 15:35:04,321] [utils.execute] (0.000) UPDATE "resources" SET "next_id" = 39 WHERE "resources"."id" = 38; args=(39, 38)
+[DEBUG] [2021-02-09 15:35:04,322] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-09 15:35:04,322] [utils.execute] (0.000) INSERT INTO "resources" ("path", "type", "business_type", "value", "pid", "next_id", "pre_id", "is_leaf", "checked", "process_type", "ctime", "mtime", "remark", "col_int_01", "col_json_01", "is_debug") VALUES ('http://ai-resource.yypm.com/resource/sample/20210209/20201210200513/20201210200513_000039.jpg', 1, 0, NULL, 1, 0, 39, 1, 0, 1, '2021-02-09 07:35:04.322500', '2021-02-09 07:35:04.322522', NULL, 1, NULL, 0); args=['http://ai-resource.yypm.com/resource/sample/20210209/20201210200513/20201210200513_000039.jpg', 1, 0, None, 1, 0, 39, 1, 0, 1, '2021-02-09 07:35:04.322500', '2021-02-09 07:35:04.322522', None, 1, None, 0]
+[DEBUG] [2021-02-09 15:35:04,323] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-09 15:35:04,323] [utils.execute] (0.000) UPDATE "resources" SET "next_id" = 40 WHERE "resources"."id" = 39; args=(40, 39)
+[DEBUG] [2021-02-09 15:35:04,324] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-09 15:35:04,324] [utils.execute] (0.000) INSERT INTO "resources" ("path", "type", "business_type", "value", "pid", "next_id", "pre_id", "is_leaf", "checked", "process_type", "ctime", "mtime", "remark", "col_int_01", "col_json_01", "is_debug") VALUES ('http://ai-resource.yypm.com/resource/sample/20210209/20201210200513/20201210200513_000040.jpg', 1, 0, NULL, 1, 0, 40, 1, 0, 1, '2021-02-09 07:35:04.324265', '2021-02-09 07:35:04.324287', NULL, 1, NULL, 0); args=['http://ai-resource.yypm.com/resource/sample/20210209/20201210200513/20201210200513_000040.jpg', 1, 0, None, 1, 0, 40, 1, 0, 1, '2021-02-09 07:35:04.324265', '2021-02-09 07:35:04.324287', None, 1, None, 0]
+[DEBUG] [2021-02-09 15:35:04,325] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-09 15:35:04,325] [utils.execute] (0.000) UPDATE "resources" SET "next_id" = 41 WHERE "resources"."id" = 40; args=(41, 40)
+[DEBUG] [2021-02-09 15:35:04,325] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-09 15:35:04,326] [utils.execute] (0.000) INSERT INTO "resources" ("path", "type", "business_type", "value", "pid", "next_id", "pre_id", "is_leaf", "checked", "process_type", "ctime", "mtime", "remark", "col_int_01", "col_json_01", "is_debug") VALUES ('http://ai-resource.yypm.com/resource/sample/20210209/20201210200513/20201210200513_000041.jpg', 1, 0, NULL, 1, 0, 41, 1, 0, 1, '2021-02-09 07:35:04.326009', '2021-02-09 07:35:04.326031', NULL, 1, NULL, 0); args=['http://ai-resource.yypm.com/resource/sample/20210209/20201210200513/20201210200513_000041.jpg', 1, 0, None, 1, 0, 41, 1, 0, 1, '2021-02-09 07:35:04.326009', '2021-02-09 07:35:04.326031', None, 1, None, 0]
+[DEBUG] [2021-02-09 15:35:04,327] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-09 15:35:04,327] [utils.execute] (0.000) UPDATE "resources" SET "next_id" = 42 WHERE "resources"."id" = 41; args=(42, 41)
+[DEBUG] [2021-02-09 15:35:04,327] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-09 15:35:04,328] [utils.execute] (0.000) INSERT INTO "resources" ("path", "type", "business_type", "value", "pid", "next_id", "pre_id", "is_leaf", "checked", "process_type", "ctime", "mtime", "remark", "col_int_01", "col_json_01", "is_debug") VALUES ('http://ai-resource.yypm.com/resource/sample/20210209/20201210200513/20201210200513_000042.jpg', 1, 0, NULL, 1, 0, 42, 1, 0, 1, '2021-02-09 07:35:04.327908', '2021-02-09 07:35:04.327931', NULL, 1, NULL, 0); args=['http://ai-resource.yypm.com/resource/sample/20210209/20201210200513/20201210200513_000042.jpg', 1, 0, None, 1, 0, 42, 1, 0, 1, '2021-02-09 07:35:04.327908', '2021-02-09 07:35:04.327931', None, 1, None, 0]
+[DEBUG] [2021-02-09 15:35:04,328] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-09 15:35:04,329] [utils.execute] (0.000) UPDATE "resources" SET "next_id" = 43 WHERE "resources"."id" = 42; args=(43, 42)
+[DEBUG] [2021-02-09 15:35:04,329] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-09 15:35:04,330] [utils.execute] (0.000) INSERT INTO "resources" ("path", "type", "business_type", "value", "pid", "next_id", "pre_id", "is_leaf", "checked", "process_type", "ctime", "mtime", "remark", "col_int_01", "col_json_01", "is_debug") VALUES ('http://ai-resource.yypm.com/resource/sample/20210209/20201210200513/20201210200513_000043.jpg', 1, 0, NULL, 1, 0, 43, 1, 0, 1, '2021-02-09 07:35:04.329701', '2021-02-09 07:35:04.329724', NULL, 1, NULL, 0); args=['http://ai-resource.yypm.com/resource/sample/20210209/20201210200513/20201210200513_000043.jpg', 1, 0, None, 1, 0, 43, 1, 0, 1, '2021-02-09 07:35:04.329701', '2021-02-09 07:35:04.329724', None, 1, None, 0]
+[DEBUG] [2021-02-09 15:35:04,330] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-09 15:35:04,330] [utils.execute] (0.000) UPDATE "resources" SET "next_id" = 44 WHERE "resources"."id" = 43; args=(44, 43)
+[DEBUG] [2021-02-09 15:35:04,331] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-09 15:35:04,331] [utils.execute] (0.000) INSERT INTO "resources" ("path", "type", "business_type", "value", "pid", "next_id", "pre_id", "is_leaf", "checked", "process_type", "ctime", "mtime", "remark", "col_int_01", "col_json_01", "is_debug") VALUES ('http://ai-resource.yypm.com/resource/sample/20210209/20201210200513/20201210200513_000044.jpg', 1, 0, NULL, 1, 0, 44, 1, 0, 1, '2021-02-09 07:35:04.331570', '2021-02-09 07:35:04.331593', NULL, 1, NULL, 0); args=['http://ai-resource.yypm.com/resource/sample/20210209/20201210200513/20201210200513_000044.jpg', 1, 0, None, 1, 0, 44, 1, 0, 1, '2021-02-09 07:35:04.331570', '2021-02-09 07:35:04.331593', None, 1, None, 0]
+[DEBUG] [2021-02-09 15:35:04,332] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-09 15:35:04,332] [utils.execute] (0.000) UPDATE "resources" SET "next_id" = 45 WHERE "resources"."id" = 44; args=(45, 44)
+[DEBUG] [2021-02-09 15:35:04,333] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-09 15:35:04,333] [utils.execute] (0.000) INSERT INTO "resources" ("path", "type", "business_type", "value", "pid", "next_id", "pre_id", "is_leaf", "checked", "process_type", "ctime", "mtime", "remark", "col_int_01", "col_json_01", "is_debug") VALUES ('http://ai-resource.yypm.com/resource/sample/20210209/20201210200513/20201210200513_000045.jpg', 1, 0, NULL, 1, 0, 45, 1, 0, 1, '2021-02-09 07:35:04.333392', '2021-02-09 07:35:04.333414', NULL, 1, NULL, 0); args=['http://ai-resource.yypm.com/resource/sample/20210209/20201210200513/20201210200513_000045.jpg', 1, 0, None, 1, 0, 45, 1, 0, 1, '2021-02-09 07:35:04.333392', '2021-02-09 07:35:04.333414', None, 1, None, 0]
+[DEBUG] [2021-02-09 15:35:04,334] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-09 15:35:04,334] [utils.execute] (0.000) UPDATE "resources" SET "next_id" = 46 WHERE "resources"."id" = 45; args=(46, 45)
+[DEBUG] [2021-02-09 15:35:04,335] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-09 15:35:04,335] [utils.execute] (0.000) INSERT INTO "resources" ("path", "type", "business_type", "value", "pid", "next_id", "pre_id", "is_leaf", "checked", "process_type", "ctime", "mtime", "remark", "col_int_01", "col_json_01", "is_debug") VALUES ('http://ai-resource.yypm.com/resource/sample/20210209/20201210200513/20201210200513_000046.jpg', 1, 0, NULL, 1, 0, 46, 1, 0, 1, '2021-02-09 07:35:04.335194', '2021-02-09 07:35:04.335219', NULL, 1, NULL, 0); args=['http://ai-resource.yypm.com/resource/sample/20210209/20201210200513/20201210200513_000046.jpg', 1, 0, None, 1, 0, 46, 1, 0, 1, '2021-02-09 07:35:04.335194', '2021-02-09 07:35:04.335219', None, 1, None, 0]
+[DEBUG] [2021-02-09 15:35:04,336] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-09 15:35:04,336] [utils.execute] (0.000) UPDATE "resources" SET "next_id" = 47 WHERE "resources"."id" = 46; args=(47, 46)
+[DEBUG] [2021-02-09 15:35:04,336] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-09 15:35:04,337] [utils.execute] (0.000) INSERT INTO "resources" ("path", "type", "business_type", "value", "pid", "next_id", "pre_id", "is_leaf", "checked", "process_type", "ctime", "mtime", "remark", "col_int_01", "col_json_01", "is_debug") VALUES ('http://ai-resource.yypm.com/resource/sample/20210209/20201210200513/20201210200513_000047.jpg', 1, 0, NULL, 1, 0, 47, 1, 0, 1, '2021-02-09 07:35:04.336978', '2021-02-09 07:35:04.337001', NULL, 1, NULL, 0); args=['http://ai-resource.yypm.com/resource/sample/20210209/20201210200513/20201210200513_000047.jpg', 1, 0, None, 1, 0, 47, 1, 0, 1, '2021-02-09 07:35:04.336978', '2021-02-09 07:35:04.337001', None, 1, None, 0]
+[DEBUG] [2021-02-09 15:35:04,337] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-09 15:35:04,338] [utils.execute] (0.000) UPDATE "resources" SET "next_id" = 48 WHERE "resources"."id" = 47; args=(48, 47)
+[DEBUG] [2021-02-09 15:35:04,338] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-09 15:35:04,339] [utils.execute] (0.000) INSERT INTO "resources" ("path", "type", "business_type", "value", "pid", "next_id", "pre_id", "is_leaf", "checked", "process_type", "ctime", "mtime", "remark", "col_int_01", "col_json_01", "is_debug") VALUES ('http://ai-resource.yypm.com/resource/sample/20210209/20201210200513/20201210200513_000048.jpg', 1, 0, NULL, 1, 0, 48, 1, 0, 1, '2021-02-09 07:35:04.338722', '2021-02-09 07:35:04.338744', NULL, 1, NULL, 0); args=['http://ai-resource.yypm.com/resource/sample/20210209/20201210200513/20201210200513_000048.jpg', 1, 0, None, 1, 0, 48, 1, 0, 1, '2021-02-09 07:35:04.338722', '2021-02-09 07:35:04.338744', None, 1, None, 0]
+[DEBUG] [2021-02-09 15:35:04,339] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-09 15:35:04,339] [utils.execute] (0.000) UPDATE "resources" SET "next_id" = 49 WHERE "resources"."id" = 48; args=(49, 48)
+[DEBUG] [2021-02-09 15:35:04,340] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-09 15:35:04,340] [utils.execute] (0.000) INSERT INTO "resources" ("path", "type", "business_type", "value", "pid", "next_id", "pre_id", "is_leaf", "checked", "process_type", "ctime", "mtime", "remark", "col_int_01", "col_json_01", "is_debug") VALUES ('http://ai-resource.yypm.com/resource/sample/20210209/20201210200513/20201210200513_000049.jpg', 1, 0, NULL, 1, 0, 49, 1, 0, 1, '2021-02-09 07:35:04.340444', '2021-02-09 07:35:04.340466', NULL, 1, NULL, 0); args=['http://ai-resource.yypm.com/resource/sample/20210209/20201210200513/20201210200513_000049.jpg', 1, 0, None, 1, 0, 49, 1, 0, 1, '2021-02-09 07:35:04.340444', '2021-02-09 07:35:04.340466', None, 1, None, 0]
+[DEBUG] [2021-02-09 15:35:04,341] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-09 15:35:04,341] [utils.execute] (0.000) UPDATE "resources" SET "next_id" = 50 WHERE "resources"."id" = 49; args=(50, 49)
+[DEBUG] [2021-02-09 15:35:04,342] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-09 15:35:04,342] [utils.execute] (0.000) INSERT INTO "resources" ("path", "type", "business_type", "value", "pid", "next_id", "pre_id", "is_leaf", "checked", "process_type", "ctime", "mtime", "remark", "col_int_01", "col_json_01", "is_debug") VALUES ('http://ai-resource.yypm.com/resource/sample/20210209/20201210200513/20201210200513_000050.jpg', 1, 0, NULL, 1, 0, 50, 1, 0, 1, '2021-02-09 07:35:04.342358', '2021-02-09 07:35:04.342381', NULL, 1, NULL, 0); args=['http://ai-resource.yypm.com/resource/sample/20210209/20201210200513/20201210200513_000050.jpg', 1, 0, None, 1, 0, 50, 1, 0, 1, '2021-02-09 07:35:04.342358', '2021-02-09 07:35:04.342381', None, 1, None, 0]
+[DEBUG] [2021-02-09 15:35:04,343] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-09 15:35:04,343] [utils.execute] (0.000) UPDATE "resources" SET "next_id" = 51 WHERE "resources"."id" = 50; args=(51, 50)
+[DEBUG] [2021-02-09 15:35:04,343] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-09 15:35:04,344] [utils.execute] (0.000) INSERT INTO "resources" ("path", "type", "business_type", "value", "pid", "next_id", "pre_id", "is_leaf", "checked", "process_type", "ctime", "mtime", "remark", "col_int_01", "col_json_01", "is_debug") VALUES ('http://ai-resource.yypm.com/resource/sample/20210209/20201210200513/20201210200513_000051.jpg', 1, 0, NULL, 1, 0, 51, 1, 0, 1, '2021-02-09 07:35:04.344139', '2021-02-09 07:35:04.344160', NULL, 1, NULL, 0); args=['http://ai-resource.yypm.com/resource/sample/20210209/20201210200513/20201210200513_000051.jpg', 1, 0, None, 1, 0, 51, 1, 0, 1, '2021-02-09 07:35:04.344139', '2021-02-09 07:35:04.344160', None, 1, None, 0]
+[DEBUG] [2021-02-09 15:35:04,344] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-09 15:35:04,345] [utils.execute] (0.000) UPDATE "resources" SET "next_id" = 52 WHERE "resources"."id" = 51; args=(52, 51)
+[DEBUG] [2021-02-09 15:35:04,345] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-09 15:35:04,346] [utils.execute] (0.000) INSERT INTO "resources" ("path", "type", "business_type", "value", "pid", "next_id", "pre_id", "is_leaf", "checked", "process_type", "ctime", "mtime", "remark", "col_int_01", "col_json_01", "is_debug") VALUES ('http://ai-resource.yypm.com/resource/sample/20210209/20201210200513/20201210200513_000052.jpg', 1, 0, NULL, 1, 0, 52, 1, 0, 1, '2021-02-09 07:35:04.345859', '2021-02-09 07:35:04.345883', NULL, 1, NULL, 0); args=['http://ai-resource.yypm.com/resource/sample/20210209/20201210200513/20201210200513_000052.jpg', 1, 0, None, 1, 0, 52, 1, 0, 1, '2021-02-09 07:35:04.345859', '2021-02-09 07:35:04.345883', None, 1, None, 0]
+[DEBUG] [2021-02-09 15:35:04,346] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-09 15:35:04,347] [utils.execute] (0.000) UPDATE "resources" SET "next_id" = 53 WHERE "resources"."id" = 52; args=(53, 52)
+[DEBUG] [2021-02-09 15:35:04,347] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-09 15:35:04,348] [utils.execute] (0.000) INSERT INTO "resources" ("path", "type", "business_type", "value", "pid", "next_id", "pre_id", "is_leaf", "checked", "process_type", "ctime", "mtime", "remark", "col_int_01", "col_json_01", "is_debug") VALUES ('http://ai-resource.yypm.com/resource/sample/20210209/20201210200513/20201210200513_000053.jpg', 1, 0, NULL, 1, 0, 53, 1, 0, 1, '2021-02-09 07:35:04.347762', '2021-02-09 07:35:04.347784', NULL, 1, NULL, 0); args=['http://ai-resource.yypm.com/resource/sample/20210209/20201210200513/20201210200513_000053.jpg', 1, 0, None, 1, 0, 53, 1, 0, 1, '2021-02-09 07:35:04.347762', '2021-02-09 07:35:04.347784', None, 1, None, 0]
+[DEBUG] [2021-02-09 15:35:04,348] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-09 15:35:04,348] [utils.execute] (0.000) UPDATE "resources" SET "next_id" = 54 WHERE "resources"."id" = 53; args=(54, 53)
+[DEBUG] [2021-02-09 15:35:04,349] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-09 15:35:04,349] [utils.execute] (0.000) INSERT INTO "resources" ("path", "type", "business_type", "value", "pid", "next_id", "pre_id", "is_leaf", "checked", "process_type", "ctime", "mtime", "remark", "col_int_01", "col_json_01", "is_debug") VALUES ('http://ai-resource.yypm.com/resource/sample/20210209/20201210200513/20201210200513_000054.jpg', 1, 0, NULL, 1, 0, 54, 1, 0, 1, '2021-02-09 07:35:04.349603', '2021-02-09 07:35:04.349625', NULL, 1, NULL, 0); args=['http://ai-resource.yypm.com/resource/sample/20210209/20201210200513/20201210200513_000054.jpg', 1, 0, None, 1, 0, 54, 1, 0, 1, '2021-02-09 07:35:04.349603', '2021-02-09 07:35:04.349625', None, 1, None, 0]
+[DEBUG] [2021-02-09 15:35:04,350] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-09 15:35:04,350] [utils.execute] (0.000) UPDATE "resources" SET "next_id" = 55 WHERE "resources"."id" = 54; args=(55, 54)
+[DEBUG] [2021-02-09 15:35:04,351] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-09 15:35:04,351] [utils.execute] (0.000) INSERT INTO "resources" ("path", "type", "business_type", "value", "pid", "next_id", "pre_id", "is_leaf", "checked", "process_type", "ctime", "mtime", "remark", "col_int_01", "col_json_01", "is_debug") VALUES ('http://ai-resource.yypm.com/resource/sample/20210209/20201210200513/20201210200513_000055.jpg', 1, 0, NULL, 1, 0, 55, 1, 0, 1, '2021-02-09 07:35:04.351439', '2021-02-09 07:35:04.351463', NULL, 1, NULL, 0); args=['http://ai-resource.yypm.com/resource/sample/20210209/20201210200513/20201210200513_000055.jpg', 1, 0, None, 1, 0, 55, 1, 0, 1, '2021-02-09 07:35:04.351439', '2021-02-09 07:35:04.351463', None, 1, None, 0]
+[DEBUG] [2021-02-09 15:35:04,352] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-09 15:35:04,352] [utils.execute] (0.000) UPDATE "resources" SET "next_id" = 56 WHERE "resources"."id" = 55; args=(56, 55)
+[DEBUG] [2021-02-09 15:35:04,353] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-09 15:35:04,353] [utils.execute] (0.000) INSERT INTO "resources" ("path", "type", "business_type", "value", "pid", "next_id", "pre_id", "is_leaf", "checked", "process_type", "ctime", "mtime", "remark", "col_int_01", "col_json_01", "is_debug") VALUES ('http://ai-resource.yypm.com/resource/sample/20210209/20201210200513/20201210200513_000056.jpg', 1, 0, NULL, 1, 0, 56, 1, 0, 1, '2021-02-09 07:35:04.353252', '2021-02-09 07:35:04.353275', NULL, 1, NULL, 0); args=['http://ai-resource.yypm.com/resource/sample/20210209/20201210200513/20201210200513_000056.jpg', 1, 0, None, 1, 0, 56, 1, 0, 1, '2021-02-09 07:35:04.353252', '2021-02-09 07:35:04.353275', None, 1, None, 0]
+[DEBUG] [2021-02-09 15:35:04,354] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-09 15:35:04,354] [utils.execute] (0.000) UPDATE "resources" SET "next_id" = 57 WHERE "resources"."id" = 56; args=(57, 56)
+[DEBUG] [2021-02-09 15:35:04,355] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-09 15:35:04,355] [utils.execute] (0.000) INSERT INTO "resources" ("path", "type", "business_type", "value", "pid", "next_id", "pre_id", "is_leaf", "checked", "process_type", "ctime", "mtime", "remark", "col_int_01", "col_json_01", "is_debug") VALUES ('http://ai-resource.yypm.com/resource/sample/20210209/20201210200513/20201210200513_000057.jpg', 1, 0, NULL, 1, 0, 57, 1, 0, 1, '2021-02-09 07:35:04.355229', '2021-02-09 07:35:04.355257', NULL, 1, NULL, 0); args=['http://ai-resource.yypm.com/resource/sample/20210209/20201210200513/20201210200513_000057.jpg', 1, 0, None, 1, 0, 57, 1, 0, 1, '2021-02-09 07:35:04.355229', '2021-02-09 07:35:04.355257', None, 1, None, 0]
+[DEBUG] [2021-02-09 15:35:04,356] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-09 15:35:04,356] [utils.execute] (0.000) UPDATE "resources" SET "next_id" = 58 WHERE "resources"."id" = 57; args=(58, 57)
+[DEBUG] [2021-02-09 15:35:04,357] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-09 15:35:04,357] [utils.execute] (0.000) INSERT INTO "resources" ("path", "type", "business_type", "value", "pid", "next_id", "pre_id", "is_leaf", "checked", "process_type", "ctime", "mtime", "remark", "col_int_01", "col_json_01", "is_debug") VALUES ('http://ai-resource.yypm.com/resource/sample/20210209/20201210200513/20201210200513_000058.jpg', 1, 0, NULL, 1, 0, 58, 1, 0, 1, '2021-02-09 07:35:04.357203', '2021-02-09 07:35:04.357229', NULL, 1, NULL, 0); args=['http://ai-resource.yypm.com/resource/sample/20210209/20201210200513/20201210200513_000058.jpg', 1, 0, None, 1, 0, 58, 1, 0, 1, '2021-02-09 07:35:04.357203', '2021-02-09 07:35:04.357229', None, 1, None, 0]
+[DEBUG] [2021-02-09 15:35:04,358] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-09 15:35:04,358] [utils.execute] (0.000) UPDATE "resources" SET "next_id" = 59 WHERE "resources"."id" = 58; args=(59, 58)
+[DEBUG] [2021-02-09 15:35:04,358] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-09 15:35:04,359] [utils.execute] (0.000) INSERT INTO "resources" ("path", "type", "business_type", "value", "pid", "next_id", "pre_id", "is_leaf", "checked", "process_type", "ctime", "mtime", "remark", "col_int_01", "col_json_01", "is_debug") VALUES ('http://ai-resource.yypm.com/resource/sample/20210209/20201210200513/20201210200513_000059.jpg', 1, 0, NULL, 1, 0, 59, 1, 0, 1, '2021-02-09 07:35:04.359131', '2021-02-09 07:35:04.359156', NULL, 1, NULL, 0); args=['http://ai-resource.yypm.com/resource/sample/20210209/20201210200513/20201210200513_000059.jpg', 1, 0, None, 1, 0, 59, 1, 0, 1, '2021-02-09 07:35:04.359131', '2021-02-09 07:35:04.359156', None, 1, None, 0]
+[DEBUG] [2021-02-09 15:35:04,360] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-09 15:35:04,360] [utils.execute] (0.000) UPDATE "resources" SET "next_id" = 60 WHERE "resources"."id" = 59; args=(60, 59)
+[DEBUG] [2021-02-09 15:35:04,361] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-09 15:35:04,361] [utils.execute] (0.000) INSERT INTO "resources" ("path", "type", "business_type", "value", "pid", "next_id", "pre_id", "is_leaf", "checked", "process_type", "ctime", "mtime", "remark", "col_int_01", "col_json_01", "is_debug") VALUES ('http://ai-resource.yypm.com/resource/sample/20210209/20201210200513/20201210200513_000060.jpg', 1, 0, NULL, 1, 0, 60, 1, 0, 1, '2021-02-09 07:35:04.361224', '2021-02-09 07:35:04.361251', NULL, 1, NULL, 0); args=['http://ai-resource.yypm.com/resource/sample/20210209/20201210200513/20201210200513_000060.jpg', 1, 0, None, 1, 0, 60, 1, 0, 1, '2021-02-09 07:35:04.361224', '2021-02-09 07:35:04.361251', None, 1, None, 0]
+[DEBUG] [2021-02-09 15:35:04,362] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-09 15:35:04,362] [utils.execute] (0.000) UPDATE "resources" SET "next_id" = 61 WHERE "resources"."id" = 60; args=(61, 60)
+[DEBUG] [2021-02-09 15:35:04,363] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-09 15:35:04,363] [utils.execute] (0.000) INSERT INTO "resources" ("path", "type", "business_type", "value", "pid", "next_id", "pre_id", "is_leaf", "checked", "process_type", "ctime", "mtime", "remark", "col_int_01", "col_json_01", "is_debug") VALUES ('http://ai-resource.yypm.com/resource/sample/20210209/20201210200513/20201210200513_000061.jpg', 1, 0, NULL, 1, 0, 61, 1, 0, 1, '2021-02-09 07:35:04.363245', '2021-02-09 07:35:04.363269', NULL, 1, NULL, 0); args=['http://ai-resource.yypm.com/resource/sample/20210209/20201210200513/20201210200513_000061.jpg', 1, 0, None, 1, 0, 61, 1, 0, 1, '2021-02-09 07:35:04.363245', '2021-02-09 07:35:04.363269', None, 1, None, 0]
+[DEBUG] [2021-02-09 15:35:04,364] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-09 15:35:04,364] [utils.execute] (0.000) UPDATE "resources" SET "next_id" = 62 WHERE "resources"."id" = 61; args=(62, 61)
+[DEBUG] [2021-02-09 15:35:04,365] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-09 15:35:04,365] [utils.execute] (0.000) INSERT INTO "resources" ("path", "type", "business_type", "value", "pid", "next_id", "pre_id", "is_leaf", "checked", "process_type", "ctime", "mtime", "remark", "col_int_01", "col_json_01", "is_debug") VALUES ('http://ai-resource.yypm.com/resource/sample/20210209/20201210200513/20201210200513_000062.jpg', 1, 0, NULL, 1, 0, 62, 1, 0, 1, '2021-02-09 07:35:04.365178', '2021-02-09 07:35:04.365201', NULL, 1, NULL, 0); args=['http://ai-resource.yypm.com/resource/sample/20210209/20201210200513/20201210200513_000062.jpg', 1, 0, None, 1, 0, 62, 1, 0, 1, '2021-02-09 07:35:04.365178', '2021-02-09 07:35:04.365201', None, 1, None, 0]
+[DEBUG] [2021-02-09 15:35:04,366] [utils.execute] (0.000) BEGIN; args=None
+[DEBUG] [2021-02-09 15:35:04,366] [utils.execute] (0.000) UPDATE "resources" SET "next_id" = 63 WHERE "resources"."id" = 62; args=(63, 62)

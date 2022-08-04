@@ -53,9 +53,9 @@ def get_video_shape(video_path):
            '-of', 'json',
            video_path]
     child = subprocess.Popen(cmd, stdout=subprocess.PIPE)
-    stdout ,_ = child.communicate()
-    print stdout
-    print _
+    stdout, _ = child.communicate()
+    print(stdout)
+    print(_)
     video_info= json.loads(stdout)
     stream_infos = video_info.get('streams', None)
     if stream_infos is None:
@@ -151,6 +151,7 @@ class VideoFrameGenerator(FrameGenerator):
         frame = frame.reshape((self.video_shape[1], self.video_shape[0], 3))
         return frame
 
+
 def extract_frame(video_path, video_shape, frames_dir, frame_rate=None, distinct=False, frame_nums=None, frame_type='jpg'):
     video_file = os.path.basename(video_path)
     video_name = os.path.splitext(video_file)[0]
@@ -213,6 +214,7 @@ def get_file_path(files_path):
                 file_path = os.path.join(files_path,item)
                 path_list.append(file_path)
         return path_list
+
 
 def main():
     parser = argparse.ArgumentParser()

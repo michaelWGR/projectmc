@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 """
 
 import os
+import pymysql
+pymysql.install_as_MySQLdb()
 
 # import djcelery
 
@@ -81,11 +83,13 @@ WSGI_APPLICATION = 'aiResource.wsgi.application'
 
 DATABASES = {
     'default': {
+        # 'ENGINE': 'django.db.backends.sqlite3',
+        # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
         # online
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'ai_test',
-        'USER': 'michael',
-        'PASSWORD': '123456',
+        'USER': 'root',
+        'PASSWORD': 'rootroot',
         'HOST': '127.0.0.1',
         'PORT': '',
     }
@@ -216,6 +220,6 @@ try:
     for setting in dir(config_module):
         if setting == setting.upper():
             locals()[setting] = getattr(config_module, setting)
-except ImportError, e:
+except ImportError as ex:
     # Ignore
     pass

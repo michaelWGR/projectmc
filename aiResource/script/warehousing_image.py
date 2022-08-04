@@ -9,7 +9,7 @@ import Queue
 import traceback
 from shutil import copyfile
 
-from utils.settings import *
+from .utils.settings import *
 import django
 from django.db import transaction
 
@@ -105,7 +105,7 @@ def warehousing_image(image_meta, business_type,id):
             os.remove(image_meta.image_output_path)
         if os.path.exists(image_meta.mata_file_path):
             os.remove(image_meta.mata_file_path)
-        print traceback.format_exc()
+        print(traceback.format_exc())
 
 
 def insert_or_ignore(image_meta, business_type):

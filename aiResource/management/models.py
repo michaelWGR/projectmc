@@ -37,7 +37,8 @@ class Resource(models.Model):
 
 class PornResult(models.Model):
     id = models.AutoField(primary_key=True)
-    resource = models.ForeignKey(Resource, null=False, db_constraint=False, db_index=True)
+    resource = models.ForeignKey(Resource, null=False, db_constraint=False, db_index=True,
+                                 on_delete=models.CASCADE)
 
     product = models.CharField(max_length=16, db_index=True)
     label = models.IntegerField(default=0)
@@ -56,7 +57,8 @@ class PornResult(models.Model):
 
 class OCRResult(models.Model):
     id = models.AutoField(primary_key=True)
-    resource = models.ForeignKey(Resource, null=False, db_constraint=False, db_index=True)
+    resource = models.ForeignKey(Resource, null=False, db_constraint=False, db_index=True,
+                                 on_delete=models.CASCADE)
 
     product = models.CharField(max_length=16, db_index=True)
     items = models.TextField(null=True)
@@ -73,7 +75,8 @@ class OCRResult(models.Model):
 
 class TempReview(models.Model):
     id = models.AutoField(primary_key=True)
-    resource = models.ForeignKey(Resource, null=False, db_constraint=False, db_index=True)
+    resource = models.ForeignKey(Resource, null=False, db_constraint=False, db_index=True,
+                                 on_delete=models.CASCADE)
     review_status = models.IntegerField(default=0)  # 1: no_need 2: need 3: reviewed
     old_value = models.IntegerField(null=True)
     new_value = models.IntegerField(null=True)

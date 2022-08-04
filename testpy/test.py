@@ -8,7 +8,7 @@ import random
 import subprocess
 import time
 import sys
-import requests
+# import requests
 import webbrowser
 import json
 # import psutil
@@ -60,14 +60,17 @@ def main():
     hua_pay = per_hua_earn*20*2/3
     print(hua_pay)
 
+
 def write_file():
     with open('test.yml', 'a') as f:
         f.write('# 哈哈哈哈哈\n')
         f.write('# 哈哈哈哈哈\n')
 
 
-
 if __name__ == '__main__':
     # main()
     # write_file()
-    print(6*12)
+    a = 78890
+    b = 67490
+    print(abs(b-a))
+    print(19*0.2*3000)

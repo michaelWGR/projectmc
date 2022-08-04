@@ -13,7 +13,7 @@
 """
 
 import requests #用requests库来做简单的网络请求
-import MySQLdb
+# import MySQLdb
 from scrapy.selector import Selector
 import csv
 import random
@@ -86,7 +86,7 @@ class IPUtil(object):
         #
         # result = cursor.execute(random_sql)
 
-        with open('ip.csv', 'rb') as ip_csv:
+        with open('ip.csv', 'r') as ip_csv:
             reader = csv.reader(ip_csv)
 
             # reader = ip_csv.readlines()
@@ -114,7 +114,7 @@ class IPUtil(object):
     def judge_ip(self, ip, port, ip_type):
         # 判断ip是否可用，如果通过代理ip访问百度，返回code200则说明可用
         # 若不可用则从数据库中删除
-        print 'begin judging ---->', ip, port, ip_type
+        print('begin judging ---->', ip, port, ip_type)
         http_url = "https://www.baidu.com"
         proxy_url = "{2}://{0}:{1}".format(ip, port, str(ip_type).lower())
         try:
@@ -123,16 +123,16 @@ class IPUtil(object):
             }
             response = requests.get(http_url, proxies=proxy_dict)
         except Exception as e:
-            print "invalid ip and port,cannot connect baidu"
+            print("invalid ip and port,cannot connect baidu")
             self.delete_ip(ip)
             return False
         else:
             code = response.status_code
             if code >= 200 and code < 300:
-                print "effective ip"
+                print("effective ip")
                 return True
             else:
-                print  "invalid ip and port,code is " + code
+                print("invalid ip and port,code is " + code)
                 self.delete_ip(ip)
                 return False
 
@@ -155,7 +155,7 @@ class IPUtil(object):
                         writer.writerow(line)
 
 if __name__ == '__main__':
-    crawl_xici_ip(1, 2)
-    # ip = IPUtil()
+    # crawl_xici_ip(1, 2)
+    ip = IPUtil()
     # for i in range(20):
-    #     print ip.get_random_ip()
+    print(ip.get_random_ip())

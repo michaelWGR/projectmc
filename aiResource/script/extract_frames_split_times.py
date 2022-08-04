@@ -6,9 +6,10 @@ import cv2
 import numpy
 import datetime
 import threading
-import Queue
+import queue
+import os
 
-import MySQLdb
+# import MySQLdb
 import traceback
 
 from utils.settings import *
@@ -88,7 +89,7 @@ def save_to_database(meta_file_path, business_type, col_int_01):
     # for meta_file_path in meta_file_paths:
 
     # cursor = coon.cursor()
-    transaction.set_autocommit(False)
+    # transaction.set_autocommit(False)
 
     with open(meta_file_path, 'rb') as meta_file:
         is_video_line = True
@@ -110,7 +111,7 @@ def save_to_database(meta_file_path, business_type, col_int_01):
                     # video_id = coon.insert_id()
                     is_had = Resource.objects.filter(path=line).count()
                     if is_had >= 1:
-                        print 'video %s have insert' % (line,)
+                        print('video %s have insert' % (line,))
                         break
                     resource = Resource(path=line, type=0, business_type=business_type, pid=0, pre_id=0,
                                         next_id=0, checked=0, process_type=0, is_leaf=1, is_debug=0,
@@ -150,7 +151,7 @@ def save_to_database(meta_file_path, business_type, col_int_01):
                         Resource.objects.filter(id=pre_id).update(next_id=new_line_id)
                         pre_id = new_line_id
             transaction.commit()
-        except Exception, e:
+        except Exception as e:
             transaction.rollback()
             raise RuntimeError(e)
 
@@ -168,7 +169,7 @@ class DealThread(threading.Thread):
         while not self.video_metas.empty():
             video_meta = None
             try:
-                print 'undeal %d' % (self.video_metas.qsize(),)
+                print('undeal %d' % (self.video_metas.qsize(),))
                 video_meta = self.video_metas.get()
                 if not os.path.exists(video_meta.frames_file_dir):
                     os.makedirs(video_meta.frames_file_dir)
@@ -186,9 +187,9 @@ class DealThread(threading.Thread):
                     meta_file.writelines(frames_dirs)
 
                 self.save_to_database(video_meta.meta_path)
-            except Exception, e:
-                print 'threading error'
-                print os.path.exists(video_meta.meta_path)
+            except Exception as e:
+                print('threading error')
+                print(os.path.exists(video_meta.meta_path))
                 if os.path.exists(video_meta.meta_path):
 
                     os.remove(video_meta.meta_path)
@@ -197,7 +198,7 @@ class DealThread(threading.Thread):
 
     @staticmethod
     def extract_frame(video_meta, video_shape, frames_file_pattern, frame_rate=None, distinct=False):
-        print 'threading extrat'
+        print('threading extrat')
         frames_dirs = []
         frames_dirs.append(video_meta.video_path + os.linesep)
 
@@ -223,7 +224,7 @@ class DealThread(threading.Thread):
 
     # @staticmethod
     def save_to_database(self, meta_file_path):
-        print 'threading save'
+        print('threading save')
         # persist to database
         # prepare video
         # meta_file_paths = []
@@ -263,7 +264,7 @@ class DealThread(threading.Thread):
                     if is_video_line:
                         is_had = Resource.objects.filter(path=line).count()
                         if is_had >= 1:
-                            print 'video %s have insert' % (line,)
+                            print('video %s have insert' % (line,))
                             break
                         resource = Resource(path=line, type=0, business_type=self.business_type, pid=0, pre_id=0,
                                             next_id=0, checked=0, process_type=0, is_leaf=1, is_debug=0,
@@ -302,8 +303,8 @@ class DealThread(threading.Thread):
                             # cursor.execute(update_last_line_sql, (now_time, pre_id))
                             # Resource.objects.filter(id=pre_id)
                 transaction.commit()
-        except Exception, e:
-            print traceback.format_exc()
+        except Exception as e:
+            print(traceback.format_exc())
             # cursor.close()
             transaction.rollback()
             raise RuntimeError(e)
@@ -338,7 +339,7 @@ def main():
 
     # prepare video
     video_metas = []
-    video_metas_queue = Queue.Queue()
+    video_metas_queue = queue.Queue()
     for root, dirs, files in os.walk(args.video_dir):
         if files:
             for file_ in files:
@@ -351,18 +352,18 @@ def main():
     try:
         while video_metas_queue.qsize() > 0:
             video_meta = video_metas_queue.get()
-            print ("undeal video %s" % (video_metas_queue.qsize()))
+            print("undeal video %s" % (video_metas_queue.qsize()))
             if not os.path.exists(video_meta.frames_file_dir):
                 os.makedirs(video_meta.frames_file_dir)
 
             if os.path.exists(video_meta.meta_path) and os.path.isfile(video_meta.meta_path):
-                print ('video %s had deal' % (video_meta.video_path,))
+                print('video %s had deal' % (video_meta.video_path,))
                 continue
 
             video_shape = get_video_shape(video_meta.video_path)
             frames_dirs = extract_frame(video_meta, video_shape, video_meta.frames_file_pattern, frame_rate=frame_rate,
                                         distinct=distinct)
-            with open(video_meta.meta_path, 'wb') as meta_file:
+            with open(video_meta.meta_path, 'w') as meta_file:
                 meta_file.writelines(frames_dirs)
 
             save_to_database(video_meta.meta_path, business_type, GameType[col_int_01].value)
@@ -370,7 +371,7 @@ def main():
         if os.path.exists(video_meta.meta_path):
             os.remove(video_meta.meta_path)
 
-        print traceback.format_exc()
+        print(traceback.format_exc())
 
 
     # threads = []

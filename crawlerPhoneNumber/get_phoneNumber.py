@@ -4,7 +4,7 @@ import requests
 import re
 import csv
 import time
-from .crawl_ip import IPUtil
+from crawl_ip import IPUtil
 
 def getURL(name, proxies=None):
 
@@ -134,7 +134,7 @@ if __name__ == '__main__':
     # companyURL = getURL(name)
     # print companyURL
     # getInfo(companyURL)
-    main()
+    # main()
 
     # ip_util = IPUtil()
     # proxy_ip = ip_util.get_random_ip()
@@ -143,6 +143,8 @@ if __name__ == '__main__':
     # companyURL = getURL(name)
     # print companyURL
     # print getInfo(companyURL, {'http': 'http://115.46.66.216:8123'})
-    ip = {
-        'https': 'https://183.17.231.78:33110'
-    }
+    # ip = {
+    #     'https': 'https://183.17.231.78:33110'
+    # }
+    proxy_ip = IPUtil().get_random_ip()
+    print(proxy_ip)

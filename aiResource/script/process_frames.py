@@ -15,7 +15,7 @@ from multiprocessing import Pool
 from shutil import copyfile
 
 # from aiResource.settings import PROCESS_TYPE
-from utils.settings import *
+from .utils.settings import *
 
 
 class Processor(object):
@@ -208,8 +208,8 @@ def save_to_database(coon, frame_item, deal_save_path, process_type):
             path, type, business_type, pid, next_id, pre_id, process_type, value, checked, is_leaf, is_debug,
             col_int_01, ctime, mtime,))
         coon.commit()
-    except Exception, e:
-        print e
+    except Exception as e:
+        print(e)
         coon.rollback()
 
 
