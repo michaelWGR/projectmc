@@ -95,93 +95,48 @@ def check_adx(domain_list):
         check_http_https(domain, path, expect_resp)
 
 
+def check_ad_track(domain_list):
+    for domain in domain_list:
+        path = "/impression"
+        expect_resp = '{"status": 0,"msg": ""}'
+        check_http_https(domain, path, expect_resp)
+
+
 if __name__ == '__main__':
     feedback = [
-        "sg-gcp-adx-asia-southeast1-a-bid-feedback.mintegral.net",
-        "sg-gcp-adx-asia-southeast1-a-bid-feedback.rayjump.com",
-        "sg-gcp-adx-asia-southeast1-a-bid-feedback.mtgglobals.com",
-        "sg-gcp-adx-asia-southeast1-b-bid-feedback.mintegral.net",
-        "sg-gcp-adx-asia-southeast1-b-bid-feedback.rayjump.com",
-        "sg-gcp-adx-asia-southeast1-b-bid-feedback.mtgglobals.com",
+        "or-gcp-adx-us-west1-a-bid-feedback.mintegral.net",
+        "or-gcp-adx-us-west1-a-bid-feedback.rayjump.com",
+        "or-gcp-adx-us-west1-a-bid-feedback.mtgglobals.com",
+        "or-gcp-adx-us-west1-b-bid-feedback.mintegral.net",
+        "or-gcp-adx-us-west1-b-bid-feedback.rayjump.com",
+        "or-gcp-adx-us-west1-b-bid-feedback.mtgglobals.com",
     ]
-    check_feedback(feedback)
+    # check_feedback(feedback)
     supply = [
-        "sg-gcp-adx-asia-southeast1-a-ssp-tk.mintegral.net",
-        "sg-gcp-adx-asia-southeast1-a-ssp-tk.rayjump.com",
-        "sg-gcp-adx-asia-southeast1-a-ssp-tk.mtgglobals.com",
-        "sg-gcp-adx-asia-southeast1-b-ssp-tk.mintegral.net",
-        "sg-gcp-adx-asia-southeast1-b-ssp-tk.rayjump.com",
-        "sg-gcp-adx-asia-southeast1-b-ssp-tk.mtgglobals.com",
+        "or-gcp-adx-us-west1-a-ssp-tk.mintegral.net",
+        "or-gcp-adx-us-west1-a-ssp-tk.rayjump.com",
+        "or-gcp-adx-us-west1-a-ssp-tk.mtgglobals.com",
+        "or-gcp-adx-us-west1-b-ssp-tk.mintegral.net",
+        "or-gcp-adx-us-west1-b-ssp-tk.rayjump.com",
+        "or-gcp-adx-us-west1-b-ssp-tk.mtgglobals.com",
     ]
-    check_supply_tracking(supply)
+    # check_supply_tracking(supply)
     adx = [
-        "sg-gcp-madx-adx.mobvista.com"
+        "or-gcp-madx-adx.mobvista.com",
     ]
-    check_adx(adx)
-    # bid_domain = [
-    #     "sg-new-cdn-ssplib-ap-southeast-1a-hb.mtgglobals.com",
-    #     "sg-new-cdn-ssplib-ap-southeast-1b-hb.mtgglobals.com",
-    #     "sg-new-cdn-ssplib-ap-southeast-1c-hb.mtgglobals.com",
-    #     "sg-new-cdn-ssplib-ap-southeast-1a-hb.rayjump.com",
-    #     "sg-new-cdn-ssplib-ap-southeast-1b-hb.rayjump.com",
-    #     "sg-new-cdn-ssplib-ap-southeast-1c-hb.rayjump.com",
-    #     "sg-new-ssplib-ap-southeast-1a-hb.mintegral.net",
-    #     "sg-new-ssplib-ap-southeast-1b-hb.mintegral.net",
-    #     "sg-new-ssplib-ap-southeast-1c-hb.mintegral.net",
-    # ]
-    # for b in bid_domain:
-    #     check_load(b)
-    #
-    # v3_domain = [
-    #     "bj-ali-ssplib-sdk-wf.rayjump.com",
-    #     "vg-ali-ssplib-sdk-wf.rayjump.com",
-    #     "nl-gcp-ssplib-sdk-wf.rayjump.com",
-    #     "sg-gcp-ssplib-sdk-wf.rayjump.com",
-    #     "vg-aws-ssplib-sdk-wf.rayjump.com",
-    #     "vg-ali-ssplib-sdk-wf.mtgglobals.com",
-    #     "nl-gcp-ssplib-sdk-wf.mtgglobals.com",
-    #     "sg-gcp-ssplib-sdk-wf.mtgglobals.com",
-    #     "vg-aws-ssplib-sdk-wf.mtgglobals.com",
-    #     "bj-ali-ssplib-sdk-wf.mintegral.net",
-    #     "vg-ali-ssplib-sdk-wf.mintegral.net",
-    #     "nl-gcp-ssplib-sdk-wf.mintegral.net",
-    #     "sg-gcp-ssplib-sdk-wf.mintegral.net",
-    #     "vg-aws-ssplib-sdk-wf.mintegral.net"
-    # ]
-    # for v in v3_domain:
-    #     check_v3path(v)
-    # domain_list = [
-    #     "vg-aws-cdn-ssplib-us-east-1a-hb.mtgglobals.com",
-    #     "vg-aws-cdn-ssplib-us-east-1b-hb.mtgglobals.com",
-    #     "vg-aws-cdn-ssplib-us-east-1a-hb.rayjump.com",
-    #     "vg-aws-cdn-ssplib-us-east-1b-hb.rayjump.com",
-    #     "vg-aws-ssplib-us-east-1a-hb.mintegral.net",
-    #     "vg-aws-ssplib-us-east-1b-hb.mintegral.net",
-    #     "vg-aws-ssplib-us-east-1a-hb.mtgglobals.com",
-    #     "vg-aws-ssplib-us-east-1b-hb.mtgglobals.com",
-    #     "vg-new-ssplib-hb.mtgglobals.com",
-    #     "vg-new-ssplib-hb.rayjump.com",
-    #     "vg-new-ssplib-hb.mintegral.net",
-    #     "sg-new-cdn-ssplib-asia-southeast1-c-hb.mtgglobals.com",
-    #     "sg-new-cdn-ssplib-asia-southeast1-b-hb.mtgglobals.com",
-    #     "sg-new-cdn-ssplib-asia-southeast1-c-hb.rayjump.com",
-    #     "sg-new-cdn-ssplib-asia-southeast1-b-hb.rayjump.com",
-    #     "sg-new-cdn-ssplib-asia-southeast1-c-hb.mintegral.net",
-    #     "sg-new-cdn-ssplib-asia-southeast1-b-hb.mintegral.net",
-    #     "sg-new-ssplib-asia-southeast1-c-hb.mintegral.net",
-    #     "sg-new-ssplib-asia-southeast1-b-hb.mintegral.net",
-    #     "nl-new-cdn-ssplib-europe-west4-c-hb.rayjump.com",
-    #     "nl-new-cdn-ssplib-europe-west4-b-hb.rayjump.com",
-    #     "nl-new-cdn-ssplib-europe-west4-c-hb.mtgglobals.com",
-    #     "nl-new-cdn-ssplib-europe-west4-b-hb.mtgglobals.com",
-    #     "nl-new-cdn-ssplib-europe-west4-c-hb.mintegral.net",
-    #     "nl-new-cdn-ssplib-europe-west4-b-hb.mintegral.net",
-    #     "nl-new-ssplib-europe-west4-b-hb.mintegral.net",
-    #     "nl-new-ssplib-europe-west4-c-hb.mintegral.net",
-    #     "bj-new-ssplib-hb.mintegral.net",
-    #     "bj-new-ssplib-hb.rayjump.com",
-    # ]
-    # for d in domain_list:
-    #     check_version(d)
+    # check_adx(adx)
+    ad_track = [
+        "or-gcp-ad-track-adx.mintegral.net",
+        "or-gcp-ad-track-adx.rayjump.com",
+        "or-gcp-ad-track-adx.mtgglobals.com",
+        "or-gcp-ad-track-adx-us-west1-a.mintegral.net",
+        "or-gcp-ad-track-adx-us-west1-a.rayjump.com",
+        "or-gcp-ad-track-adx-us-west1-a.mtgglobals.com",
+        "or-gcp-ad-track-adx-us-west1-b.mintegral.net",
+        "or-gcp-ad-track-adx-us-west1-b.rayjump.com",
+        "or-gcp-ad-track-adx-us-west1-b.mtgglobals.com",
+    ]
+    check_ad_track(ad_track)
+
 
 
