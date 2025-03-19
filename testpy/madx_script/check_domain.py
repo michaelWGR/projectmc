@@ -91,27 +91,24 @@ def check_supply_tracking(domain_list):
 def check_adx(domain_list):
     for domain in domain_list:
         path = "/version"
-        expect_resp = "appversion:"
+        expect_resp = "appversion: t5.3.11-sdk_alisg_v8"
         check_http_https(domain, path, expect_resp)
 
 
 def check_ad_track(domain_list):
     for domain in domain_list:
-        path = "/impression"
+        path = "/m_imp"
         expect_resp = '{"status": 0,"msg": ""}'
         check_http_https(domain, path, expect_resp)
 
 
 if __name__ == '__main__':
     feedback = [
-        "or-gcp-adx-us-west1-a-bid-feedback.mintegral.net",
-        "or-gcp-adx-us-west1-a-bid-feedback.rayjump.com",
-        "or-gcp-adx-us-west1-a-bid-feedback.mtgglobals.com",
-        "or-gcp-adx-us-west1-b-bid-feedback.mintegral.net",
-        "or-gcp-adx-us-west1-b-bid-feedback.rayjump.com",
-        "or-gcp-adx-us-west1-b-bid-feedback.mtgglobals.com",
+        "sg-new-hb-bid-feedback.rayjump.com",
+        "sg-new-hb-bid-feedback.mtgglobals.com",
+        "sg-new-hb-bid-feedback.mintegral.net",
     ]
-    # check_feedback(feedback)
+    check_feedback(feedback)
     supply = [
         "or-gcp-adx-us-west1-a-ssp-tk.mintegral.net",
         "or-gcp-adx-us-west1-a-ssp-tk.rayjump.com",
@@ -122,21 +119,26 @@ if __name__ == '__main__':
     ]
     # check_supply_tracking(supply)
     adx = [
-        "or-gcp-madx-adx.mobvista.com",
+        "net-sg.rayjump.com",
+        "net-sg.mtgglobals.com",
+        "net-sg.mintegral.net",
+        "sg-ali-ssplib-sdk-bid.rayjump.com",
+        "sg-ali-ssplib-sdk-wf.rayjump.com",
+        "sg-ali-ssplib-sdk-bid.mtgglobals.com",
+        "sg-ali-ssplib-sdk-wf.mtgglobals.com",
+        "sg-ali-ssplib-sdk-bid.mintegral.net",
+        "sg-ali-ssplib-sdk-wf.mintegral.net",
+        "sg-new-ssplib-hb.rayjump.com",
+        "sg-new-ssplib-hb.mtgglobals.com",
+        "sg-new-ssplib-hb.mintegral.net",
     ]
     # check_adx(adx)
     ad_track = [
-        "or-gcp-ad-track-adx.mintegral.net",
-        "or-gcp-ad-track-adx.rayjump.com",
-        "or-gcp-ad-track-adx.mtgglobals.com",
-        "or-gcp-ad-track-adx-us-west1-a.mintegral.net",
-        "or-gcp-ad-track-adx-us-west1-a.rayjump.com",
-        "or-gcp-ad-track-adx-us-west1-a.mtgglobals.com",
-        "or-gcp-ad-track-adx-us-west1-b.mintegral.net",
-        "or-gcp-ad-track-adx-us-west1-b.rayjump.com",
-        "or-gcp-ad-track-adx-us-west1-b.mtgglobals.com",
+        "sg-ali-ad-track-sdk.rayjump.com",
+        "sg-ali-ad-track-sdk.mtgglobals.com",
+        "sg-ali-ad-track-sdk.mintegral.net",
     ]
-    check_ad_track(ad_track)
+    # check_ad_track(ad_track)
 
 
 
